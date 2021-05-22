@@ -64,7 +64,7 @@
                     </label>
                   </div>
                   <div class='section'>
-                    <input type='text' name='lastname' id='lastname' autocomplete="off" required value="<?= set_value('surname')?>">
+                    <input type='text' name='surname' id='surname' autocomplete="off" required value="<?= set_value('surname')?>">
                     <label for='lastname' class='label-name'>
                         <span class='content-name'>Prezime</span>
                     </label>
@@ -82,17 +82,17 @@
                     </label>
                   </div>
                   <div class='section'>
-                    <input type='text' name='agencyname' id='agencyname' autocomplete="off" value="<?= set_value('nameAgency')?>">
-                    <label for='agencyname' class='label-name agencija'>
+                    <input type='text' name='nameAgency' id='nameAgency' autocomplete="off" value="<?= set_value('nameAgency')?>">
+                    <label for='nameAgency' class='label-name agencija'>
                         <span class='content-name'>Naziv agencije (opciono)</span>
                     </label>
                   </div>
                   <div class='type'>
-                    <input type="radio" id="regularuser" name="type" value="regular" checked value="<?= set_value('isRegular')?>">
-                    <label for="regularuser">Običan korisnik</label>
-                    <input type="radio" id="privilegeduser" name="type" value="privileged" value="<?= set_value('isPrivileged')?>">
-                    <label for="privilegeduser">Privilegovani korisnik</label>
-                    <input type="radio" id="agency" name="type" value="agency" value="<?= set_value('isAgency')?>">
+                    <input type="radio" id="regular" name="type" value="regular" checked>
+                    <label for="regular">Običan korisnik</label>
+                    <input type="radio" id="privileged" name="type" value="privileged">
+                    <label for="privileged">Privilegovani korisnik</label>
+                    <input type="radio" id="agency" name="type" value="agency">
                     <label for="agency">Agencija za nekretnine</label>
                   </div>
                 <button type='submit' class='registerbutton' onclick="registrujse()">Registrujte se</button>

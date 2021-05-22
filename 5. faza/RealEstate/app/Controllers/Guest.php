@@ -1,7 +1,9 @@
 <?php namespace App\Controllers;
 
 use App\Models\UserModel;
-
+use App\Models\RegisteredUserModel;
+use App\Models\PrivilegedUserModel;
+use App\Models\AgencyModel;
 class Guest extends BaseController
 {
 	public function index()
@@ -29,15 +31,55 @@ class Guest extends BaseController
                 $data['validation']=$this->validator;
             }
             else {
-                $user=new UserModel();
-                
+                $user=new UserModel();                
                 $values=[
                     'Username'=>$this->request->getVar('username'),
                     'Password'=>$this->request->getVar('password'),
                     'Email'=>$this->request->getVar('email'),
                     'Phone'=>$this->request->getVar('phone')
-                ];
+                ];   
+                //add user
                 $user->save($values);
+                
+                
+             
+                $id=$user->getInsertID();
+                $type=$_POST["type"];
+                
+              //check if regular privileged or agency
+                    if ($type=="regular"){
+                    $regular=[
+                        'IdR'=>$id,
+                        'Name'=>$this->request->getVar('name'),
+                        'Surname'=>$this->request->getVar('surname')
+                    ];
+                $registered=new RegisteredUserModel();
+                $registered->save($regular);
+                }
+                
+                else if ($type=="privileged"){
+                    $data=[
+                        'IdP'=>$id,
+                        'Name'=>$this->request->getVar('name'),
+                        'Surname'=>$this->request->getVar('surname')
+                    ];
+                $privileged=new PrivilegedUserModel();
+                $privileged->save($data);
+                }
+                
+                
+                else {
+                    $v=0;
+                    $data=[
+                        'IdA'=>$id,
+                        'Name'=>$this->request->getVar('name'),
+                        'AverageMark'=>$v
+                    ];
+                $agency=new AgencyModel();
+                $agency->save($data);
+                }
+
+                
                 $session= session();
                 $session->setFlashdata('success', 'Successful Registration');
 		return redirect()->to('/');
