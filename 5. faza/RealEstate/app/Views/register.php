@@ -8,22 +8,22 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="style.css">
-    <script src='javascript.js'></script>
+    <link rel="stylesheet" href="/assets/style.css">
+    <script src='/assets/javascript.js'></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <title>Prototip</title>
 </head>
 <body>
     <nav>
-        <div class="logo"><h4><a href='../index.html'>Success</a></h4></div>
+        <div class="logo"><h4><a href='/index.html'>Success</a></h4></div>
         <ul class="nav-links">
-          <li><a href='../index.html'>Početna stranica</a href></li>
-          <li><a href='pretraga.html'>Pretraga</a href></li>
+          <li><a href='/index.html'>Početna stranica</a href></li>
+          <li><a href='/assetspretraga.html'>Pretraga</a href></li>
           <li><a href='#'>Oglasi</a href></li>
           <li><a href='#'>O nama</a href></li>
-          <li><a href='login.html' class='login'>Prijavite se</a href></li>
-          <li><a href='register.html' class='button register'>Registrujte se</a></a href></li>
+          <li><a href='/assets/login.html' class='login'>Prijavite se</a href></li>
+          <li><a href='Guest/register' class='button register'>Registrujte se</a></a href></li>
         </ul>
                 
         <div class="hidden-menu">
@@ -37,7 +37,7 @@
         <section class="glass">
             <form class='uredi' name='registracija' id='forma' action="" method="post">
                 <div class="imgcontainer">
-                  <img src="images/avatar.png" alt="Avatar" class="avatar">
+                  <img src="/assets/images/avatar.png" alt="Avatar" class="avatar">
                 </div>
                   <div class='section'>
                       <input type='text' name='username' id='username' autocomplete="off" required value="<?= set_value('username')?>" >

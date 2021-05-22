@@ -3,12 +3,8 @@
 use CodeIgniter\Model;
 class UserModel extends Model
 {
-    protected $table         = 'korisnik';
-     protected $primaryKey = 'IdK';
-
-    protected $useAutoIncrement = true;
-
+    protected $table         = 'user';
     protected $allowedFields = [
-        'KorisnickoIme', 'Lozinka', 'Mejl','BrTelefona'
+        'Username', 'Password', 'Email','Phone'
     ];
 }

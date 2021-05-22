@@ -22,7 +22,7 @@ class Guest extends BaseController
                 'lastname'=>'required|min_length[3]|max_length[30]',
                 'password'=>'required|min_length[3]|max_length[30]',
                 'passagain'=>'matches[password]',
-                'email'=>'required|min_length[6]|max_length[50]|valid_email|is_unique[user.mejl]',
+                'email'=>'required|min_length[6]|max_length[50]|valid_email|is_unique[user.email]',
             ];
             
             if ($this->validate($rules)){
@@ -32,10 +32,10 @@ class Guest extends BaseController
                 $user=new UserModel();
                 
                 $values=[
-                    'KorisnickoIme'=>$this->request->getVar('username'),
-                    'Lozinka'=>$this->request->getVar('password'),
-                    'Mejl'=>$this->request->getVar('email'),
-                    'BrTelefona'=>$this->request->getVar('phone')
+                    'Username'=>$this->request->getVar('username'),
+                    'Password'=>$this->request->getVar('password'),
+                    'Email'=>$this->request->getVar('email'),
+                    'Phone'=>$this->request->getVar('phone')
                 ];
                 $user->save($values);
                 $session= session();
