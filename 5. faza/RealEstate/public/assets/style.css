@@ -147,9 +147,6 @@ nav{
     background-color: rgb(42, 175, 146);
     border-radius: 5px;
 }
-
-
-
   
   
  button {
@@ -621,7 +618,7 @@ nav{
     border-radius: 8px;
     backdrop-filter: blur(2rem);
     z-index: 2;
-    background-image: url('./assets/gl.png');
+    background-image: url('images/gl.png');
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: 50% 50%;
