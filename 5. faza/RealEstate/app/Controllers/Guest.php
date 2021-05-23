@@ -95,5 +95,63 @@ class Guest extends BaseController
           
         }
         
+        public function login(){
+        
+            $data=[];
+            helper(['form']);
+        
+            if ($this->request->getMethod()=='post'){
+                
+			$model = new UserModel();
+			$user = $model->where('username', $this->request->getVar('username'))->first();
+                            if ($user==null){
+                                echo 'Greska';
+                                return ;
+                            }
+                                //check user type
+                                $agency=new AgencyModel();
+                                $isAgency=$agency->where('username', $this->request->getVar('username'))->first();
+                                
+                                $registered=new RegisteredUserModel();
+                                $isRegistered=$isRegistered->where('username', $this->request->getVar('username'))->first();
+                                
+                                $privileged=new PrivilegedUserModel();
+                                $isPrivileged=$isPrivileged->where('username', $this->request->getVar('username'))->first();
+                                
+                                $validationData=[];
+                        
+                        if ($isAgency!=null){
+                            $validationData=[
+                                'Id'=>$user['Id'],
+                                'Email' => $user['Email'],
+                                'Name'=>   $isAgency['Name']
+                            ];
+                        }
+                        
+                        else if ($isPrivileged!=null)
+                        {
+                            $validationData=[
+                                'Id'=>$user['Id'],
+                                'Email' => $user['Email'],
+                                'Name'=>$isPrivileged['Name'],
+                                'Surname'=>$isPrivileged['Surname']
+                            ];
+                        }
+                        
+                        else {
+                             $validationData=[
+                               'Id'=>$user['Id'],
+                                'Email' => $user['Email'],
+                                'Name'=>$isPrivileged['Name'],
+                                'Surname'=>$isPrivileged['Surname']
+                            ];
+                        }
+                                session()->set($validationData);
+				//$session->setFlashdata('success', 'Successful Registration');
+				return redirect()->to('/');
+                        
+            }
+             echo view('login.php');
+        }
         
 }

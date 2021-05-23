@@ -19,10 +19,10 @@
         <div class="logo"><h4><a href='/index.html'>Success</a></h4></div>
         <ul class="nav-links">
           <li><a href='/index.html'>Početna stranica</a href></li>
-          <li><a href='/assetspretraga.html'>Pretraga</a href></li>
+          <li><a href='/assets/pretraga.html'>Pretraga</a href></li>
           <li><a href='#'>Oglasi</a href></li>
           <li><a href='#'>O nama</a href></li>
-          <li><a href='/assets/login.html' class='login'>Prijavite se</a href></li>
+          <li><a href='Guest/login' class='login'>Prijavite se</a href></li>
           <li><a href='Guest/register' class='button register'>Registrujte se</a></a href></li>
         </ul>
                 
