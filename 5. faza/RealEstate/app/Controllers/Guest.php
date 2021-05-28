@@ -20,17 +20,21 @@ class Guest extends BaseController
             if ($this->request->getMethod()=='post'){
             //validation for user
             $rules=[
-                'username'=>'required|min_length[3]|max_length[30]',
-                'lastname'=>'required|min_length[3]|max_length[30]',
-                'password'=>'required|min_length[3]|max_length[30]',
+                'username'=>'required|min_length[3]|max_length[20]|is_unique[user.username]',
+                'name'=>'required|min_length[3]|max_length[20]',
+                'lastname'=>'required|min_length[3]|max_length[20]',
+                'password'=>'required|min_length[3]|max_length[20]',
                 'passagain'=>'matches[password]',
                 'email'=>'required|min_length[6]|max_length[50]|valid_email|is_unique[user.email]',
             ];
             
             if ($this->validate($rules)){
+                
                 $data['validation']=$this->validator;
+                echo 'Neuspeh';
             }
             else {
+                
                 $user=new UserModel();                
                 $values=[
                     'Username'=>$this->request->getVar('username'),
@@ -39,9 +43,7 @@ class Guest extends BaseController
                     'Phone'=>$this->request->getVar('phone')
                 ];   
                 //add user
-                $user->save($values);
-                
-                
+                $user->save($values);          
              
                 $id=$user->getInsertID();
                 $type=$_POST["type"];
@@ -49,7 +51,7 @@ class Guest extends BaseController
               //check if regular privileged or agency
                     if ($type=="regular"){
                     $regular=[
-                        'IdR'=>$id,
+                        'Id'=>$id,
                         'Name'=>$this->request->getVar('name'),
                         'Surname'=>$this->request->getVar('surname')
                     ];
@@ -79,9 +81,8 @@ class Guest extends BaseController
                 $agency->save($data);
                 }
 
-                
-                $session= session();
-                $session->setFlashdata('success', 'Successful Registration');
+               $session=session();
+                $session->setFlashdata('successSecond', 'Successful Registration Second');
 		return redirect()->to('/');
             }
             
@@ -96,7 +97,7 @@ class Guest extends BaseController
         }
         
         public function login(){
-        
+        /*
             $data=[];
             helper(['form']);
         
@@ -152,6 +153,13 @@ class Guest extends BaseController
                         
             }
              echo view('login.php');
+         * */
+         $user=new UserModel();
+         $kor=$user->find(52);
+         if ($kor!=null)
+             echo 'postoji';
+         else 
+             echo 'ne postoji';
         }
         
 }

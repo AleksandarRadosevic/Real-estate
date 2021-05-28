@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 28, 2021 at 10:23 AM
+-- Generation Time: May 28, 2021 at 12:26 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -69,17 +69,17 @@ CREATE TABLE IF NOT EXISTS `advertisement` (
 
 DROP TABLE IF EXISTS `agency`;
 CREATE TABLE IF NOT EXISTS `agency` (
-  `IdA` int(11) NOT NULL,
+  `Id` int(11) NOT NULL,
   `Name` varchar(20) DEFAULT NULL,
   `AverageMark` decimal(10,2) DEFAULT NULL,
-  PRIMARY KEY (`IdA`)
+  PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `agency`
 --
 
-INSERT INTO `agency` (`IdA`, `Name`, `AverageMark`) VALUES
+INSERT INTO `agency` (`Id`, `Name`, `AverageMark`) VALUES
 (33, 'fsadfsdafa', '0.00');
 
 -- --------------------------------------------------------
@@ -215,17 +215,17 @@ CREATE TABLE IF NOT EXISTS `privilege` (
 
 DROP TABLE IF EXISTS `privilegeduser`;
 CREATE TABLE IF NOT EXISTS `privilegeduser` (
-  `IdP` int(11) NOT NULL,
+  `Id` int(11) NOT NULL,
   `Name` varchar(30) NOT NULL,
   `Surname` varchar(30) NOT NULL,
-  PRIMARY KEY (`IdP`)
+  PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `privilegeduser`
 --
 
-INSERT INTO `privilegeduser` (`IdP`, `Name`, `Surname`) VALUES
+INSERT INTO `privilegeduser` (`Id`, `Name`, `Surname`) VALUES
 (32, 'a1', 'a1');
 
 -- --------------------------------------------------------
@@ -249,20 +249,26 @@ CREATE TABLE IF NOT EXISTS `realestatetype` (
 
 DROP TABLE IF EXISTS `registereduser`;
 CREATE TABLE IF NOT EXISTS `registereduser` (
-  `IdR` int(11) NOT NULL,
+  `Id` int(11) NOT NULL,
   `Name` varchar(30) NOT NULL,
   `Surname` varchar(30) NOT NULL,
-  PRIMARY KEY (`IdR`)
+  PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `registereduser`
 --
 
-INSERT INTO `registereduser` (`IdR`, `Name`, `Surname`) VALUES
+INSERT INTO `registereduser` (`Id`, `Name`, `Surname`) VALUES
 (16, 'fdasfd', 'fdafdafda'),
 (17, 'fdafa', 'fdafda'),
-(18, 'agasggas', 'gdaga');
+(18, 'agasggas', 'gdaga'),
+(48, 'dsad', 'sadsa'),
+(50, 'fdsafdsa', 'fdsafdsafdsa'),
+(51, 'fdsafdas', 'fdsafds'),
+(52, 'fdsafdas', 'fdsafds'),
+(53, 'fdsafdas', 'fdsafds'),
+(54, 'fdsfdsa', 'fdsafdsa');
 
 -- --------------------------------------------------------
 
@@ -298,7 +304,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `Email` varchar(20) DEFAULT NULL,
   `Phone` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
@@ -331,7 +337,28 @@ INSERT INTO `user` (`Id`, `Username`, `Password`, `Email`, `Phone`) VALUES
 (30, 'aca111', 'a1', 'a1', 'a1'),
 (31, 'priv', 'a1', 'a1', 'a1'),
 (32, 'priv', 'a1', 'a1', 'a1'),
-(33, 'fdasfdsa', 'fsdafds', 'sfdafsdafsda', 'sfdafdsafsda');
+(33, 'fdasfdsa', 'fsdafds', 'sfdafsdafsda', 'sfdafdsafsda'),
+(34, 'fasdfdas', 'aca', 'a', 'a'),
+(35, 'aaaa', 'aca', 'das', '06362367811111111'),
+(36, 'pera', 'pera', 'pera', '123456789'),
+(37, 'peki', 'peki', 'peki', '123456677'),
+(38, 'jovan', 'a', 'dfdafadfadfa', '063623678'),
+(39, 'ga', 'gdsagds', 'gdsagads', 'gdsadgsgdsa'),
+(40, 'fdas', 'fsad', 'fdsa', 'fasd'),
+(41, 'fdas', 'fsdaf', 'fsdasfdasfda', 'fsdasfdafsda'),
+(42, 'dsa', 'dsa', 'asdsad', 'sdasda'),
+(43, 'dsa', 'dsa', 'asdsad', 'sdasda'),
+(44, 'dsadsa', 'sdaasda', 'aaa', 'aaa'),
+(45, 'dsadsa', 'sdaasda', 'aaa', 'aaa'),
+(46, 'fdas', 'fasdasfdfsad', 'fdsafsda', 'fsdafdsadsa'),
+(47, 'fdas', 'fasdasfdfsad', 'fdsafsda', 'fsdafdsadsa'),
+(48, 'adsa', NULL, 'dsadsasad', 'sdasdasad'),
+(49, 'fda', 'fads', 'fsda', 'sfda'),
+(50, 'fdasfads', 'fads', 'fdsaf', 'dsafdsafdsa'),
+(51, 'fads', 'fsdafds', 'fdsafdsa', 'fdsafdsa'),
+(52, 'fads', 'fsdafds', 'fdsafdsa', 'fdsafdsa'),
+(53, 'fads', 'fsdafds', 'fdsafdsa', 'fdsafdsa'),
+(54, 'fsadfdsa', 'fsdaf', 'fdsafsd', 'dsfafdsafdsadfsa');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

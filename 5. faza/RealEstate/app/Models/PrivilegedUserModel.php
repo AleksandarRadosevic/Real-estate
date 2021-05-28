@@ -5,5 +5,5 @@ class PrivilegedUserModel extends Model
 {
     protected $table         = 'privilegeduser';
     protected $allowedFields = [
-        'IdP', 'Name', 'Surname'];
+        'Id', 'Name', 'Surname'];
 }

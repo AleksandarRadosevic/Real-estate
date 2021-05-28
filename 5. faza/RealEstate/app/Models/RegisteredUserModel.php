@@ -5,6 +5,6 @@ class RegisteredUserModel extends Model
 {
     protected $table         = 'registereduser';
     protected $allowedFields = [
-        'IdR','Name', 'Surname'
+        'Id','Name', 'Surname'
     ];
 }

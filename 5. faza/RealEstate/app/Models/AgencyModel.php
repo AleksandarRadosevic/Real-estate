@@ -5,6 +5,6 @@ class AgencyModel extends Model
 {
     protected $table         = 'agency';
     protected $allowedFields = [
-        'IdA', 'Name', 'AverageMark'
+        'Id', 'Name', 'AverageMark'
     ];
 }
