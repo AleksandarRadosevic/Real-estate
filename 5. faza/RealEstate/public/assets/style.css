@@ -100,7 +100,7 @@ nav{
     .nav-links{
         position:absolute;
         right:0%;
-        height:30%;
+        height:100%;
         top:2%;
         background-color:rgb(33, 74, 255);
         display:flex;
