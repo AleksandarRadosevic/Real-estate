@@ -52,7 +52,17 @@
                       <span class='content-name'>Lozinka</span>
                   </label>
                 </div>
-                <button type='submit' onclick="logujse()">Prijavite se</button>
+                
+                <?php if (! empty($errors)) : ?>
+                <div class="alert alert-danger">
+                <?php foreach ($errors as $field => $error) : ?>
+                    <p><?= $error ?></p>
+                <?php endforeach ?>
+                </div>
+                <?php endif ?>
+                
+                
+                <button type='submit'>Prijavite se</button>
                 <label>
                   <input type="checkbox" checked="checked" name="remember"> Zapamti me
                 </label>
