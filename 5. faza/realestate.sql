@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 28, 2021 at 03:31 PM
+-- Generation Time: May 28, 2021 at 03:41 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -46,7 +46,7 @@ DROP TABLE IF EXISTS `advertisement`;
 CREATE TABLE IF NOT EXISTS `advertisement` (
   `IdOwner` int(11) DEFAULT NULL,
   `IdAd` int(11) NOT NULL AUTO_INCREMENT,
-  `TimePosted` binary(8) DEFAULT NULL,
+  `Time` timestamp(6) NULL DEFAULT current_timestamp(6),
   `Price` int(11) DEFAULT NULL,
   `Topic` varchar(20) DEFAULT NULL,
   `Size` char(18) DEFAULT NULL,
