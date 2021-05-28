@@ -13,81 +13,78 @@ class Guest extends BaseController
         
         
         public function register(){
-            $data=[];
-            
+                       
             helper(['form']);
             
             if ($this->request->getMethod()=='post'){
-            //validation for user
-            $rules=[
-                'username'=>'required|min_length[3]|max_length[20]|is_unique[user.username]',
-                'name'=>'required|min_length[3]|max_length[20]',
-                'lastname'=>'required|min_length[3]|max_length[20]',
-                'password'=>'required|min_length[3]|max_length[20]',
-                'passagain'=>'matches[password]',
-                'email'=>'required|min_length[6]|max_length[50]|valid_email|is_unique[user.email]',
-            ];
-            
-            if ($this->validate($rules)){
+            //validation for user                     
+                $user=new UserModel();  
                 
-                $data['validation']=$this->validator;
-                echo 'Neuspeh';
-            }
-            else {
-                
-                $user=new UserModel();                
                 $values=[
                     'Username'=>$this->request->getVar('username'),
                     'Password'=>$this->request->getVar('password'),
                     'Email'=>$this->request->getVar('email'),
-                    'Phone'=>$this->request->getVar('phone')
+                    'PasswordAgain'=>$this->request->getVar('passagain'),
+                    
                 ];   
                 //add user
-                $user->save($values);          
-             
-                $id=$user->getInsertID();
+                if($user->validate($values)==false){
+                return view('register', ['errors' => $user->errors()]);
+            }
+                
+                //id will be changed after insert in user table
+                $id=-1;
                 $type=$_POST["type"];
                 
+              //value for insert in other  table
+               $userOtherTable=null;
+               
+               
               //check if regular privileged or agency
                     if ($type=="regular"){
-                    $regular=[
+                    $data=[
                         'Id'=>$id,
                         'Name'=>$this->request->getVar('name'),
                         'Surname'=>$this->request->getVar('surname')
                     ];
-                $registered=new RegisteredUserModel();
-                $registered->save($regular);
+                $userOtherTable=new RegisteredUserModel();
                 }
-                
+    
                 else if ($type=="privileged"){
                     $data=[
-                        'IdP'=>$id,
+                        'Id'=>$id,
                         'Name'=>$this->request->getVar('name'),
-                        'Surname'=>$this->request->getVar('surname')
+                        'Surname'=>$this->request->getVar('surname'),
+                        'Phone'=>$this->request->getVar('phone')
                     ];
-                $privileged=new PrivilegedUserModel();
-                $privileged->save($data);
+                $userOtherTable=new PrivilegedUserModel();
                 }
-                
-                
+                       
                 else {
                     $v=0;
                     $data=[
-                        'IdA'=>$id,
-                        'Name'=>$this->request->getVar('name'),
+                        'Id'=>$id,
+                        'Name'=>$this->request->getVar('nameAgency'),
+                        'Phone'=>$this->request->getVar('phone'),
                         'AverageMark'=>$v
                     ];
-                $agency=new AgencyModel();
-                $agency->save($data);
+                $userOtherTable=new AgencyModel();
                 }
-
-               $session=session();
-                $session->setFlashdata('successSecond', 'Successful Registration Second');
+                
+                if ($user->validate($values)==false)
+                    return view('register', ['errors' => $user->errors()]);
+                
+                if ($userOtherTable->validate($data)==false)
+                    return view('register', ['errors' => $userOtherTable->errors()]);
+ 
+                //values are correct and can be inserted
+                $user->save($values);
+                $data['Id']=$user->getInsertID();
+                $userOtherTable->save($data);
+      
+                $session=session();
+                $session->setFlashdata('success', 'Successful Registration');
 		return redirect()->to('/');
-            }
-            
-            
-            //validation for 
             
               }
             
