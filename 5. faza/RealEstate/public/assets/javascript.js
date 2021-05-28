@@ -124,7 +124,16 @@ function ukloni(obj){
   obj.parentElement.remove();
 }
 
-function klikNaDropdown() {
+function myFunction() {
+  var x = document.getElementById("Demo");
+  if (x.className.indexOf("w3-show") == -1) { 
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+
+/*function klikNaDropdown() {
   document.getElementById("myDropdown").classList.toggle("show");
 }
 
