@@ -14,7 +14,7 @@ class UserModel extends Model
         'Email'        => 'required|min_length[6]|max_length[50]|valid_email|is_unique[user.Email]',
         'Password'     => 'required|min_length[3]|max_length[20]',
         'PasswordAgain'=> 'required_with[Password]|matches[Password]',
-        //'Phone'        => 'regex_match[/^06[\d]{7,8}$/]'
+        'Phone'        => 'regex_match[/^06[\d]{7,8}$/]'
     ];
      protected $validationMessages = [
          'Username'     =>[
