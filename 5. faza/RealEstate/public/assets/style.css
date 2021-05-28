@@ -584,7 +584,7 @@ nav{
     
   }
 .show {display:block;}
-.dropdown:hover .dropdown-content {display: block;}
+.dropdown-content {display: block;}
 .sr{
     text-align: justify;
     margin-left:100px;
@@ -596,10 +596,9 @@ nav{
 #dugme{
     margin-left: 240px;
 }
-  button:hover {
-    opacity: 0.8;
+
     
- }
+ 
 
   #lupa{
     height: 30px;
