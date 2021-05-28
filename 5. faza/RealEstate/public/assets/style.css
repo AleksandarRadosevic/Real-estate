@@ -583,7 +583,8 @@ nav{
     display: inline-flex;
     
   }
-  .dropdown:hover .dropdown-content {display: block;}
+.show {display:block;}
+.dropdown:hover .dropdown-content {display: block;}
 .sr{
     text-align: justify;
     margin-left:100px;
