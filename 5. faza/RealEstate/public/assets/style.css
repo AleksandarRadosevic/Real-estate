@@ -557,12 +557,13 @@ nav{
 
 .dropbtn {
     background-color: #ffffff;
-    color: white;
+    color:black;
     padding: 8px;
     font-size: 14px;
+    
     border: none;
     width:150px
-    border-radius: 5px
+    
         
   }
   
