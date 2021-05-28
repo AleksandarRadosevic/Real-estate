@@ -94,7 +94,7 @@ class Guest extends BaseController
         }
         
         public function login(){
-        /*
+        
             $data=[];
             helper(['form']);
         
@@ -150,13 +150,7 @@ class Guest extends BaseController
                         
             }
              echo view('login.php');
-         * */
-         $user=new UserModel();
-         $kor=$user->find(52);
-         if ($kor!=null)
-             echo 'postoji';
-         else 
-             echo 'ne postoji';
-        }
+         * 
+
         
 }
