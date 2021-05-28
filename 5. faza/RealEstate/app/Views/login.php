@@ -52,15 +52,7 @@
                       <span class='content-name'>Lozinka</span>
                   </label>
                 </div>
-                
-                <?php if (! empty($errors)) : ?>
-                <div class="alert alert-danger">
-                <?php foreach ($errors as $field => $error) : ?>
-                    <p><?= $error ?></p>
-                <?php endforeach ?>
-                </div>
-                <?php endif ?>
-                
+                               
                 
                 <button type='submit'>Prijavite se</button>
                 <label>

@@ -97,13 +97,7 @@
                     <input type="radio" id="agency" name="type" value="agency">
                     <label for="agency">Agencija za nekretnine</label>
                   </div>
-                <?php if (! empty($errors)) : ?>
-                <div class="alert alert-danger">
-                <?php foreach ($errors as $field => $error) : ?>
-                    <p><?= $error ?></p>
-                <?php endforeach ?>
-                </div>
-                <?php endif ?>
+
                 
                 <button type='submit' class='registerbutton' onclick="registrujse()">Registrujte se</button>
               </form>
