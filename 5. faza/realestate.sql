@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 22, 2021 at 06:28 PM
+-- Generation Time: May 28, 2021 at 10:23 AM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -46,18 +46,18 @@ CREATE TABLE IF NOT EXISTS `administrator` (
 DROP TABLE IF EXISTS `advertisement`;
 CREATE TABLE IF NOT EXISTS `advertisement` (
   `IdOwner` int(11) DEFAULT NULL,
-  `IdAd` int(11) NOT NULL,
+  `IdAd` int(11) NOT NULL AUTO_INCREMENT,
   `TimePosted` binary(8) DEFAULT NULL,
   `Price` int(11) DEFAULT NULL,
   `Topic` varchar(20) DEFAULT NULL,
-  `IdType` int(11) NOT NULL,
   `Size` char(18) DEFAULT NULL,
   `Address` char(18) DEFAULT NULL,
   `IdPlace` int(11) NOT NULL,
   `Description` char(18) DEFAULT NULL,
+  `Purpose` varchar(20) NOT NULL,
+  `RealEstateType` varchar(30) NOT NULL,
   PRIMARY KEY (`IdAd`),
   KEY `R_8` (`IdOwner`),
-  KEY `R_11` (`IdType`),
   KEY `R_12` (`IdPlace`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -74,6 +74,13 @@ CREATE TABLE IF NOT EXISTS `agency` (
   `AverageMark` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`IdA`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `agency`
+--
+
+INSERT INTO `agency` (`IdA`, `Name`, `AverageMark`) VALUES
+(33, 'fsadfsdafa', '0.00');
 
 -- --------------------------------------------------------
 
@@ -151,6 +158,28 @@ CREATE TABLE IF NOT EXISTS `mark` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `municipality`
+--
+
+DROP TABLE IF EXISTS `municipality`;
+CREATE TABLE IF NOT EXISTS `municipality` (
+  `IdMunicipality` int(11) NOT NULL,
+  `Name` varchar(20) DEFAULT NULL,
+  `City` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`IdMunicipality`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `municipality`
+--
+
+INSERT INTO `municipality` (`IdMunicipality`, `Name`, `City`) VALUES
+(1, 'Cukarica', 'Beograd'),
+(2, 'Palilula', 'Beograd');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `picture`
 --
 
@@ -163,20 +192,6 @@ CREATE TABLE IF NOT EXISTS `picture` (
   `IdAd` int(11) DEFAULT NULL,
   PRIMARY KEY (`IdPicture`),
   KEY `R_17` (`IdAd`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `place`
---
-
-DROP TABLE IF EXISTS `place`;
-CREATE TABLE IF NOT EXISTS `place` (
-  `IdPlace` int(11) NOT NULL,
-  `Name` varchar(20) DEFAULT NULL,
-  `Municipality` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`IdPlace`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -201,11 +216,17 @@ CREATE TABLE IF NOT EXISTS `privilege` (
 DROP TABLE IF EXISTS `privilegeduser`;
 CREATE TABLE IF NOT EXISTS `privilegeduser` (
   `IdP` int(11) NOT NULL,
-  `UMCN` varchar(13) DEFAULT NULL,
   `Name` varchar(30) NOT NULL,
   `Surname` varchar(30) NOT NULL,
   PRIMARY KEY (`IdP`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `privilegeduser`
+--
+
+INSERT INTO `privilegeduser` (`IdP`, `Name`, `Surname`) VALUES
+(32, 'a1', 'a1');
 
 -- --------------------------------------------------------
 
@@ -234,29 +255,14 @@ CREATE TABLE IF NOT EXISTS `registereduser` (
   PRIMARY KEY (`IdR`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `renting`
+-- Dumping data for table `registereduser`
 --
 
-DROP TABLE IF EXISTS `renting`;
-CREATE TABLE IF NOT EXISTS `renting` (
-  `IdAd` int(11) NOT NULL,
-  PRIMARY KEY (`IdAd`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sell`
---
-
-DROP TABLE IF EXISTS `sell`;
-CREATE TABLE IF NOT EXISTS `sell` (
-  `IdAd` int(11) NOT NULL,
-  PRIMARY KEY (`IdAd`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+INSERT INTO `registereduser` (`IdR`, `Name`, `Surname`) VALUES
+(16, 'fdasfd', 'fdafdafda'),
+(17, 'fdafa', 'fdafda'),
+(18, 'agasggas', 'gdaga');
 
 -- --------------------------------------------------------
 
@@ -270,6 +276,13 @@ CREATE TABLE IF NOT EXISTS `tags` (
   `Name` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`IdTag`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tags`
+--
+
+INSERT INTO `tags` (`IdTag`, `Name`) VALUES
+(1, 'Potkrovlje');
 
 -- --------------------------------------------------------
 
@@ -285,15 +298,40 @@ CREATE TABLE IF NOT EXISTS `user` (
   `Email` varchar(20) DEFAULT NULL,
   `Phone` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`Id`, `Username`, `Password`, `Email`, `Phone`) VALUES
+(9, 'fdasfads', '123', 'fdsafdas', 'fdasfasd'),
 (8, 'fads', '123', 'fdasfads', 'afsdfads'),
-(0, 'Marko', 'aca', 'dsadsa', 'dsasda');
+(0, 'Marko', 'aca', 'dsadsa', 'dsasda'),
+(10, 'gagdsa', 'aca', 'fdasfdas', 'fdasfdsafdsa'),
+(11, 'gfgadga', '123', 'fdsafdsa', 'fsdafads'),
+(12, 'fdasfads', 'aca', 'fsdfsdaasd', 'fdsafsda'),
+(13, 'fdasfads', 'aca', 'fsdfsdaasd', 'fdsafsda'),
+(14, 'aca', 'aca', 'aaaaaa', 'aaaaaaa'),
+(15, 'adsa', '1111', 'sdadsa', 'dsadsaasd'),
+(16, 'aca1', '123', 'fdsaafdsa', 'fdasfdafdas'),
+(17, 'fdasfads', '123', 'fdafasfd', 'asfdas'),
+(18, 'gasdg', 'agdasgda', 'gagdsa', 'gasgdagas'),
+(19, 'gadgda', 'gdasgdas', 'sgadsgdsagdsa', 'gdasgdasgas'),
+(20, 'gadgda', 'gdasgdas', 'sgadsgdsagdsa', 'gdasgdasgas'),
+(21, 'aca123', 'aca', 'dsadsa', 'dsadsa'),
+(22, 'aca123', 'aca', 'dsadsa', 'dsadsa'),
+(23, 'fgagads', 'gadsgdas', 'gadsgdasgdsa', 'gdsagdsagsda'),
+(24, 'aggda', 'gadsgadsgda', 'gasgasdgasdg', 'gdsagdsa'),
+(25, 'fsdafdsa', 'sfdafads', 'sfdasfdas', 'fdasfdsafdas'),
+(26, 'gadgda', 'gdasgads', 'gdsgds', 'agsdagsdgsd'),
+(27, 'aca121', '111', 'aaa', 'aaaa'),
+(28, 'aca121', '111', 'aaa', 'aaaa'),
+(29, 'aca111', 'a1', 'a1', 'a1'),
+(30, 'aca111', 'a1', 'a1', 'a1'),
+(31, 'priv', 'a1', 'a1', 'a1'),
+(32, 'priv', 'a1', 'a1', 'a1'),
+(33, 'fdasfdsa', 'fsdafds', 'sfdafsdafsda', 'sfdafdsafsda');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
