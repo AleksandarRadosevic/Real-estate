@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="styleOglas.css">
+    <link rel="stylesheet" href="/assets/styleOglas.css">
     <script src='javascript.js'></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
@@ -36,7 +36,7 @@
         <main>
         <section class="glass">
 
-<h1 class=naslov>Dodavanje oglasa</h1>
+<h1 class=naslov>Ažuriranje oglasa</h1>
 
             <form class='uredi' name='logovanje' id='forma'action="" method="post">
 
@@ -49,42 +49,42 @@
         <tr>
             <td>Naslov </td>
             <td>
-                <input type='text' placeholder="" required>
+                <input type='text' name="naslov" minlength="3" placeholder="" required>
             </td>
         </tr>
         <tr>
             <td>Cena u evrima:</td>
             <td>
-                <input type='text' placeholder="" required>
+              <input type="number" name="cena"  required />
             </td>
         </tr>
         <tr>
             <td>Tip nekretnine:</td>
             <td>
                 <label for='muski'>Stan</label>
-                <input id='muski' type='radio' name='pol1'>
-                <input type='radio' name='pol1' checked>Kuca
+                <input id="stan" value="1" type='radio' name='tipNekretnine'>
+                <input type='radio'  value="2" id="kuca" name='tipNekretnine' checked>Kuća
             </td>
         </tr>
         <tr>
             <td>Vrsta usluge:</td>
             <td>
-                <label for='muski'>Prodaja</label>
-                <input id='muski' type='radio' name='pol2'>
-                <input type='radio' name='pol2' checked>Izdavanje
+                <label>Prodaja</label>
+                <input id='prodaja' value="1" type='radio' name='vrstaUsluge'>
+                <input type='radio' value="2" name='vrstaUsluge' id='izdavanje' checked>Izdavanje
             </td>
         </tr>
         <tr>
             <td>Mesto:</td>
             <td>
-                <input type='text' placeholder="" required>
+                <input type='text' name="mesto"  minlength="3" placeholder="" required>
             </td>
         </tr>
 
         <tr>
             <td>Adresa:</td>
             <td>
-                <input type='text' placeholder="" required>
+                <input type='text' name="adresa"  minlength="3" placeholder="" required>
             </td>
         </tr>
 
@@ -92,8 +92,7 @@
         <tr>
             <td>Kvadratura u m2 </td>
             <td>
-                <input type='text' placeholder="" required>
-            </td>
+		<input type="number" name="kvadratura" required />            </td>
         </tr>
 
 
@@ -156,7 +155,7 @@
         <tr>
             <td>Dodatan komentar:</td>
             <td>
-                <textarea rows='5' cols='40'></textarea>
+                <textarea rows='5' name="komentar" cols='40'></textarea>
             </td>
         </tr>
 
@@ -164,7 +163,7 @@
         <tr>
             <td>Dodaj Slike</td>
             <td>
-                <input type='button' value='Dodaj'>
+				 <button type='submit' class="btn btn-info" >Dodaj </button>
                 
             </td>
         </tr>
@@ -173,22 +172,23 @@
         <tr>
             <td>Odustani</td>
             <td>
-                <input type='button' value='Nazad'>
+				 <button type='submit' class="btn btn-danger" >Nazad </button>
                 
             </td>
         </tr>
 
 
         <tr>
-            <td><h2 class=podnaslov>Postavi oglas</h2></td>
+            <td><h2 class=podnaslov>Ažuriraj oglas</h2></td>
             <td>
-                <input type='button' value='Postavi'>
+               
+				 <button type='submit' class="btn btn-success" >Ažuriraj </button>
                 
             </td>
         </tr>
     </table>
 	</form>
-    <img src='images/zaProjekat.jpg'>
+    <img src='/assets/images/zaProjekat.jpg'>
 
 </div>
 

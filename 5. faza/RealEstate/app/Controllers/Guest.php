@@ -4,13 +4,15 @@ use App\Models\UserModel;
 use App\Models\RegisteredUserModel;
 use App\Models\PrivilegedUserModel;
 use App\Models\AgencyModel;
+use App\Models\adModel;
+
 class Guest extends BaseController
 {
 	public function index()
 	{
 		echo view('../../public/index.html');
 	}
-        
+       
         
         public function register(){
                        
@@ -158,5 +160,115 @@ class Guest extends BaseController
          else 
              echo 'ne postoji';
         }
+		 public function addAdvertisement(){
+            $data=[];
+            
+            helper(['form']);
+            
+            if ($this->request->getMethod()=='post'){
+            //validation for user
+           
+            
+           
+                $user=new adModel();
+				$id=$user->getInsertID();
+                $type=$_POST["tipNekretnine"];
+               
+
+                $values=[
+                    'IdOwner'=>$this->request->getVar('cena'),
+                    'IdAd'=>444,
+                    'TimePosted'=>$this->request->getVar('cena'),
+                    'Price'=>$this->request->getVar('cena'),
+					'Topic'=>$this->request->getVar('naslov'),
+					'IdType'=>$type,
+					'Size'=>$this->request->getVar('kvadratura'),
+					'Address'=>$this->request->getVar('adresa'),
+					'IdPlace'=>$id,
+					'Description'=>$this->request->getVar('komentar')
+					
+                ];   
+                //add user
+                $user->save($values);
+                
+                
+             
+               
+                
+              
+
+                
+                $session= session();
+                $session->setFlashdata('success', 'Successful Registration');
+		return redirect()->to('/');
+            
+            
+            
+            //validation for 
+            
+              }
+            
+            
+            echo view('addAdvertisement.php');
+          
+        }
+		
+		
+		public function updateAdvertisement(){
+            $data=[];
+            
+            helper(['form']);
+            
+            if ($this->request->getMethod()=='post'){
+            //validation for user
+           
+            
+           
+                $user=new adModel();
+				$id=$user->getInsertID();
+                $type=$_POST["tipNekretnine"];
+               
+
+                $values=[
+                    'IdOwner'=>$this->request->getVar('cena'),
+                    'IdAd'=>444,
+                    'TimePosted'=>$this->request->getVar('cena'),
+                    'Price'=>$this->request->getVar('cena'),
+					'Topic'=>$this->request->getVar('naslov'),
+					'IdType'=>$type,
+					'Size'=>$this->request->getVar('kvadratura'),
+					'Address'=>$this->request->getVar('adresa'),
+					'IdPlace'=>$id,
+					'Description'=>$this->request->getVar('komentar')
+					
+                ];   
+                //add user
+                $user->save($values);
+                
+                
+             
+               
+                
+              
+
+                
+                $session= session();
+                $session->setFlashdata('success', 'Successful Registration');
+		return redirect()->to('/');
+            
+            
+            
+            //validation for 
+            
+              }
+            
+            
+            echo view('updateAdvertisement.php');
+          
+        }
         
 }
+
+
+	
+
