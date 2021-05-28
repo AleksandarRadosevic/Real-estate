@@ -24,7 +24,7 @@
           <li><a href='#'>Oglasi</a href></li>
           <li><a href='#'>O nama</a href></li>
           <li><a href='Guest/login' class='login'>Prijavite se</a href></li>
-          <li><a href='Guest/register' class='button register'>Registrujte se</a></a href></li>
+          <li><a href='' class='button register'>Registrujte se</a></a href></li>
         </ul>
                 
         <div class="hidden-menu">
@@ -61,13 +61,13 @@
                   </div>
                   <div class='section'>
                       <input type='text' name='name' id='name' autocomplete="off" value="<?= set_value('name')?>">
-                    <label for='lastname' class='label-name'>
+                    <label for='name' class='label-name'>
                         <span class='content-name'>Ime</span>
                     </label>
                   </div>
                   <div class='section'>
-                    <input type='text' name='surname' id='surname' autocomplete="off" value="<?= set_value('surname')?>">
-                    <label for='lastname' class='label-name'>
+                    <input type='text' name='surname' id='lastname' autocomplete="off" value="<?= set_value('surname')?>">
+                    <label for='surname' class='label-name'>
                         <span class='content-name'>Prezime</span>
                     </label>
                   </div>

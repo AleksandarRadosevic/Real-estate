@@ -10,7 +10,7 @@ class PrivilegedUserModel extends Model
     protected $validationRules    = [
         'Name'     => 'required|min_length[3]|max_length[20]',
         'Surname'  => 'required|min_length[3]|max_length[20]',
-        'Phone'    => 'required|regex_match[/^06[\d]{7,8}$/]'
+        'Phone'    => 'required|regex_match[/^06[0-9]{7,8}$/]'
     ];
       protected $validationMessages = [
          'Name'     =>[
