@@ -1,13 +1,16 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 28, 2021 at 12:26 PM
--- Server version: 5.7.31
--- PHP Version: 7.3.21
+-- Generation Time: May 28, 2021 at 03:41 PM
+-- Server version: 10.4.10-MariaDB
+-- PHP Version: 7.3.12
+
+
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -20,8 +23,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `realestate`
 --
-CREATE DATABASE IF NOT EXISTS `realestate` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `realestate`;
 
 -- --------------------------------------------------------
 
@@ -47,7 +48,7 @@ DROP TABLE IF EXISTS `advertisement`;
 CREATE TABLE IF NOT EXISTS `advertisement` (
   `IdOwner` int(11) DEFAULT NULL,
   `IdAd` int(11) NOT NULL AUTO_INCREMENT,
-  `TimePosted` binary(8) DEFAULT NULL,
+  `Time` timestamp(6) NULL DEFAULT current_timestamp(6),
   `Price` int(11) DEFAULT NULL,
   `Topic` varchar(20) DEFAULT NULL,
   `Size` char(18) DEFAULT NULL,
@@ -186,7 +187,7 @@ INSERT INTO `municipality` (`IdMunicipality`, `Name`, `City`) VALUES
 DROP TABLE IF EXISTS `picture`;
 CREATE TABLE IF NOT EXISTS `picture` (
   `IdPicture` int(11) NOT NULL,
-  `Url` blob,
+  `Url` blob DEFAULT NULL,
   `Width` int(11) DEFAULT NULL,
   `Height` int(11) DEFAULT NULL,
   `IdAd` int(11) DEFAULT NULL,
@@ -273,6 +274,16 @@ INSERT INTO `registereduser` (`Id`, `Name`, `Surname`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `renting`
+--
+
+--
+-- Dumping data for table `registereduser`
+--
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tags`
 --
 
@@ -288,9 +299,22 @@ CREATE TABLE IF NOT EXISTS `tags` (
 --
 
 INSERT INTO `tags` (`IdTag`, `Name`) VALUES
-(1, 'Potkrovlje');
+(1, 'Potkrovlje'),
+(2, 'Uknjizen'),
+(3, 'Hitna prodaja'),
+(4, 'Garaza'),
+(5, 'Lift'),
+(6, 'Terasa'),
+(7, 'Podrum'),
+(8, 'Penthouse'),
+(9, 'Nova gradnja'),
+(10, 'Stara gradnja'),
+(11, 'Izvorno Stanje'),
+(12, 'Renovirano'),
+(13, 'Lux'),
+(14, 'Za renoviranje');
 
--- --------------------------------------------------------
+--------------------------------------------------------
 
 --
 -- Table structure for table `user`
@@ -311,49 +335,12 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`Id`, `Username`, `Password`, `Email`, `Phone`) VALUES
-(9, 'fdasfads', '123', 'fdsafdas', 'fdasfasd'),
-(8, 'fads', '123', 'fdasfads', 'afsdfads'),
-(0, 'Marko', 'aca', 'dsadsa', 'dsasda'),
-(10, 'gagdsa', 'aca', 'fdasfdas', 'fdasfdsafdsa'),
-(11, 'gfgadga', '123', 'fdsafdsa', 'fsdafads'),
-(12, 'fdasfads', 'aca', 'fsdfsdaasd', 'fdsafsda'),
-(13, 'fdasfads', 'aca', 'fsdfsdaasd', 'fdsafsda'),
-(14, 'aca', 'aca', 'aaaaaa', 'aaaaaaa'),
-(15, 'adsa', '1111', 'sdadsa', 'dsadsaasd'),
 (16, 'aca1', '123', 'fdsaafdsa', 'fdasfdafdas'),
 (17, 'fdasfads', '123', 'fdafasfd', 'asfdas'),
 (18, 'gasdg', 'agdasgda', 'gagdsa', 'gasgdagas'),
-(19, 'gadgda', 'gdasgdas', 'sgadsgdsagdsa', 'gdasgdasgas'),
-(20, 'gadgda', 'gdasgdas', 'sgadsgdsagdsa', 'gdasgdasgas'),
-(21, 'aca123', 'aca', 'dsadsa', 'dsadsa'),
-(22, 'aca123', 'aca', 'dsadsa', 'dsadsa'),
-(23, 'fgagads', 'gadsgdas', 'gadsgdasgdsa', 'gdsagdsagsda'),
-(24, 'aggda', 'gadsgadsgda', 'gasgasdgasdg', 'gdsagdsa'),
-(25, 'fsdafdsa', 'sfdafads', 'sfdasfdas', 'fdasfdsafdas'),
-(26, 'gadgda', 'gdasgads', 'gdsgds', 'agsdagsdgsd'),
-(27, 'aca121', '111', 'aaa', 'aaaa'),
-(28, 'aca121', '111', 'aaa', 'aaaa'),
-(29, 'aca111', 'a1', 'a1', 'a1'),
-(30, 'aca111', 'a1', 'a1', 'a1'),
-(31, 'priv', 'a1', 'a1', 'a1'),
 (32, 'priv', 'a1', 'a1', 'a1'),
 (33, 'fdasfdsa', 'fsdafds', 'sfdafsdafsda', 'sfdafdsafsda'),
-(34, 'fasdfdas', 'aca', 'a', 'a'),
-(35, 'aaaa', 'aca', 'das', '06362367811111111'),
-(36, 'pera', 'pera', 'pera', '123456789'),
-(37, 'peki', 'peki', 'peki', '123456677'),
-(38, 'jovan', 'a', 'dfdafadfadfa', '063623678'),
-(39, 'ga', 'gdsagds', 'gdsagads', 'gdsadgsgdsa'),
-(40, 'fdas', 'fsad', 'fdsa', 'fasd'),
-(41, 'fdas', 'fsdaf', 'fsdasfdasfda', 'fsdasfdafsda'),
-(42, 'dsa', 'dsa', 'asdsad', 'sdasda'),
-(43, 'dsa', 'dsa', 'asdsad', 'sdasda'),
-(44, 'dsadsa', 'sdaasda', 'aaa', 'aaa'),
-(45, 'dsadsa', 'sdaasda', 'aaa', 'aaa'),
-(46, 'fdas', 'fasdasfdfsad', 'fdsafsda', 'fsdafdsadsa'),
-(47, 'fdas', 'fasdasfdfsad', 'fdsafsda', 'fsdafdsadsa'),
 (48, 'adsa', NULL, 'dsadsasad', 'sdasdasad'),
-(49, 'fda', 'fads', 'fsda', 'sfda'),
 (50, 'fdasfads', 'fads', 'fdsaf', 'dsafdsafdsa'),
 (51, 'fads', 'fsdafds', 'fdsafdsa', 'fdsafdsa'),
 (52, 'fads', 'fsdafds', 'fdsafdsa', 'fdsafdsa'),
