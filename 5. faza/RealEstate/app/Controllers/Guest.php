@@ -103,9 +103,11 @@ class Guest extends BaseController
         
             if ($this->request->getMethod()=='post'){
                 
+                
 			$model = new UserModel();                        
-
 			$user = $model->where('username', $this->request->getVar('username'))->first();
+                        
+                            
                             if ($user==null){                              
                             $errors=['usernameLogin' => 'Uneti korisnik ne postoji'];
                                 return view('login', ['errors' => $errors]);
@@ -116,6 +118,7 @@ class Guest extends BaseController
                                 $errors=['passwordLogin' => 'Pogresna sifra'];
                                 return view('login', ['errors' => $errors]);
                             }
+                            
                                 //check user type
                                 $agency=new AgencyModel();
                                 $isAgency=$agency->where('Id',$user['Id'])->first();
@@ -125,6 +128,7 @@ class Guest extends BaseController
                                 
                                 $privileged=new PrivilegedUserModel();
                                 $isPrivileged=$privileged->where('Id',$user['Id'])->first();
+                                
                                 
                                 $validationData=[];
                         
