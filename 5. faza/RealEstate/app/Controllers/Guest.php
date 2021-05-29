@@ -3,6 +3,7 @@
 use App\Models\UserModel;
 use App\Models\RegisteredUserModel;
 use App\Models\PrivilegedUserModel;
+use App\Models\AdminModel;
 use App\Models\AgencyModel;
 use App\Models\adModel;
 
@@ -33,7 +34,14 @@ class Guest extends BaseController
                 //add user
                 if($user->validate($values)==false){
                 return view('register', ['errors' => $user->errors()]);
-            }
+                }
+                
+                //Admin is prohibited name for username              
+                else if ($this->request->getVar('Username')=='Admin'){
+                    $errors=['username' => 'Uneto korisnicko ime je zauzeto'];
+                    return view('register',['errors'=>$errors]);
+                }
+                
                 
                 //id will be changed after insert in user table
                 $id=-1;
@@ -77,17 +85,14 @@ class Guest extends BaseController
                                 
                 if ($userOtherTable->validate($data)==false)
                     return view('register', ['errors' => $userOtherTable->errors()]);
- 
+
+                
                 //values are correct and can be inserted
                 $user->save($values);
                 $data['Id']=$user->getInsertID();
                 $userOtherTable->save($data);
       
-                //$session=session();
-                //$session->setFlashdata('success', 'Successful Registration');
-                
-                $this->session->set('User',$user);
-		return redirect()->to('User');
+		return redirect()->to('login');
             
               }
             
@@ -98,7 +103,6 @@ class Guest extends BaseController
         
         public function login(){
         
-            //$data=[];
             helper(['form']);
         
             if ($this->request->getMethod()=='post'){
@@ -106,13 +110,31 @@ class Guest extends BaseController
                 
 			$model = new UserModel();                        
 			$user = $model->where('username', $this->request->getVar('username'))->first();
-                        
-                            
-                            if ($user==null){                              
-                            $errors=['usernameLogin' => 'Uneti korisnik ne postoji'];
+                                                 
+                            if ($user==null){
+                                
+                                //check if admin wants to login
+                                $adminModel=new AdminModel();
+                                $admin=$adminModel->where('Username',$this->request->getVar('username'))->first();
+                                
+                                if ($admin==null)
+                                {                          
+                                $errors=['usernameLogin' => 'Uneti korisnik ne postoji'];
                                 return view('login', ['errors' => $errors]);
+                                }
+                                
+                                else if ($admin['Password']==$this->request->getVar('password')){
+                                    $this->session->set('Admin',$admin);
+                                    return redirect()->to(site_url('Admin'));
+                                }
+                                else {
+                                    $errors=['passwordLogin' => 'Uneta je pogresna sifra'];
+                                    return view('login', ['errors' => $errors]);
+                                }
                                 
                             }
+                            
+                            
                             if ($user['Password']!=$this->request->getVar('password'))
                             {
                                 $errors=['passwordLogin' => 'Pogresna sifra'];
@@ -131,8 +153,6 @@ class Guest extends BaseController
                                 
                                 
                                 $validationData=[];
-                        
-                                
                         
                         if($isRegistered!=null){
                              $validationData=[
