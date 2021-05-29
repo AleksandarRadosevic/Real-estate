@@ -29,6 +29,7 @@ class Guest extends BaseController
                     'PasswordAgain'=>$this->request->getVar('passagain'),
                     'Phone'=>$this->request->getVar('phone')
                 ];   
+                
                 //add user
                 if($user->validate($values)==false){
                 return view('register', ['errors' => $user->errors()]);
@@ -102,16 +103,18 @@ class Guest extends BaseController
         
             if ($this->request->getMethod()=='post'){
                 
-			$model = new UserModel();
+			$model = new UserModel();                        
+
 			$user = $model->where('username', $this->request->getVar('username'))->first();
-                            if ($user==null){
-                                echo 'Korisnik ne postoji';
-                                return ;
+                            if ($user==null){                              
+                            $errors=['usernameLogin' => 'Uneti korisnik ne postoji'];
+                                return view('login', ['errors' => $errors]);
+                                
                             }
                             if ($user['Password']!=$this->request->getVar('password'))
                             {
-                                echo 'Pogresna sifra';
-                                return;
+                                $errors=['passwordLogin' => 'Pogresna sifra'];
+                                return view('login', ['errors' => $errors]);
                             }
                                 //check user type
                                 $agency=new AgencyModel();
