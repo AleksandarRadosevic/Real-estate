@@ -1,16 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 28, 2021 at 06:05 PM
--- Server version: 10.4.10-MariaDB
--- PHP Version: 7.3.12
 
-
+-- Generation Time: May 29, 2021 at 02:29 PM
+-- Server version: 5.7.31
+-- PHP Version: 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -26,6 +24,28 @@ SET time_zone = "+00:00";
 CREATE DATABASE IF NOT EXISTS `realestate` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `realestate`;
 
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `activity`
+--
+
+DROP TABLE IF EXISTS `activity`;
+CREATE TABLE IF NOT EXISTS `activity` (
+  `Id` int(18) NOT NULL AUTO_INCREMENT,
+  `Name` char(18) DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `activity`
+--
+
+INSERT INTO `activity` (`Id`, `Name`) VALUES
+(1, 'DodavanjeOglasa'),
+(2, 'Komentarisanje');
+
 -- --------------------------------------------------------
 
 --
@@ -38,7 +58,14 @@ CREATE TABLE IF NOT EXISTS `administrator` (
   `Username` varchar(20) DEFAULT NULL,
   `Password` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `administrator`
+--
+
+INSERT INTO `administrator` (`Id`, `Username`, `Password`) VALUES
+(1, 'Admin', 'Success');
 
 -- --------------------------------------------------------
 
@@ -130,20 +157,6 @@ CREATE TABLE IF NOT EXISTS `favorites` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `hasprivilege`
---
-
-DROP TABLE IF EXISTS `hasprivilege`;
-CREATE TABLE IF NOT EXISTS `hasprivilege` (
-  `IdP` char(18) NOT NULL,
-  `IdU` int(11) NOT NULL,
-  PRIMARY KEY (`IdP`,`IdU`),
-  KEY `R_29` (`IdU`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `hastag`
 --
 
@@ -201,25 +214,12 @@ INSERT INTO `municipality` (`IdMunicipality`, `Name`, `City`) VALUES
 DROP TABLE IF EXISTS `picture`;
 CREATE TABLE IF NOT EXISTS `picture` (
   `IdPicture` int(11) NOT NULL,
-  `Url` blob DEFAULT NULL,
+  `Url` blob,
   `Width` int(11) DEFAULT NULL,
   `Height` int(11) DEFAULT NULL,
   `IdAd` int(11) DEFAULT NULL,
   PRIMARY KEY (`IdPicture`),
   KEY `R_17` (`IdAd`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `privilege`
---
-
-DROP TABLE IF EXISTS `privilege`;
-CREATE TABLE IF NOT EXISTS `privilege` (
-  `IdPrivilege` char(18) NOT NULL,
-  `Name` char(18) DEFAULT NULL,
-  PRIMARY KEY (`IdPrivilege`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -242,6 +242,20 @@ CREATE TABLE IF NOT EXISTS `privilegeduser` (
 
 INSERT INTO `privilegeduser` (`Id`, `Name`, `Surname`) VALUES
 (32, 'a1', 'a1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `prohibition`
+--
+
+DROP TABLE IF EXISTS `prohibition`;
+CREATE TABLE IF NOT EXISTS `prohibition` (
+  `IdA` int(18) NOT NULL,
+  `IdU` int(11) NOT NULL,
+  PRIMARY KEY (`IdA`,`IdU`),
+  KEY `R_29` (`IdU`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -288,16 +302,6 @@ INSERT INTO `registereduser` (`Id`, `Name`, `Surname`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `renting`
---
-
---
--- Dumping data for table `registereduser`
---
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tags`
 --
 
@@ -328,7 +332,7 @@ INSERT INTO `tags` (`IdTag`, `Name`) VALUES
 (13, 'Lux'),
 (14, 'Za renoviranje');
 
---------------------------------------------------------
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `user`

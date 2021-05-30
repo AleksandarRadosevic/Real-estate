@@ -23,7 +23,7 @@
           <li><a href='/assets/pretraga.html'>Pretraga</a href></li>
           <li><a href='#'>Oglasi</a href></li>
           <li><a href='#'>O nama</a href></li>
-          <li><a href='Guest/login' class='login'>Prijavite se</a href></li>
+          <li><a href='login' class='login'>Prijavite se</a href></li>
           <li><a href='' class='button register'>Registrujte se</a></a href></li>
         </ul>
                 
