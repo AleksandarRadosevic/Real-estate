@@ -7,6 +7,8 @@
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
+
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -210,20 +212,6 @@ CREATE TABLE IF NOT EXISTS `picture` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `place`
---
-
-DROP TABLE IF EXISTS `place`;
-CREATE TABLE IF NOT EXISTS `place` (
-  `IdPlace` int(11) NOT NULL,
-  `Name` varchar(20) DEFAULT NULL,
-  `Municipality` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`IdPlace`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `privilege`
 --
 
@@ -303,23 +291,9 @@ INSERT INTO `registereduser` (`Id`, `Name`, `Surname`) VALUES
 -- Table structure for table `renting`
 --
 
-DROP TABLE IF EXISTS `renting`;
-CREATE TABLE IF NOT EXISTS `renting` (
-  `IdAd` int(11) NOT NULL,
-  PRIMARY KEY (`IdAd`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
 --
--- Table structure for table `sell`
+-- Dumping data for table `registereduser`
 --
-
-DROP TABLE IF EXISTS `sell`;
-CREATE TABLE IF NOT EXISTS `sell` (
-  `IdAd` int(11) NOT NULL,
-  PRIMARY KEY (`IdAd`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -354,7 +328,7 @@ INSERT INTO `tags` (`IdTag`, `Name`) VALUES
 (13, 'Lux'),
 (14, 'Za renoviranje');
 
--- --------------------------------------------------------
+--------------------------------------------------------
 
 --
 -- Table structure for table `user`
@@ -375,49 +349,12 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`Id`, `Username`, `Password`, `Email`, `Phone`) VALUES
-(9, 'fdasfads', '123', 'fdsafdas', 'fdasfasd'),
-(8, 'fads', '123', 'fdasfads', 'afsdfads'),
-(0, 'Marko', 'aca', 'dsadsa', 'dsasda'),
-(10, 'gagdsa', 'aca', 'fdasfdas', 'fdasfdsafdsa'),
-(11, 'gfgadga', '123', 'fdsafdsa', 'fsdafads'),
-(12, 'fdasfads', 'aca', 'fsdfsdaasd', 'fdsafsda'),
-(13, 'fdasfads', 'aca', 'fsdfsdaasd', 'fdsafsda'),
-(14, 'aca', 'aca', 'aaaaaa', 'aaaaaaa'),
-(15, 'adsa', '1111', 'sdadsa', 'dsadsaasd'),
 (16, 'aca1', '123', 'fdsaafdsa', 'fdasfdafdas'),
 (17, 'fdasfads', '123', 'fdafasfd', 'asfdas'),
 (18, 'gasdg', 'agdasgda', 'gagdsa', 'gasgdagas'),
-(19, 'gadgda', 'gdasgdas', 'sgadsgdsagdsa', 'gdasgdasgas'),
-(20, 'gadgda', 'gdasgdas', 'sgadsgdsagdsa', 'gdasgdasgas'),
-(21, 'aca123', 'aca', 'dsadsa', 'dsadsa'),
-(22, 'aca123', 'aca', 'dsadsa', 'dsadsa'),
-(23, 'fgagads', 'gadsgdas', 'gadsgdasgdsa', 'gdsagdsagsda'),
-(24, 'aggda', 'gadsgadsgda', 'gasgasdgasdg', 'gdsagdsa'),
-(25, 'fsdafdsa', 'sfdafads', 'sfdasfdas', 'fdasfdsafdas'),
-(26, 'gadgda', 'gdasgads', 'gdsgds', 'agsdagsdgsd'),
-(27, 'aca121', '111', 'aaa', 'aaaa'),
-(28, 'aca121', '111', 'aaa', 'aaaa'),
-(29, 'aca111', 'a1', 'a1', 'a1'),
-(30, 'aca111', 'a1', 'a1', 'a1'),
-(31, 'priv', 'a1', 'a1', 'a1'),
 (32, 'priv', 'a1', 'a1', 'a1'),
 (33, 'fdasfdsa', 'fsdafds', 'sfdafsdafsda', 'sfdafdsafsda'),
-(34, 'fasdfdas', 'aca', 'a', 'a'),
-(35, 'aaaa', 'aca', 'das', '06362367811111111'),
-(36, 'pera', 'pera', 'pera', '123456789'),
-(37, 'peki', 'peki', 'peki', '123456677'),
-(38, 'jovan', 'a', 'dfdafadfadfa', '063623678'),
-(39, 'ga', 'gdsagds', 'gdsagads', 'gdsadgsgdsa'),
-(40, 'fdas', 'fsad', 'fdsa', 'fasd'),
-(41, 'fdas', 'fsdaf', 'fsdasfdasfda', 'fsdasfdafsda'),
-(42, 'dsa', 'dsa', 'asdsad', 'sdasda'),
-(43, 'dsa', 'dsa', 'asdsad', 'sdasda'),
-(44, 'dsadsa', 'sdaasda', 'aaa', 'aaa'),
-(45, 'dsadsa', 'sdaasda', 'aaa', 'aaa'),
-(46, 'fdas', 'fasdasfdfsad', 'fdsafsda', 'fsdafdsadsa'),
-(47, 'fdas', 'fasdasfdfsad', 'fdsafsda', 'fsdafdsadsa'),
 (48, 'adsa', NULL, 'dsadsasad', 'sdasdasad'),
-(49, 'fda', 'fads', 'fsda', 'sfda'),
 (50, 'fdasfads', 'fads', 'fdsaf', 'dsafdsafdsa'),
 (51, 'fads', 'fsdafds', 'fdsafdsa', 'fdsafdsa'),
 (52, 'fads', 'fsdafds', 'fdsafdsa', 'fdsafdsa'),
