@@ -5,7 +5,6 @@ use App\Models\RegisteredUserModel;
 use App\Models\PrivilegedUserModel;
 use App\Models\AdminModel;
 use App\Models\AgencyModel;
-use App\Models\adModel;
 
 class Guest extends BaseController
 {
@@ -190,6 +189,8 @@ class Guest extends BaseController
             }
              echo view('login.php');  
         }
+<<<<<<< HEAD
+=======
         
         
 	public function addAdvertisement(){
@@ -245,60 +246,8 @@ class Guest extends BaseController
           
         }
 		
+>>>>>>> 7571f10953d7f040f1e2f431b052a68ff3013f0c
 		
-		public function updateAdvertisement(){
-            $data=[];
-            
-            helper(['form']);
-            
-            if ($this->request->getMethod()=='post'){
-            //validation for user
-           
-            
-           
-                $user=new adModel();
-				$id=$user->getInsertID();
-                $type=$_POST["tipNekretnine"];
-               
-
-                $values=[
-                    'IdOwner'=>$this->request->getVar('cena'),
-                    'IdAd'=>444,
-                    'TimePosted'=>$this->request->getVar('cena'),
-                    'Price'=>$this->request->getVar('cena'),
-					'Topic'=>$this->request->getVar('naslov'),
-					'IdType'=>$type,
-					'Size'=>$this->request->getVar('kvadratura'),
-					'Address'=>$this->request->getVar('adresa'),
-					'IdPlace'=>$id,
-					'Description'=>$this->request->getVar('komentar')
-					
-                ];   
-                //add user
-                $user->save($values);
-                
-                
-             
-               
-                
-              
-
-                
-                $session= session();
-                $session->setFlashdata('success', 'Successful Registration');
-		return redirect()->to('/');
-            
-            
-            
-            //validation for 
-            
-              }
-            
-            
-            echo view('updateAdvertisement.php');
-          
-        }
-        
 }
 
 

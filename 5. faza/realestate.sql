@@ -3,6 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
+
 -- Generation Time: May 29, 2021 at 02:29 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
@@ -22,6 +23,7 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `realestate` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `realestate`;
+
 
 -- --------------------------------------------------------
 
@@ -74,8 +76,8 @@ INSERT INTO `administrator` (`Id`, `Username`, `Password`) VALUES
 DROP TABLE IF EXISTS `advertisement`;
 CREATE TABLE IF NOT EXISTS `advertisement` (
   `IdOwner` int(11) DEFAULT NULL,
-  `IdAd` int(11) NOT NULL AUTO_INCREMENT,
-  `Time` timestamp(6) NULL DEFAULT CURRENT_TIMESTAMP(6),
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Time` timestamp(6) NULL DEFAULT current_timestamp(6),
   `Price` int(11) DEFAULT NULL,
   `Topic` varchar(20) DEFAULT NULL,
   `Size` char(18) DEFAULT NULL,
@@ -84,10 +86,22 @@ CREATE TABLE IF NOT EXISTS `advertisement` (
   `Description` char(18) DEFAULT NULL,
   `Purpose` varchar(20) NOT NULL,
   `RealEstateType` varchar(30) NOT NULL,
-  PRIMARY KEY (`IdAd`),
+  PRIMARY KEY (`Id`),
   KEY `R_8` (`IdOwner`),
   KEY `R_12` (`IdPlace`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `advertisement`
+--
+
+INSERT INTO `advertisement` (`IdOwner`, `Id`, `Time`, `Price`, `Topic`, `Size`, `Address`, `IdPlace`, `Description`, `Purpose`, `RealEstateType`) VALUES
+(312, 1, '2021-05-28 16:13:52.885345', 312, 'coda', '2131', 'dsadsadas', 2131, 'dsadasasd', 'izdavanje', 'kuca'),
+(321312, 2, '2021-05-28 16:16:33.883554', 321312, 'coda', '122232', 'vojvode stepe 266', 122232, 'asdasdasd', 'izdavanje', 'kuca'),
+(123, 3, '2021-05-28 16:29:03.633437', 123, 'aca', '321231', 'asd', 321231, 'aca', 'izdavanje', 'kuca'),
+(321312, 4, '2021-05-28 16:32:46.160165', 321312, 'aca', '122232', 'vojvode stepe 266', 122232, 'dasdasdas', 'izdavanje', 'kuca'),
+(321312, 5, '2021-05-28 16:34:37.205516', 321312, 'dsad', '122232', 'vojvode stepe 266', 122232, 'acacaca', 'izdavanje', 'kuca'),
+(312312, 6, '2021-05-28 16:40:01.054039', 312312, 'xoxo', '312231', 'xoxo', 312231, 'xoxo', 'izdavanje', 'kuca');
 
 -- --------------------------------------------------------
 

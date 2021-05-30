@@ -25,6 +25,8 @@ $(document).ready(function(){
 navSlide();
 })
 
+
+
 function registrujse(){
     var t='';
     var obj = document.getElementsByClassName("obavjestenje");
