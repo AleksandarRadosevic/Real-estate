@@ -185,6 +185,63 @@ nav{
       font-family: Alternate Gothic;
   }
 
+  .addPicture h2
+  {
+      color:white;
+      font-family: Alternate Gothic;
+      text-align: center;
+      background-color: turquoise;
+     
+
+  }
+
+
+  
+  .addPicture1 h3
+  {
+    color:white;
+    font-family: Alternate Gothic;
+    text-align: center;
+    
+
+  }
+
+
+
+  .addPicture1
+  {
+
+    margin-top: 100px;
+    height: 200px;
+    width: 100%;
+   display: flex;
+   flex-direction: row;
+   text-align: center;
+   align-items: center;
+   margin-left:auto;
+margin-right:auto;
+display:block;
+
+  }
+
+  .addPicture2
+  {
+      width:100%;
+     text-align: center;
+   
+     
+  }
+
+  .footerSlike
+  {
+      display:flex;
+      flex-direction: row;
+      justify-content:space-between
+  }
+
+
+
+
   
   #username, #password,#passagain {
     border-radius: 7px;
@@ -308,6 +365,10 @@ nav{
     border-bottom: 3px solid #00d9ff;
     transform:translateX(-100%);
     transition:all 0.3s ease;
+}
+#content{
+   
+    margin-top: 150px
 }
 
 .content-name{

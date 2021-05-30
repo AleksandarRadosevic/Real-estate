@@ -5,6 +5,6 @@ class adModel extends Model
 {
     protected $table       = 'advertisement';
     protected $allowedFields = [
-        'IdOwner', 'IdAd', 'TimePosted','Price','Topic','IdType','Size','Address','IdPlace','Description'
+        'IdOwner', 'Id', 'Time','Price','Topic','Size','Address','IdPlace','Description','Purpose','RealEstateType'
     ];
 }
