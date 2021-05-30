@@ -130,11 +130,8 @@ class Guest extends BaseController
                                 else {
                                     $errors=['passwordLogin' => 'Uneta je pogresna sifra'];
                                     return view('login', ['errors' => $errors]);
-                                }
-                                
-                            }
-                            
-                            
+                                }                              
+                            }                          
                             if ($user['Password']!=$this->request->getVar('password'))
                             {
                                 $errors=['passwordLogin' => 'Pogresna sifra'];
@@ -199,9 +196,6 @@ class Guest extends BaseController
             
             if ($this->request->getMethod()=='post'){
             //validation for user
-           
-            
-           
                 $user=new adModel();
 				$id=$user->getInsertID();
                 $type=$_POST["tipNekretnine"];
