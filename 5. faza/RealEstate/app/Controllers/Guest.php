@@ -4,7 +4,7 @@ use App\Models\UserModel;
 use App\Models\RegisteredUserModel;
 use App\Models\PrivilegedUserModel;
 use App\Models\AgencyModel;
-
+use App\Models\AdminModel;
 class Guest extends BaseController
 {
 	public function index()
@@ -98,7 +98,7 @@ class Guest extends BaseController
         
         public function login(){
         
-            $data=[];
+            //$data=[];
             helper(['form']);
         
             if ($this->request->getMethod()=='post'){
@@ -123,7 +123,7 @@ class Guest extends BaseController
                                         'Username'=>$admin['Username'],
                                         'Type'=>'admin'
                                     ];
-                                    $this->session->set('Admin',$validationData);
+                                    $this->session->set('User',$validationData);
                                     return redirect()->to(site_url('Admin'));
                                 }
                                 else {
@@ -180,7 +180,7 @@ class Guest extends BaseController
                                 'Type'=>'agency'];
 
                             $this->session->set('User',$validationData);
-                            return redirect()->to(site_url('Privilegeduser'));
+                            return redirect()->to(site_url('Agency'));
                         }
 
 				return redirect()->to('/');
