@@ -3,7 +3,6 @@
 use App\Models\UserModel;
 use App\Models\RegisteredUserModel;
 use App\Models\PrivilegedUserModel;
-use App\Models\AdminModel;
 use App\Models\AgencyModel;
 
 class Guest extends BaseController
@@ -15,83 +14,80 @@ class Guest extends BaseController
        
         
         public function register(){
-                       
+            $data=[];
+            
             helper(['form']);
             
             if ($this->request->getMethod()=='post'){
-            //validation for user                     
-                $user=new UserModel();  
-                
+            //validation for user
+            $rules=[
+                'username'=>'required|min_length[3]|max_length[30]',
+                'lastname'=>'required|min_length[3]|max_length[30]',
+                'password'=>'required|min_length[3]|max_length[30]',
+                'passagain'=>'matches[password]',
+                'email'=>'required|min_length[6]|max_length[50]|valid_email|is_unique[user.email]',
+            ];
+            
+            if ($this->validate($rules)){
+                $data['validation']=$this->validator;
+            }
+            else {
+                $user=new UserModel();                
                 $values=[
                     'Username'=>$this->request->getVar('username'),
                     'Password'=>$this->request->getVar('password'),
                     'Email'=>$this->request->getVar('email'),
-                    'PasswordAgain'=>$this->request->getVar('passagain'),
                     'Phone'=>$this->request->getVar('phone')
                 ];   
-                
                 //add user
-                if($user->validate($values)==false){
-                return view('register', ['errors' => $user->errors()]);
-                }
-                
-                //Admin is prohibited name for username              
-                else if ($this->request->getVar('Username')=='Admin'){
-                    $errors=['username' => 'Uneto korisnicko ime je zauzeto'];
-                    return view('register',['errors'=>$errors]);
-                }
+                $user->save($values);
                 
                 
-                //id will be changed after insert in user table
-                $id=-1;
+             
+                $id=$user->getInsertID();
                 $type=$_POST["type"];
                 
-              //value for insert in other  table
-               $userOtherTable=null;
-               
-               
               //check if regular privileged or agency
                     if ($type=="regular"){
-                    $data=[
-                        'Id'=>$id,
+                    $regular=[
+                        'IdR'=>$id,
                         'Name'=>$this->request->getVar('name'),
                         'Surname'=>$this->request->getVar('surname')
                     ];
-                $userOtherTable=new RegisteredUserModel();
+                $registered=new RegisteredUserModel();
+                $registered->save($regular);
                 }
-    
+                
                 else if ($type=="privileged"){
                     $data=[
-                        'Id'=>$id,
+                        'IdP'=>$id,
                         'Name'=>$this->request->getVar('name'),
-                        'Surname'=>$this->request->getVar('surname'),
-                        'Phone'=>$this->request->getVar('phone')
+                        'Surname'=>$this->request->getVar('surname')
                     ];
-                $userOtherTable=new PrivilegedUserModel();
+                $privileged=new PrivilegedUserModel();
+                $privileged->save($data);
                 }
-                       
+                
+                
                 else {
                     $v=0;
                     $data=[
-                        'Id'=>$id,
-                        'Name'=>$this->request->getVar('nameAgency'),
-                        'Phone'=>$this->request->getVar('phone'),
+                        'IdA'=>$id,
+                        'Name'=>$this->request->getVar('name'),
                         'AverageMark'=>$v
                     ];
-                $userOtherTable=new AgencyModel();
+                $agency=new AgencyModel();
+                $agency->save($data);
                 }
-                
-                                
-                if ($userOtherTable->validate($data)==false)
-                    return view('register', ['errors' => $userOtherTable->errors()]);
 
                 
-                //values are correct and can be inserted
-                $user->save($values);
-                $data['Id']=$user->getInsertID();
-                $userOtherTable->save($data);
-      
-		return redirect()->to('login');
+                $session= session();
+                $session->setFlashdata('success', 'Successful Registration');
+		return redirect()->to('/');
+            }
+            
+            
+            //validation for 
             
               }
             
@@ -102,151 +98,62 @@ class Guest extends BaseController
         
         public function login(){
         
+            $data=[];
             helper(['form']);
         
             if ($this->request->getMethod()=='post'){
                 
-                
-			$model = new UserModel();                        
+			$model = new UserModel();
 			$user = $model->where('username', $this->request->getVar('username'))->first();
-                                                 
                             if ($user==null){
-                                
-                                //check if admin wants to login
-                                $adminModel=new AdminModel();
-                                $admin=$adminModel->where('Username',$this->request->getVar('username'))->first();
-                                
-                                if ($admin==null)
-                                {                          
-                                $errors=['usernameLogin' => 'Uneti korisnik ne postoji'];
-                                return view('login', ['errors' => $errors]);
-                                }
-                                
-                                else if ($admin['Password']==$this->request->getVar('password')){
-                                    $this->session->set('Admin',$admin);
-                                    return redirect()->to(site_url('Admin'));
-                                }
-                                else {
-                                    $errors=['passwordLogin' => 'Uneta je pogresna sifra'];
-                                    return view('login', ['errors' => $errors]);
-                                }
-                                
+                                echo 'Greska';
+                                return ;
                             }
-                            
-                            
-                            if ($user['Password']!=$this->request->getVar('password'))
-                            {
-                                $errors=['passwordLogin' => 'Pogresna sifra'];
-                                return view('login', ['errors' => $errors]);
-                            }
-                            
                                 //check user type
                                 $agency=new AgencyModel();
-                                $isAgency=$agency->where('Id',$user['Id'])->first();
+                                $isAgency=$agency->where('username', $this->request->getVar('username'))->first();
                                 
                                 $registered=new RegisteredUserModel();
-                                $isRegistered=$registered->where('Id',$user['Id'])->first();
+                                $isRegistered=$isRegistered->where('username', $this->request->getVar('username'))->first();
                                 
                                 $privileged=new PrivilegedUserModel();
-                                $isPrivileged=$privileged->where('Id',$user['Id'])->first();
-                                
+                                $isPrivileged=$isPrivileged->where('username', $this->request->getVar('username'))->first();
                                 
                                 $validationData=[];
                         
-                        if($isRegistered!=null){
-                             $validationData=[
+                        if ($isAgency!=null){
+                            $validationData=[
                                 'Id'=>$user['Id'],
-                                'Name'=>$isRegistered['Name'],
-                                'Surname'=>$isRegistered['Surname']
+                                'Email' => $user['Email'],
+                                'Name'=>   $isAgency['Name']
                             ];
-                             
-                        $this->session->set('User',$validationData);
-                        return redirect()->to(site_url('RegisteredUser'));
-                        }       
-                                                                                      
+                        }
+                        
                         else if ($isPrivileged!=null)
                         {
                             $validationData=[
                                 'Id'=>$user['Id'],
+                                'Email' => $user['Email'],
                                 'Name'=>$isPrivileged['Name'],
                                 'Surname'=>$isPrivileged['Surname']
                             ];
-                        $this->session->set('User',$validationData);
-                        return redirect()->to(site_url('PrivilegedUser'));
                         }
                         
-                        else if ($isAgency!=null){
-                            $validationData=[
-                                'Id'=>$user['Id'],
-                                'Name'=>$isAgency['Name'],
-                                'AverageMark' => $isAgency['AverageMark'],                                 
+                        else {
+                             $validationData=[
+                               'Id'=>$user['Id'],
+                                'Email' => $user['Email'],
+                                'Name'=>$isPrivileged['Name'],
+                                'Surname'=>$isPrivileged['Surname']
                             ];
                         }
-                                              
-			$this->session->set('User',$validationData);
-                        return redirect()->to(site_url('Agency'));
+                                session()->set($validationData);
+				//$session->setFlashdata('success', 'Successful Registration');
+				return redirect()->to('/');
                         
             }
-             echo view('login.php');  
+             echo view('login.php');
         }
-<<<<<<< HEAD
-=======
-        
-        
-	public function addAdvertisement(){
-            $data=[];
-            
-            helper(['form']);
-            
-            if ($this->request->getMethod()=='post'){
-            //validation for user
-           
-            
-           
-                $user=new adModel();
-				$id=$user->getInsertID();
-                $type=$_POST["tipNekretnine"];
-               
-
-                $values=[
-                    'IdOwner'=>$this->request->getVar('cena'),
-                    'IdAd'=>444,
-                    'TimePosted'=>$this->request->getVar('cena'),
-                    'Price'=>$this->request->getVar('cena'),
-					'Topic'=>$this->request->getVar('naslov'),
-					'IdType'=>$type,
-					'Size'=>$this->request->getVar('kvadratura'),
-					'Address'=>$this->request->getVar('adresa'),
-					'IdPlace'=>$id,
-					'Description'=>$this->request->getVar('komentar')
-					
-                ];   
-                //add user
-                $user->save($values);
-                
-                
-             
-               
-                
-              
-
-                
-                $session= session();
-                $session->setFlashdata('success', 'Successful Registration');
-		return redirect()->to('/');
-            
-            
-            
-            //validation for 
-            
-              }
-            
-            
-            echo view('addAdvertisement.php');
-          
-        }
-		
->>>>>>> 7571f10953d7f040f1e2f431b052a68ff3013f0c
 		
 }
 
