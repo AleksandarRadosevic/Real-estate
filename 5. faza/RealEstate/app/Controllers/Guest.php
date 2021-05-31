@@ -135,7 +135,6 @@ class Guest extends BaseController
                             {
                                 $errors=['passwordLogin' => 'Pogresna sifra'];
                                 return view('login', ['errors' => $errors]);
-
                             }
                                 //check user type
                                 $agency=new AgencyModel();
@@ -160,7 +159,6 @@ class Guest extends BaseController
                         $this->session->set('User',$validationData);
                         return redirect()->to(site_url('Registereduser'));
                         }       
-
                         else if ($isPrivileged!=null)
                         {
                             $validationData=[
@@ -219,14 +217,6 @@ class Guest extends BaseController
                 ];   
                 //add user
                 $user->save($values);
-                
-                
-             
-               
-                
-              
-
-                
                 $session= session();
                 $session->setFlashdata('success', 'Successful Registration');
 		return redirect()->to('/');
