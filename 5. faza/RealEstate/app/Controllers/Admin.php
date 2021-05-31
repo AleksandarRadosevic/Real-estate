@@ -43,8 +43,6 @@ class Admin extends BaseController
             echo view('adminAdvertisments.php');
         }
         public function pera(){
-            echo $_POST["actionResult"];
-            echo 'aca';
-             echo view('register.php');
+             echo $as;
         }
 }
