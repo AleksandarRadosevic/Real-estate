@@ -54,8 +54,8 @@
                       <li>
                         <span><?= $data['Name'] ?></span>
                         <input type="hidden" name="agencyId" value="<?php echo $data['Id']; ?>"> 
-                        <input type="submit" name="actionAgency" value="Promeni privilegije" class="dugme2"/>
-                        <input type="submit" name="actionAgency" value="Ukloni korisnika" class="dugmeukloni">
+                        <input type="submit" name="actionAgency" value="Promeni privilegije" class="adminButton dugme2"/>
+                        <input type="submit" name="actionAgency" value="Ukloni korisnika" class="adminButton dugmeukloni">
 
                     </li>          
                 <?php endforeach ?>
@@ -74,8 +74,8 @@
                         <span><?= $data['Name']?> <?= $data['Surname'] ?>
                         </span>
                         <input type="hidden" name="privilegedId" value="<?php echo $data['Id']; ?>"> 
-                        <input type="submit" name="actionPrivileged" value="Promeni privilegije" class="dugme2"/>
-                        <input type="submit" name="actionPrivileged" value="Ukloni korisnika" class="dugmeukloni">
+                        <input type="submit" name="actionPrivileged" value="Promeni privilegije" class="adminButton dugme2"/>
+                        <input type="submit" name="actionPrivileged" value="Ukloni korisnika" class="adminButton dugmeukloni">
                     </li>          
                 <?php endforeach ?>
                 <?php endif ?>                                   
@@ -95,8 +95,8 @@
                         <span><?= $data['Name']?> <?= $data['Surname'] ?>
                         </span>
                         <input type="hidden" name="registeredId" value="<?php echo $data['Id']; ?>"> 
-                        <input type="submit" name="actionRegistered" value="Promeni privilegije" class="dugme2"/>
-                        <input type="submit" name="actionRegistered" value="Ukloni korisnika" class="dugmeukloni">
+                        <input type="submit" name="actionRegistered" value="Promeni privilegije" class="adminButton dugme2"/>
+                        <input type="submit" name="actionRegistered" value="Ukloni korisnika" class="adminButton dugmeukloni">
                     </li>          
                 <?php endforeach ?>
                 <?php endif ?>                                   

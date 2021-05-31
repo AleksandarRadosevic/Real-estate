@@ -159,11 +159,23 @@ nav{
     cursor: pointer;
     width:20%;
   }
-  
-  button:hover {
+    button:hover {
     opacity: 0.8;
   }
-  
+  /*dodato za administratora */
+  .adminButton{
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 200px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width:20%;
+  }
+   .adminButton:hover {
+    opacity: 0.8;
+  }
   .imgcontainer {
     text-align: center;
     margin: 24px 0 12px 0;
@@ -596,10 +608,7 @@ nav{
 #dugme{
     margin-left: 240px;
 }
-  button:hover {
-    opacity: 0.8;
-    
- }
+
 
   #lupa{
     height: 30px;
