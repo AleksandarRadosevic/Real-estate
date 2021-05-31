@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <title>Prototip</title>
 </head>
+
 <body>
     <nav>
         <div class="logo"><h4><a href='../index.html'>Success</a></h4></div>
@@ -43,7 +44,7 @@
 <div id='content' width=100%>
     <table>
         <tr>
-            <td ><h2 class=podnaslov>Vaši podaci :</h2> 
+            <td ><h2 class=podnaslov>Unesite podatke :</h2> 
             
         </tr>
         <tr>
@@ -77,7 +78,71 @@
         <tr>
             <td>Mesto:</td>
             <td>
-                <input type='text' name="mesto"  minlength="3" placeholder="" required>
+                <div class="dropdown">
+                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" required >
+                    Izaberi lokaciju
+                    </button>
+                    <div class="dropdown-menu" >
+                    <div class="dropdown-item"><label>
+                      <input type="radio" name="Beograd" value='1' > Beograd, Cukarica
+                    </label>
+                   </div>
+                   <div class="dropdown-item"> <label>
+                    <input type="radio" name="Beograd" value='2'> Beograd, Novi Beograd
+                  </label></div>
+                  <div class="dropdown-item" ><label>
+                    <input type="radio" name="Beograd" value='3'> Beograd, Palilula
+                  </label></div>
+                  <div class="dropdown-item"><label>
+                    <input type="radio" name="Beograd" value='4' > Beograd, Rakovica
+                  </label>
+                 </div>
+                 <div class="dropdown-item"> <label>
+                  <input type="radio" name="Beograd" value='5' > Beograd, Savski venac
+                </label></div>
+                <div class="dropdown-item" ><label>
+                  <input type="radio" name="Beograd" value='6'>   Beograd, Stari grad
+                </label></div>
+                <div class="dropdown-item"><label>
+                  <input type="radio" name="Beograd" value='7'> Beograd, Vozdovac
+                </label>
+               </div>
+               <div class="dropdown-item"> <label>
+                <input type="radio" name="Beograd" value='8'> Beograd, Vracar
+              </label></div>
+              <div class="dropdown-item" ><label>
+                <input type="radio" name="Beograd" value='9'> Beograd, Zemun
+              </label></div>
+              <div class="dropdown-item"><label>
+                <input type="radio" name="Beograd" value='10'> Beograd, Zvezdara
+              </label>
+             </div>
+             <div class="dropdown-item"> <label>
+              <input type="radio" name="Beograd" value='11'> Beograd, Barajevo
+            </label></div>
+            <div class="dropdown-item" ><label>
+              <input type="radio" name="Beograd" value='12'> Beograd, Grocka
+            </label></div>
+            <div class="dropdown-item"><label>
+              <input type="radio" name="Beograd" value='13'> Beograd, Lazarevac
+            </label>
+           </div>
+           <div class="dropdown-item"><label>
+            <input type="radio" name="Beograd" value='14'> Beograd, Mladenovac
+          </label>
+         </div>
+         <div class="dropdown-item"> <label>
+          <input type="radio" name="Beograd" value='15'> Beograd, Obrenovac
+        </label></div>
+        <div class="dropdown-item" ><label>
+          <input type="radio" name="Beograd" value='16'> Beograd, Sopot
+        </label></div>
+        <div class="dropdown-item"><label>
+          <input type="radio" name="Beograd" value='17'> Beograd, Surcin
+        </label>
+        </div>
+                    </div>
+                   </div>
             </td>
         </tr>
 
@@ -174,7 +239,7 @@ function goBackToMain() {
         
         
          <tr>
-            <td><h2 class=podnaslov>Postavi oglas</h2></td>
+            <td>Postavi oglas</td>
             <td>
              
                

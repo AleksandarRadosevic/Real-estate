@@ -22,8 +22,8 @@
           <li><a href='/assets/pretraga.html'>Pretraga</a href></li>
           <li><a href='#'>Oglasi</a href></li>
           <li><a href='#'>O nama</a href></li>
-          <li><a href='login' class='login'>Prijavite se</a href></li>
-          <li><a href='register' class='button register'>Registrujte se</a></a href></li>
+          <li><a href='Guest/login' class='login'>Prijavite se</a href></li>
+          <li><a href='Guest/register' class='button register'>Registrujte se</a></a href></li>
         </ul>
                 
         <div class="hidden-menu">
@@ -52,15 +52,7 @@
                       <span class='content-name'>Lozinka</span>
                   </label>
                 </div>
-                <?php if (! empty($errors)) : ?>
-                <div class="alert alert-danger">
-                <?php foreach ($errors as $field => $error) : ?>
-                    <p><?= $error ?></p>
-                <?php endforeach ?>
-                </div>
-                <?php endif ?>               
-                
-                <button type='submit'>Prijavite se</button>
+                <button type='submit' onclick="logujse()">Prijavite se</button>
                 <label>
                   <input type="checkbox" checked="checked" name="remember"> Zapamti me
                 </label>

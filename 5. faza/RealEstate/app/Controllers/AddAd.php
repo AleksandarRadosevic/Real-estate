@@ -34,8 +34,8 @@ class AddAd extends BaseController
                 $type1=$_POST["tipNekretnine"];
                 $type2=$_POST["vrstaUsluge"];
                
-            
-        
+            $mesto = $_POST['Beograd'];  
+       
               
                
                
@@ -47,7 +47,7 @@ class AddAd extends BaseController
 					'Topic'=>$this->request->getVar('naslov'),
 					'Size'=>$this->request->getVar('kvadratura'),
 					'Address'=>$this->request->getVar('adresa'),
-					'IdPlace'=>$this->request->getVar('kvadratura'),
+					'IdPlace'=> $mesto,
 					'Description'=>$this->request->getVar('komentar'),
                                         'Purpose'=>$type2,
                                         'RealEstateType'=>$type1
