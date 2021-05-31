@@ -106,8 +106,35 @@ class Guest extends BaseController
 			$model = new UserModel();
 			$user = $model->where('username', $this->request->getVar('username'))->first();
                             if ($user==null){
-                                echo 'Greska';
-                                return ;
+                                
+                                //check if admin wants to login
+                                $adminModel=new AdminModel();
+                                $admin=$adminModel->where('Username',$this->request->getVar('username'))->first();
+                                
+                                if ($admin==null)
+                                {                          
+                                $errors=['usernameLogin' => 'Uneti korisnik ne postoji'];
+                                return view('login', ['errors' => $errors]);
+                                }
+                                
+                                else if ($admin['Password']==$this->request->getVar('password')){
+                                    $validationData=[
+                                        'Id'=>$admin['Id'],
+                                        'Username'=>$admin['Username'],
+                                        'Type'=>'admin'
+                                    ];
+                                    $this->session->set('Admin',$validationData);
+                                    return redirect()->to(site_url('Admin'));
+                                }
+                                else {
+                                    $errors=['passwordLogin' => 'Uneta je pogresna sifra'];
+                                    return view('login', ['errors' => $errors]);
+                                }                              
+                            }                          
+                            if ($user['Password']!=$this->request->getVar('password'))
+                            {
+                                $errors=['passwordLogin' => 'Pogresna sifra'];
+                                return view('login', ['errors' => $errors]);
                             }
                                 //check user type
                                 $agency=new AgencyModel();
@@ -121,39 +148,88 @@ class Guest extends BaseController
                                 
                                 $validationData=[];
                         
-                        if ($isAgency!=null){
+                        if ($isRegistered!=null){
                             $validationData=[
                                 'Id'=>$user['Id'],
-                                'Email' => $user['Email'],
-                                'Name'=>   $isAgency['Name']
+                                'Name'=>$isRegistered['Name'],
+                                'Surname'=>$isRegistered['Surname'],
+                                'Type'=>'registered'
                             ];
-                        }
-                        
+                         
+                        $this->session->set('User',$validationData);
+                        return redirect()->to(site_url('Registereduser'));
+                        }       
+                                                                                      
                         else if ($isPrivileged!=null)
                         {
                             $validationData=[
                                 'Id'=>$user['Id'],
                                 'Email' => $user['Email'],
                                 'Name'=>$isPrivileged['Name'],
-                                'Surname'=>$isPrivileged['Surname']
+                                'Surname'=>$isPrivileged['Surname'],
+                                'Type'=>'privileged'
                             ];
+                
+                        $this->session->set('User',$validationData);
+                        return redirect()->to(site_url('Privilegeduser'));
                         }
                         
-                        else {
-                             $validationData=[
-                               'Id'=>$user['Id'],
-                                'Email' => $user['Email'],
-                                'Name'=>$isPrivileged['Name'],
-                                'Surname'=>$isPrivileged['Surname']
-                            ];
+                        else if ($isAgency!=null){
+                            $validationData=[
+                                'Id'=>$user['Id'],
+                                'Name'=>$isAgency['Name'],
+                                'AverageMark' => $isAgency['AverageMark'],
+                                'Type'=>'agency'];
+                        $this->session->set('Agency',$validationData);
+                        return redirect()->to(site_url('Agency'));
                         }
-                                session()->set($validationData);
-				//$session->setFlashdata('success', 'Successful Registration');
+                
 				return redirect()->to('/');
                         
             }
+        }      /*
+	public function addAdvertisement(){
+            $data=[];
+            
+            helper(['form']);
+            
+            if ($this->request->getMethod()=='post'){
+            //validation for user
+                $user=new adModel();
+				$id=$user->getInsertID();
+                $type=$_POST["tipNekretnine"];
+               
+
+                $values=[
+                    'IdOwner'=>$this->request->getVar('cena'),
+                    'IdAd'=>444,
+                    'TimePosted'=>$this->request->getVar('cena'),
+                    'Price'=>$this->request->getVar('cena'),
+					'Topic'=>$this->request->getVar('naslov'),
+					'IdType'=>$type,
+					'Size'=>$this->request->getVar('kvadratura'),
+					'Address'=>$this->request->getVar('adresa'),
+					'IdPlace'=>$id,
+					'Description'=>$this->request->getVar('komentar')
+					
+                ];   
+                //add user
+                $user->save($values);
+                $session= session();
+                $session->setFlashdata('success', 'Successful Registration');
+		return redirect()->to('/');
+            
+            
+            
+            //validation for 
+            
+              }
+            
+            
+            echo view('addAdvertisement.php');
              echo view('login.php');
         }
+        */
 		
 }
 

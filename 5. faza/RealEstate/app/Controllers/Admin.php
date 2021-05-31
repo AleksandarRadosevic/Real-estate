@@ -1,0 +1,50 @@
+<?php
+
+namespace App\Controllers;
+use App\Models\UserModel;
+use App\Models\RegisteredUserModel;
+use App\Models\PrivilegedUserModel;
+use App\Models\AgencyModel;
+class Admin extends BaseController
+{
+	public function index()
+	{
+             echo view('admin.php');
+	}
+        
+        
+        public function showPage(){
+           
+        }
+        
+        public function users(){
+                     
+            $dataR=new RegisteredUserModel();
+            $dataP=new PrivilegedUserModel();
+            $dataA=new AgencyModel();
+            $usersR=$dataR->findAll();
+            $usersP=$dataP->findAll();
+            $usersA=$dataA->findAll();
+            return view('adminUsers', ['users' => $usersR,
+                'usersP'=>$usersP,
+                'usersA'=>$usersA]);
+            echo view('adminUsers.php');
+             if ($this->request->getMethod()=='post'){
+             pera();
+             }
+             else {
+                 echo 'Nista';
+                 return;
+             }
+             
+        }
+        
+        public function advertisments(){
+            echo view('adminAdvertisments.php');
+        }
+        public function pera(){
+            echo $_POST["actionResult"];
+            echo 'aca';
+             echo view('register.php');
+        }
+}
