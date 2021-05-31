@@ -3,6 +3,7 @@
 use CodeIgniter\Model;
 class AgencyModel extends Model
 {
+    protected $table     = 'agency';
     protected $allowedFields = [
         'Id', 'Name', 'AverageMark'
     ];
