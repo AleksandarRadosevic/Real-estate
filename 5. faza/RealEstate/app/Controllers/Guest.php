@@ -127,7 +127,7 @@ class Guest extends BaseController
                                     return redirect()->to(site_url('Admin'));
                                 }
                                 else {
-                                    $errors=['passwordLogin' => 'Uneta je pogresna sifra'];
+                                    $errors=['passwordLogin' => 'Pogresna sifra'];
                                     return view('login', ['errors' => $errors]);
                                 }                              
                             }                          
@@ -159,7 +159,6 @@ class Guest extends BaseController
                         $this->session->set('User',$validationData);
                         return redirect()->to(site_url('Registereduser'));
                         }       
-                                                                                      
                         else if ($isPrivileged!=null)
                         {
                             $validationData=[
@@ -168,8 +167,7 @@ class Guest extends BaseController
                                 'Name'=>$isPrivileged['Name'],
                                 'Surname'=>$isPrivileged['Surname'],
                                 'Type'=>'privileged'
-                            ];
-                
+                            ];    
                         $this->session->set('User',$validationData);
                         return redirect()->to(site_url('Privilegeduser'));
                         }
@@ -180,14 +178,18 @@ class Guest extends BaseController
                                 'Name'=>$isAgency['Name'],
                                 'AverageMark' => $isAgency['AverageMark'],
                                 'Type'=>'agency'];
-                        $this->session->set('Agency',$validationData);
-                        return redirect()->to(site_url('Agency'));
+
+                            $this->session->set('User',$validationData);
+                            return redirect()->to(site_url('Privilegeduser'));
                         }
-                
+
 				return redirect()->to('/');
                         
             }
-        }      /*
+             echo view('login.php');  
+        }
+        /*
+        
 	public function addAdvertisement(){
             $data=[];
             
@@ -227,10 +229,9 @@ class Guest extends BaseController
             
             
             echo view('addAdvertisement.php');
-             echo view('login.php');
+                         echo view('login.php');
         }
-        */
-		
+		*/
 }
 
 
