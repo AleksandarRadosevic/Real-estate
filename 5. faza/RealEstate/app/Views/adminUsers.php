@@ -24,8 +24,8 @@
            <li><a href='pretraga.html' class="btn" style="background-color: rgb(33, 74, 255);">Pretraga</a href></li>
            <li><a href='#'class="btn" style="background-color: rgb(33, 74, 255);">Oglasi</a href></li>
            <li><a href='#'class="btn" style="background-color: rgb(33, 74, 255);">O nama</a href></li>
-           <li><a href='login.html' class='btn btn-success'>Prijavite se</a href></li>
-           <li><a href='register.html' class='btn btn-danger'>Registrujte se</a></a href></li> 
+           <li><a href='../Guest/login' class='btn btn-success'>Prijavite se</a href></li>
+           <li><a href='../Guest/register' class='btn btn-danger'>Registrujte se</a></a href></li> 
          </ul>
     
          <div class="hidden-menu" style="margin:0px !important; padding:0 !important;">
@@ -42,25 +42,26 @@
                   <img src="/assets/images/admin.png" alt="Avatar" class="avatar">
                 </div>
              
-                <form style="width:100%;" action="post">
-                    <ul class='lista' style="padding-top: 3px !important;">
+                <form style="width:100%;" method="post">
+                    <ul class='lista'>
                     <h1 class='lista-naslov'>Agencije</h1>
                     <div class='box-container l'>
                         <input class='search'type='text' placeholder="Unesite korisnika">
                         <button class='polje'>Traži</button>
                     </div>
                 <?php if (! empty($usersA)) : ?>
-                <?php foreach ($usersA as $field => $error) : ?>
+                <?php foreach ($usersA as $field => $data) : ?>
                       <li>
-                        <span><?= $error['Name'] ?></span>
-                        <button class="dugme2">Promeni privilegije</button>  
-                        <button type="submit" class="dugmeukloni" onclick="ukloni(this)">Ukloni korisnika</button>     
+                        <span><?= $data['Name'] ?></span>
+                        <input type="hidden" name="agencyId" value="<?php echo $data['Id']; ?>"> 
+                        <input type="submit" name="actionAgency" value="Promeni privilegije" class="dugme2"/>
+                        <input type="submit" name="actionAgency" value="Ukloni korisnika" class="dugmeukloni">
+
                     </li>          
                 <?php endforeach ?>
                 <?php endif ?>                                   
                 </ul>    
-            </form>
-               
+                    <br>
                 <ul class='lista'>
                     <h1 class='lista-naslov'>Privilegovani korisnici</h1>
                     <div class='box-container l'>
@@ -68,35 +69,39 @@
                         <button class='polje'>Traži</button>
                     </div>
                 <?php if (! empty($usersP)) : ?>
-                <?php foreach ($usersP as $field => $error) : ?>
+                <?php foreach ($usersP as $field => $data) : ?>
                       <li>
-                        <span><?= $error['Name']?> <?= $error['Surname'] ?>
+                        <span><?= $data['Name']?> <?= $data['Surname'] ?>
                         </span>
-                
-                        <button class="dugme2">Promeni privilegije</button>
-                        <button class="dugmeukloni" onclick="ukloni(this)">Ukloni korisnika</button>
+                        <input type="hidden" name="privilegedId" value="<?php echo $data['Id']; ?>"> 
+                        <input type="submit" name="actionPrivileged" value="Promeni privilegije" class="dugme2"/>
+                        <input type="submit" name="actionPrivileged" value="Ukloni korisnika" class="dugmeukloni">
                     </li>          
                 <?php endforeach ?>
                 <?php endif ?>                                   
                 </ul> 
-                   <ul class='lista'>
+                    <br>
+  
+                    <form style="width:100%;" method="post">
+                    <ul class='lista'>
                     <h1 class='lista-naslov'>Registrovani korisnici</h1>
                     <div class='box-container l'>
                         <input class='search'type='text' placeholder="Unesite korisnika">
                         <button class='polje'>Traži</button>
                     </div>
-                <?php if (! empty($users)) : ?>
-                <?php foreach ($users as $field => $error) : ?>
+                <?php if (! empty($usersR)) : ?>
+                <?php foreach ($usersR as $field => $data) : ?>
                       <li>
-                        <span><?= $error['Name']?> <?= $error['Surname'] ?>
+                        <span><?= $data['Name']?> <?= $data['Surname'] ?>
                         </span>
-          
-                        <button class="dugme2">Promeni privilegije</button>
-                        <button class="dugmeukloni" onclick="ukloni(this)">Ukloni korisnika</button>
+                        <input type="hidden" name="registeredId" value="<?php echo $data['Id']; ?>"> 
+                        <input type="submit" name="actionRegistered" value="Promeni privilegije" class="dugme2"/>
+                        <input type="submit" name="actionRegistered" value="Ukloni korisnika" class="dugmeukloni">
                     </li>          
                 <?php endforeach ?>
                 <?php endif ?>                                   
-                </ul>     
+                </ul>  
+                </form>
             </div>
         </section>
         <div class="circle1"></div>
