@@ -5,6 +5,6 @@ class AdminModel extends Model
 {
     protected $table         = 'administrator';
     protected $allowedFields = [
-        'Id', 'Username'
+        'Id', 'Username','Password'
     ];
 }

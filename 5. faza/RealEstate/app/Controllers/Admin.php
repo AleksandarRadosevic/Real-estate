@@ -30,12 +30,14 @@ class Admin extends BaseController
                 'usersA'=>$usersA]);
             echo view('adminUsers.php');
              if ($this->request->getMethod()=='post'){
-             pera();
+             echo 'pera peric';
+             return;
              }
              else {
                  echo 'Nista';
                  return;
              }
+             
              
         }
         
