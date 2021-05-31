@@ -41,8 +41,9 @@
                 <div class="imgcontainer">
                   <img src="/assets/images/admin.png" alt="Avatar" class="avatar">
                 </div>
-               
-                    <ul class='lista'>
+             
+                <form style="width:100%;" action="post">
+                    <ul class='lista' style="padding-top: 3px !important;">
                     <h1 class='lista-naslov'>Agencije</h1>
                     <div class='box-container l'>
                         <input class='search'type='text' placeholder="Unesite korisnika">
@@ -53,13 +54,13 @@
                       <li>
                         <span><?= $error['Name'] ?></span>
                         <button class="dugme2">Promeni privilegije</button>  
-                        <button class="dugmeukloni" onclick="window.location.href='pera'">Ukloni korisnika</button>     
+                        <button type="submit" class="dugmeukloni" onclick="ukloni(this)">Ukloni korisnika</button>     
                     </li>          
                 <?php endforeach ?>
                 <?php endif ?>                                   
                 </ul>    
-  
-                
+            </form>
+               
                 <ul class='lista'>
                     <h1 class='lista-naslov'>Privilegovani korisnici</h1>
                     <div class='box-container l'>
@@ -96,8 +97,6 @@
                 <?php endforeach ?>
                 <?php endif ?>                                   
                 </ul>     
-                
-                
             </div>
         </section>
         <div class="circle1"></div>
