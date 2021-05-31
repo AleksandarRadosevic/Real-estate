@@ -181,7 +181,7 @@ class Guest extends BaseController
                                 'AverageMark' => $isAgency['AverageMark'],
                                 'Type'=>'agency'];
                         $this->session->set('Agency',$validationData);
-                        return redirect()->to(site_url('Privilegeduser'));
+                        return redirect()->to(site_url('Agency'));
                         }
                 
 				return redirect()->to('/');
