@@ -29,9 +29,22 @@ class Admin extends BaseController
                 'usersP'=>$usersP,
                 'usersA'=>$usersA]);
             echo view('adminUsers.php');
+             if ($this->request->getMethod()=='post'){
+             pera();
+             }
+             else {
+                 echo 'Nista';
+                 return;
+             }
+             
         }
         
         public function advertisments(){
             echo view('adminAdvertisments.php');
+        }
+        public function pera(){
+            echo $_POST["actionResult"];
+            echo 'aca';
+             echo view('register.php');
         }
 }

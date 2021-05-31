@@ -41,7 +41,8 @@
                 <div class="imgcontainer">
                   <img src="/assets/images/admin.png" alt="Avatar" class="avatar">
                 </div>
-                      <ul class='lista'>
+                
+                    <ul class='lista'>
                     <h1 class='lista-naslov'>Agencije</h1>
                     <div class='box-container l'>
                         <input class='search'type='text' placeholder="Unesite korisnika">
@@ -51,13 +52,17 @@
                 <?php foreach ($usersA as $field => $error) : ?>
                       <li>
                         <span><?= $error['Name'] ?></span>
-                
-                        <button class="dugme2">Promeni privilegije</button>
-                        <button class="dugmeukloni" onclick="ukloni(this)">Ukloni korisnika</button>
+                        <button class="dugme2">Promeni privilegije</button>  
+                        <form name="mtd" action="" method="post">
+                        <input type="hidden" name="actionResult" value="<?php echo $error['Name']; ?>"/>
+                        <button type="submit" class="dugmeukloni">Ukloni korisnika</button>     
+                        </form>
                     </li>          
                 <?php endforeach ?>
                 <?php endif ?>                                   
-                </ul>            
+                </ul>    
+        
+                
                 <ul class='lista'>
                     <h1 class='lista-naslov'>Privilegovani korisnici</h1>
                     <div class='box-container l'>

@@ -26,7 +26,7 @@
            <li><a href='login.html' class='btn btn-success'>Prijavite se</a href></li>
            <li><a href='register.html' class='btn btn-danger'>Registrujte se</a></a href></li> 
          </ul>
-         <div class="hidden-menu" style="margin:0px !important; padding:0 !important;">
+         <div class="hidden-menu">
              <div class="line1"></div>
              <div class="line2"></div>
              <div class="line3"></div>

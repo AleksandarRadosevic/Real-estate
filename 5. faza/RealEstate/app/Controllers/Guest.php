@@ -124,7 +124,12 @@ class Guest extends BaseController
                                 }
                                 
                                 else if ($admin['Password']==$this->request->getVar('password')){
-                                    $this->session->set('Admin',$admin);
+                                    $validationData=[
+                                        'Id'=>$admin['Id'],
+                                        'Username'=>$admin['Username'],
+                                        'Type'=>'admin'
+                                    ];
+                                    $this->session->set('Admin',$validationData);
                                     return redirect()->to(site_url('Admin'));
                                 }
                                 else {
@@ -155,11 +160,12 @@ class Guest extends BaseController
                              $validationData=[
                                 'Id'=>$user['Id'],
                                 'Name'=>$isRegistered['Name'],
-                                'Surname'=>$isRegistered['Surname']
+                                'Surname'=>$isRegistered['Surname'],
+                                'Type'=>'registered'
                             ];
-                             
+                         
                         $this->session->set('User',$validationData);
-                        return redirect()->to(site_url('RegisteredUser'));
+                        return redirect()->to(site_url('Registereduser'));
                         }       
                                                                                       
                         else if ($isPrivileged!=null)
@@ -167,17 +173,22 @@ class Guest extends BaseController
                             $validationData=[
                                 'Id'=>$user['Id'],
                                 'Name'=>$isPrivileged['Name'],
-                                'Surname'=>$isPrivileged['Surname']
+                                'Surname'=>$isPrivileged['Surname'],
+                                'Type'=>'privileged'
                             ];
+                            
+                            
+                            
                         $this->session->set('User',$validationData);
-                        return redirect()->to(site_url('PrivilegedUser'));
+                        return redirect()->to(site_url('Privilegeduser'));
                         }
                         
                         else if ($isAgency!=null){
                             $validationData=[
                                 'Id'=>$user['Id'],
                                 'Name'=>$isAgency['Name'],
-                                'AverageMark' => $isAgency['AverageMark'],                                 
+                                'AverageMark' => $isAgency['AverageMark'],
+                                'Type'=>'agency'
                             ];
                         }
                                               

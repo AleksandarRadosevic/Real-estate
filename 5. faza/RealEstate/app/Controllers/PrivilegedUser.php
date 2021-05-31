@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class PrivilegedUser extends BaseController
+class Privilegeduser extends BaseController
 {
 	public function index()
 	{

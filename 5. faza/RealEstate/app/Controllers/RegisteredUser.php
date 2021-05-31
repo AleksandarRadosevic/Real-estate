@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class RegisteredUser extends BaseController
+class Registereduser extends BaseController
 {
 	public function index()
 	{
