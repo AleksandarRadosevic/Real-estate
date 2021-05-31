@@ -1,5 +1,4 @@
 <!-- Autor:Luka Juskovic 2017/0674-->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,8 +22,8 @@
           <li><a href='/assets/pretraga.html'>Pretraga</a href></li>
           <li><a href='#'>Oglasi</a href></li>
           <li><a href='#'>O nama</a href></li>
-          <li><a href='login' class='login'>Prijavite se</a href></li>
-          <li><a href='' class='button register'>Registrujte se</a></a href></li>
+          <li><a href='Guest/login' class='login'>Prijavite se</a href></li>
+          <li><a href='Guest/register' class='button register'>Registrujte se</a></a href></li>
         </ul>
                 
         <div class="hidden-menu">
@@ -36,49 +35,48 @@
     <div class="containter">
         <main>
         <section class="glass">
-            
             <form class='uredi' name='registracija' id='forma' action="" method="post">
                 <div class="imgcontainer">
                   <img src="/assets/images/avatar.png" alt="Avatar" class="avatar">
                 </div>
                   <div class='section'>
-                      <input type='text' name='username' id='username' autocomplete="off" value="<?= set_value('username')?>" >
+                      <input type='text' name='username' id='username' autocomplete="off" required value="<?= set_value('username')?>" >
                     <label for='username' class='label-name'>
                         <span class='content-name'>Korisničko ime</span>
                     </label>
                   </div>
                   <div class='section'>
-                    <input type='password' name='password' id='password' autocomplete="off" value="<?= set_value('password')?>" >
+                    <input type='password' name='password' id='password' autocomplete="off" required value="<?= set_value('password')?>" >
                     <label for='password' class='label-name'>
                         <span class='content-name'>Lozinka</span>
                     </label>
                   </div>
                   <div class='section'>
-                      <input type='password' name='passagain' id='passagain' autocomplete="off" value="<?= set_value('passagain') ?>" >
+                      <input type='password' name='passagain' id='passagain' autocomplete="off" required value="<?= set_value('passagain') ?>" >
                     <label for='passagain' class='label-name'>
                         <span class='content-name'>Ponovite lozniku</span>
                     </label>
                   </div>
                   <div class='section'>
-                      <input type='text' name='name' id='name' autocomplete="off" value="<?= set_value('name')?>">
-                    <label for='name' class='label-name'>
+                      <input type='text' name='name' id='name' autocomplete="off" required value="<?= set_value('name')?>">
+                    <label for='lastname' class='label-name'>
                         <span class='content-name'>Ime</span>
                     </label>
                   </div>
                   <div class='section'>
-                    <input type='text' name='surname' id='lastname' autocomplete="off" value="<?= set_value('surname')?>">
-                    <label for='surname' class='label-name'>
+                    <input type='text' name='surname' id='surname' autocomplete="off" required value="<?= set_value('surname')?>">
+                    <label for='lastname' class='label-name'>
                         <span class='content-name'>Prezime</span>
                     </label>
                   </div>
                   <div class='section'>
-                    <input type="text" name='email' id="email" autocomplete="off" value="<?= set_value('email')?>">
+                    <input type="text" name='email' id="email" autocomplete="off" required value="<?= set_value('email')?>">
                     <label for='email' class='label-name'>
                         <span class='content-name'>Email</span>
                     </label>
                   </div>
                   <div class='section'>
-                    <input type="text" name='phone' id="phone" autocomplete="off" value="<?= set_value('phone')?>">
+                    <input type="text" name='phone' id="phone" autocomplete="off" required value="<?= set_value('phone')?>">
                     <label for='phone' class='label-name'>
                         <span class='content-name'>Kontakt telefon</span>
                     </label>
@@ -97,14 +95,6 @@
                     <input type="radio" id="agency" name="type" value="agency">
                     <label for="agency">Agencija za nekretnine</label>
                   </div>
-                <?php if (! empty($errors)) : ?>
-                <div class="alert alert-danger">
-                <?php foreach ($errors as $field => $error) : ?>
-                    <p><?= $error ?></p>
-                <?php endforeach ?>
-                </div>
-                <?php endif ?>
-                
                 <button type='submit' class='registerbutton' onclick="registrujse()">Registrujte se</button>
               </form>
         </section>
