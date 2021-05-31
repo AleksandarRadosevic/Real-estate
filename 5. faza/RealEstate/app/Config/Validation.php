@@ -36,27 +36,7 @@ class Validation
 		'list'   => 'CodeIgniter\Validation\Views\list',
 		'single' => 'CodeIgniter\Validation\Views\single',
 	];
-        
-         public $signup = [
-        'usernameLogin'     => 'required',
-        'passwordLogin'     => 'required',
-        'pass_confirm' => 'required|matches[password]'
-    ];
-         
-          public $signup_errors = [
-        'username' => [
-            'required'    => 'Morate uneti korisničko ime',
-        ],
-             
-        'passwordLogin'     => [
-            'required'    => 'Morate uneti lozinku'
-        ],
-              
-        'pass_confirm'    => [
-            'matches' => 'Pogrešna lozinka'
-        ]
-    ];
-         
+
 	//--------------------------------------------------------------------
 	// Rules
 	//--------------------------------------------------------------------
