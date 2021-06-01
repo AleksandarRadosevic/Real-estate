@@ -476,7 +476,6 @@ nav{
 }
 
 .lista li:hover{
-    transform:scale(1.06);
     background:#01b7ff;
 }
 

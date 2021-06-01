@@ -5,6 +5,7 @@ use App\Models\UserModel;
 use App\Models\RegisteredUserModel;
 use App\Models\PrivilegedUserModel;
 use App\Models\AgencyModel;
+use \App\Models\ProhibitionUserModel;
 class Admin extends BaseController
 {
 
@@ -20,58 +21,256 @@ class Admin extends BaseController
         
         public function users(){
              if ($this->request->getMethod()=="post"){
-                 //check what user type is changing
-                if (isset($_POST['actionAgency'])){
-                    
-                    if (($_POST['actionAgency']) == 'Promeni privilegije') {
-                    echo 'Promena Agencije privilegija';
-                    return;                  
-                    } 
-                else if (($_POST['actionAgency']) == 'Ukloni korisnika') {
-                    $agency=new AgencyModel();
-                    $id=$_POST['agencyId'];
-                    $user=new UserModel();
-                    $agency->delete($id);
-                    $user->delete($id);}
-                }
                 
-                else if (isset($_POST['actionPrivileged'])){
-                    if ($_POST['actionPrivileged'] == 'Promeni privilegije') {
-                    echo 'Promena PRivilegovanog privilegija';
-                    return;
-                } 
-                else if ($_POST['actionPrivileged'] == 'Ukloni korisnika') {
-                    $id=$_POST['privilegedId'];
-                    $agency=new PrivilegedUserModel();
+                //check if agency is changed
+                $dataA=new AgencyModel();
+                $usersA=$dataA->findAll();
+                foreach ($usersA as $user){
+                    $fieldName='actionAgency'.$user['Id'];
+                    if (isset($_POST[$fieldName]))
+                    {
+                        if ($_POST[$fieldName]=='Promeni privilegije')
+                        {
+                            if (isset($_POST['commentA'.$user['Id']]))
+                        {
+                            $db = \Config\Database::connect();
+                            $proh=new ProhibitionUserModel();
+                            
+                            $idU=$user['Id'];
+                            $idA=2;
+                            $del="Delete from prohibition where IdA=? AND IdU=?";
+                            $db->query($del,[$idA,$idU]);
+                            
+                        }
+                        else {
+                            
+                            $db = \Config\Database::connect();
+                            $idU=$user['Id'];
+                            $idA=2;
+                                                  
+                            $proh=new ProhibitionUserModel();
+                            $sql="Select * from prohibition where IdA=? AND IdU=?";
+                            $obj=$db->query($sql, [$idA,$idU])->getResult();
+                            if ($obj==null)
+                            {
+                                $data=['IdA'=>$idA,'IdU'=>$idU];
+                                $proh->save($data);
+                            }
+                         
+                        }
+                        if (isset($_POST['addA'.$user['Id']]))
+                        {
+                            $db = \Config\Database::connect();
+                            $proh=new ProhibitionUserModel();
+                            
+                            $idU=$user['Id'];
+                            $idA=1;
+                            $del="Delete from prohibition where IdA=? AND IdU=?";
+                            $db->query($del,[$idA,$idU]);
+                        }
+                        else {
+                            $db = \Config\Database::connect();
+                            $idU=$user['Id'];
+                            $idA=1;
+                                                  
+                            $proh=new ProhibitionUserModel();
+                            $sql="Select * from prohibition where IdA=? AND IdU=?";
+                            $obj=$db->query($sql, [$idA,$idU])->getResult();
+                            if ($obj==null)
+                            {
+                                $data=['IdA'=>$idA,'IdU'=>$idU];
+                                $proh->save($data);
+                            }
+                        }
+                        }
+                        else {
+                    $id=$user['Id'];;
+                    $agency=new AgencyModel();
                     $user=new UserModel();
                     $agency->delete($id);
                     $user->delete($id);
+                    
+                    $db = \Config\Database::connect();
+                            $proh=new ProhibitionUserModel();                          
+                            $idU=$user['Id'];
+                            $del="Delete from prohibition where IdU=?";
+                            $db->query($del,[$idU]);
+                        }
+                    }   
                 }
-                }
-                else if (isset($_POST['actionRegistered'])){
-                    if ($_POST['actionRegistered']== 'Promeni privilegije') {
-                    echo 'Promena Registrovanog privilegija';
-                    return;
-                } 
-                else if ($_POST['actionRegistered'] == 'Ukloni korisnika') {
-                    $id=$_POST['registeredId'];
-                    $agency=new RegisteredUserModel();
+         
+                
+                $dataP=new PrivilegedUserModel();
+                $usersP=$dataP->findAll();
+                 foreach ($usersP as $user){
+                    $fieldName='actionPrivileged'.$user['Id'];
+                    if (isset($_POST[$fieldName]))
+                    {
+                        if ($_POST[$fieldName]=='Promeni privilegije')
+                        {
+                            if (isset($_POST['commentP'.$user['Id']]))
+                        {
+                            $db = \Config\Database::connect();
+                            $proh=new ProhibitionUserModel();
+                            
+                            $idU=$user['Id'];
+                            $idA=2;
+                            $del="Delete from prohibition where IdA=? AND IdU=?";
+                            $db->query($del,[$idA,$idU]);
+                            
+                        }
+                        else {
+                            
+                            $db = \Config\Database::connect();
+                            $idU=$user['Id'];
+                            $idA=2;
+                                                  
+                            $proh=new ProhibitionUserModel();
+                            $sql="Select * from prohibition where IdA=? AND IdU=?";
+                            $obj=$db->query($sql, [$idA,$idU])->getResult();
+                            if ($obj==null)
+                            {
+                                $data=['IdA'=>$idA,'IdU'=>$idU];
+                                $proh->save($data);
+                            }
+                         
+                        }
+                        if (isset($_POST['addP'.$user['Id']]))
+                        {
+                            $db = \Config\Database::connect();
+                            $proh=new ProhibitionUserModel();
+                            
+                            $idU=$user['Id'];
+                            $idA=1;
+                            $del="Delete from prohibition where IdA=? AND IdU=?";
+                            $db->query($del,[$idA,$idU]);
+                        }
+                        else {
+                            $db = \Config\Database::connect();
+                            $idU=$user['Id'];
+                            $idA=1;
+                                                  
+                            $proh=new ProhibitionUserModel();
+                            $sql="Select * from prohibition where IdA=? AND IdU=?";
+                            $obj=$db->query($sql, [$idA,$idU])->getResult();
+                            if ($obj==null)
+                            {
+                                $data=['IdA'=>$idA,'IdU'=>$idU];
+                                $proh->save($data);
+                            }
+                        }
+                        }
+                        else {
+                    $id=$user['Id'];;
+                    $agency=new AgencyModel();
                     $user=new UserModel();
                     $agency->delete($id);
                     $user->delete($id);
+                    
+                    $db = \Config\Database::connect();
+                            $proh=new ProhibitionUserModel();                          
+                            
+                            $del="Delete from prohibition where IdU=?";
+                            $db->query($del,[$id]);
+                        }
+                    }   
                 }
+         
+                
+                $dataR=new RegisteredUserModel();
+                $usersR=$dataR->findAll();
+                foreach ($usersR as $user){
+                    $fieldName='actionRegistered'.$user['Id'];
+                    if (isset($_POST[$fieldName]))
+                    {
+                        if ($_POST[$fieldName]=='Promeni privilegije')
+                        {
+                            if (isset($_POST['commentR'.$user['Id']]))
+                        {
+                            $db = \Config\Database::connect();
+                            $proh=new ProhibitionUserModel();
+                            
+                            $idU=$user['Id'];
+                            $idA=2;
+                            $del="Delete from prohibition where IdA=? AND IdU=?";
+                            $db->query($del,[$idA,$idU]);
+                            
+                        }
+                        else {
+                            
+                            $db = \Config\Database::connect();
+                            $idU=$user['Id'];
+                            $idA=2;
+                                                  
+                            $proh=new ProhibitionUserModel();
+                            $sql="Select * from prohibition where IdA=? AND IdU=?";
+                            $obj=$db->query($sql, [$idA,$idU])->getResult();
+                            if ($obj==null)
+                            {
+                                $data=['IdA'=>$idA,'IdU'=>$idU];
+                                $proh->save($data);
+                            }
+                         
+                        }
+                        if (isset($_POST['addR'.$user['Id']]))
+                        {
+                            $db = \Config\Database::connect();
+                            $proh=new ProhibitionUserModel();
+                            
+                            $idU=$user['Id'];
+                            $idA=1;
+                            $del="Delete from prohibition where IdA=? AND IdU=?";
+                            $db->query($del,[$idA,$idU]);
+                        }
+                        else {
+                            $db = \Config\Database::connect();
+                            $idU=$user['Id'];
+                            $idA=1;
+                                                  
+                            $proh=new ProhibitionUserModel();
+                            $sql="Select * from prohibition where IdA=? AND IdU=?";
+                            $obj=$db->query($sql, [$idA,$idU])->getResult();
+                            if ($obj==null)
+                            {
+                                $data=['IdA'=>$idA,'IdU'=>$idU];
+                                $proh->save($data);
+                            }
+                        }
+                        }
+                        else {
+                    $id=$user['Id'];;
+                    $registered=new RegisteredUserModel();
+                    $user=new UserModel();
+                    $registered->delete($id);
+                    $user->delete($id);
+                    
+                    $db = \Config\Database::connect();
+                            $proh=new ProhibitionUserModel();
+                            
+                            $del="Delete from prohibition where IdU=?";
+                            $db->query($del,[$id]);
+                        }
+                    }
+                    
+                   
                 }
-            }
+           
+                }
+            
          
             $dataR=new RegisteredUserModel();
             $dataP=new PrivilegedUserModel();
             $dataA=new AgencyModel();
+            $proh=new ProhibitionUserModel();
+            $prohibitions=$proh->findAll();
+                        
             $usersR=$dataR->findAll();
             $usersP=$dataP->findAll();
             $usersA=$dataA->findAll();
             return view('adminUsers', ['usersR' => $usersR,
                 'usersP'=>$usersP,
-                'usersA'=>$usersA]);
+                'usersA'=>$usersA,
+                'prohibitions'=>$prohibitions]);
             echo view('adminUsers.php');
              
              
