@@ -8,30 +8,31 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/styleLogin.css">
     <script src='/assets/javascript.js'></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <title>Prototip</title>
 </head>
 <body>
-    <nav>
-        <div class="logo"><h4><a href='/index.html'>Success</a></h4></div>
-        <ul class="nav-links">
-          <li><a href='/index.html'>Početna stranica</a href></li>
-          <li><a href='/assets/pretraga.html'>Pretraga</a href></li>
-          <li><a href='#'>Oglasi</a href></li>
-          <li><a href='#'>O nama</a href></li>
-          <li><a href='login' class='login'>Prijavite se</a href></li>
-          <li><a href='register' class='button register'>Registrujte se</a></a href></li>
-        </ul>
-                
-        <div class="hidden-menu">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
-        </div>
-    </nav>
+  <nav>
+ 
+    <div class="logo"><h4><a href='../index.html'>Success</a></h4></div>
+     <ul class="nav-links">
+       <li><a href='../index.html' class="btn" style="background-color: rgb(33, 74, 255);">Početna stranica</a href></li>
+       <li><a href='pretraga.html' class="btn" style="background-color: rgb(33, 74, 255);">Pretraga</a href></li>
+       <li><a href='#'class="btn" style="background-color: rgb(33, 74, 255);">Oglasi</a href></li>
+       <li><a href='#'class="btn" style="background-color: rgb(33, 74, 255);">O nama</a href></li>
+       <li><a href='login.html' class='btn btn-success'>Prijavite se</a href></li>
+       <li><a href='register.html' class='btn btn-danger'>Registrujte se</a></a href></li>
+     </ul>
+             
+     <div class="hidden-menu">
+         <div class="line1"></div>
+         <div class="line2"></div>
+         <div class="line3"></div>
+     </div>
+ </nav>
     <div class="containter">
         <main>
         <section class="glass">

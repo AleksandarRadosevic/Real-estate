@@ -14,24 +14,24 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 <body>
-   <nav>
+  <nav>
+    <div class="logo"><h4><a href='../index.html'>Success</a></h4></div>
+     <ul class="nav-links">
+       <li><a href='../index.html' class="btn" style="background-color: rgb(33, 74, 255);">Početna stranica</a href></li>
+       <li><a href='pretraga.html' class="btn" style="background-color: rgb(33, 74, 255);">Pretraga</a href></li>
+       <li><a href='#'class="btn" style="background-color: rgb(33, 74, 255);">Oglasi</a href></li>
+       <li><a href='#'class="btn" style="background-color: rgb(33, 74, 255);">O nama</a href></li>
+       <li><a href='login' class='btn btn-success'>Prijavite se</a href></li>
+       <li><a href='register' class='btn btn-danger'>Registrujte se</a></a href></li>
+     </ul>
+  
+     <div class="hidden-menu">
+         <div class="line1"></div>
+         <div class="line2"></div>
+         <div class="line3"></div>
+     </div>
+ </nav>
  
-    
-        <div class="logo"><h4><a href='../index.html'>Success</a></h4></div>
-         <ul class="nav-links" >
-           <li><a href='../index.html' class="btn" style="background-color: rgb(33, 74, 255);">Početna stranica</a href></li>
-           <li><a href='pretraga.html' class="btn" style="background-color: rgb(33, 74, 255);">Pretraga</a href></li>
-           <li><a href='#'class="btn" style="background-color: rgb(33, 74, 255);">Oglasi</a href></li>
-           <li><a href='#'class="btn" style="background-color: rgb(33, 74, 255);">O nama</a href></li>
-           <li><a href='login.html' class='btn btn-success'>Prijavite se</a href></li>
-           <li><a href='register.html' class='btn btn-danger'>Registrujte se</a></a href></li> 
-         </ul>
-         <div class="hidden-menu">
-             <div class="line1"></div>
-             <div class="line2"></div>
-             <div class="line3"></div>
-         </div>
-     </nav>
   
         <main>
         <section class="glass" >

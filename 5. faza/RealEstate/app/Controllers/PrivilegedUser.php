@@ -8,7 +8,8 @@ class Privilegeduser extends BaseController
 	{
                 echo '<h1>Privileged User</h1>';
                 $user=$this->session->get('User');
-                $val=$user['Name'];
+                $val=$user['Id'];
+                
                 echo $val;
 		echo'<h1>Prikaz usera </h1>';
 	}
