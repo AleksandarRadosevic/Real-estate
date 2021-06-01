@@ -14,23 +14,25 @@
     <title>Prototip</title>
 </head>
 <body>
-    <nav>
-        <div class="logo"><h4><a href='../index.html'>Success</a></h4></div>
-        <ul class="nav-links">
-          <li><a href='../index.html'>Početna stranica</a href></li>
-          <li><a href='pretraga.html'>Pretraga</a href></li>
-          <li><a href='#'>Oglasi</a href></li>
-          <li><a href='#'>O nama</a href></li>
-          <li><a href='login.html' class='login'>Prijavite se</a href></li>
-          <li><a href='register.html' class='button register'>Registrujte se</a></a href></li>
-        </ul>
-                
-        <div class="hidden-menu">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
-        </div>
-    </nav>
+  <nav>
+ 
+    
+    <div class="logo"><h4><a href='../index.html'>Success</a></h4></div>
+     <ul class="nav-links">
+       <li><a href='../index.html' class="btn" style="background-color: rgb(33, 74, 255);">Početna stranica</a href></li>
+       <li><a href='pretraga.html' class="btn" style="background-color: rgb(33, 74, 255);">Pretraga</a href></li>
+       <li><a href='#'class="btn" style="background-color: rgb(33, 74, 255);">Oglasi</a href></li>
+       <li><a href='#'class="btn" style="background-color: rgb(33, 74, 255);">O nama</a href></li>
+       <li><a href='login' class='btn btn-success'>Prijavite se</a href></li>
+       <li><a href='register' class='btn btn-danger'>Registrujte se</a></a href></li>
+     </ul>
+  
+     <div class="hidden-menu">
+         <div class="line1"></div>
+         <div class="line2"></div>
+         <div class="line3"></div>
+     </div>
+ </nav>
     <div id="containter">
         <main>
         <section class="glass">
