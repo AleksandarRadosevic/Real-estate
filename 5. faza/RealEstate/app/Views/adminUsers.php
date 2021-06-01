@@ -52,19 +52,36 @@
                 <?php foreach ($usersA as $field => $data) : ?>
                       <li>
                         <span><?= $data['Name'] ?></span>
-                        <input type="hidden" name="agencyId" value="<?php echo $data['Id']; ?>"> 
                         <div class="dropdown" style="margin-left: auto;">
-                        <button type="button" name="actionAgency" value="Promeni privilegije" class="dugme2 dropdown-toggle"  data-toggle="dropdown" style="width:100%;"/>
-                        Promeni privilegije</button>
-                        <div class="dropdown-menu">                       
-                        <div class="dropdown-item"> <label>
-                        <input id="checbox1" type="checkbox" name="Prikazi sve">Pgadsgdasgadsgds
+                        <button type="button" value="Izaberi privilegije" class="dugme2 dropdown-toggle"  data-toggle="dropdown" style="width:100%;margin-left: 5px; margin-right: 5px;"/>
+                        Izaberi privilegije</button>
+                        <div class="dropdown-menu"> 
+                            <?php 
+                            $flag1=true;
+                            $flag2=true;
+                            
+                            foreach ($prohibitions as $field => $proh){
+                                if ($proh['IdU']==$data['Id'] && $proh['IdA']==1)
+                                    $flag1=false;
+                                else if ($proh['IdU']==$data['Id'] && $proh['IdA']==2)
+                                    $flag2=false;
+                            }
+                            ?>
+                            <div class="dropdown-item" style="padding-left:3px; padding-right: 10px;"> <label>                                  
+                                <input type="checkbox" name="commentA<?php echo $data['Id']; ?>" <?php echo ($flag1==1 ? 'checked' : '');?>>
+                                &nbsp;Komentarisanje
                         </label></div>
-                    
+                            <div class="dropdown-item" style="padding-left:3px; padding-right: 10px;"> <label>
+                                 <input type="checkbox" name="addA<?php echo $data['Id']; ?>" <?php echo ($flag1==1 ? 'checked' : '');?>>
+                                 &nbsp;Dodavanje oglasa
+                        </label></div>
+                         <div class="dropdown-item" style="padding-left:3px; padding-right: 10px;">
+                             <input type="submit" name="actionAgency<?php echo $data['Id']; ?>" value="Promeni privilegije" class="adminButton dugme2" style="background-color: blue !important;"/>
+                         </div>
                    
                         </div>
                         </div>
-                        <input type="submit" name="actionAgency" value="Ukloni korisnika" class="adminButton dugmeukloni">
+                        <input type="submit" name="actionAgency<?php echo $data['Id']; ?>" value="Ukloni korisnika" class="adminButton dugmeukloni">
 
                     </li>          
                 <?php endforeach ?>
@@ -82,9 +99,38 @@
                       <li>
                         <span><?= $data['Name']?> <?= $data['Surname'] ?>
                         </span>
-                        <input type="hidden" name="privilegedId" value="<?php echo $data['Id']; ?>"> 
-                        <input type="submit" name="actionPrivileged" value="Promeni privilegije" class="adminButton dugme2"/>
-                        <input type="submit" name="actionPrivileged" value="Ukloni korisnika" class="adminButton dugmeukloni">
+         
+                        <div class="dropdown" style="margin-left: auto;">
+                        <button type="button" value="Izaberi privilegije" class="dugme2 dropdown-toggle"  data-toggle="dropdown" style="width:100%;margin-left: 5px; margin-right: 5px;"/>
+                        Izaberi privilegije</button>
+                            <div class="dropdown-menu" > 
+                            <?php 
+                            $flag1=true;
+                            $flag2=true;
+                            
+                            foreach ($prohibitions as $field => $proh){
+                                if ($proh['IdU']==$data['Id'] && $proh['IdA']==1)
+                                    $flag1=false;
+                                else if ($proh['IdU']==$data['Id'] && $proh['IdA']==2)
+                                    $flag2=false;
+                            }
+                            ?>
+                            <div class="dropdown-item" style="padding-left:3px; padding-right: 10px;"> <label>                                  
+                                <input type="checkbox" name="commentP<?php echo $data['Id']; ?>" <?php echo ($flag1==2 ? 'checked' : '');?>>&nbsp;Komentarisanje
+                        </label></div>
+                            <div class="dropdown-item" style="padding-left:3px; padding-right: 10px;"> <label>
+                                 <input  type="checkbox" name="addP<?php echo $data['Id']; ?>" <?php echo ($flag1==1 ? 'checked' : '');?>>&nbsp;Dodavanje oglasa
+                        </label></div>
+                         <div class="dropdown-item" style="padding-left:3px; padding-right: 10px;">
+                             <input type="submit" name="actionPrivileged<?php echo $data['Id']; ?>" value="Promeni privilegije" class="adminButton dugme2" style="background-color: blue !important;"/>
+                         </div>
+                   
+                        </div>
+                        </div>
+                        
+                        
+                        
+                        <input type="submit" name="actionPrivileged<?php echo $data['Id']; ?>" value="Ukloni korisnika" class="adminButton dugmeukloni">
                     </li>          
                 <?php endforeach ?>
                 <?php endif ?>                                   
@@ -103,9 +149,34 @@
                       <li>
                         <span><?= $data['Name']?> <?= $data['Surname'] ?>
                         </span>
-                        <input type="hidden" name="registeredId" value="<?php echo $data['Id']; ?>"> 
-                        <input type="submit" name="actionRegistered" value="Promeni privilegije" class="adminButton dugme2"/>
-                        <input type="submit" name="actionRegistered" value="Ukloni korisnika" class="adminButton dugmeukloni">
+                        <div class="dropdown" style="margin-left: auto;">
+                        <button type="button" value="Izaberi privilegije" class="dugme2 dropdown-toggle"  data-toggle="dropdown" style="width:100%;margin-left: 5px; margin-right: 5px;"/>
+                        Izaberi privilegije</button>
+                        <div class="dropdown-menu"> 
+                            <?php 
+                            $flag1=true;
+                            $flag2=true;
+                            
+                            foreach ($prohibitions as $field => $proh){
+                                if ($proh['IdU']==$data['Id'] && $proh['IdA']==1)
+                                    $flag1=false;
+                                else if ($proh['IdU']==$data['Id'] && $proh['IdA']==2)
+                                    $flag2=false;
+                            }
+                            ?>
+                            <div class="dropdown-item" style="padding-left:3px; padding-right: 10px;"> <label>                                  
+                                <input type="checkbox" name="commentR<?php echo $data['Id']; ?>" <?php echo ($flag2==1 ? 'checked' : '');?>>&nbsp;Komentarisanje
+                        </label></div>
+                            <div class="dropdown-item" style="padding-left:3px; padding-right: 10px;"> <label>
+                                 <input type="checkbox" name="addR<?php echo $data['Id']; ?>" <?php echo ($flag1==1 ? 'checked' : '');?>>&nbsp;Dodavanje oglasa
+                        </label></div>
+                         <div class="dropdown-item" style="padding-left:3px; padding-right: 10px;">
+                             <input type="submit" name="actionRegistered<?php echo $data['Id']; ?>" value="Promeni privilegije" class="adminButton dugme2" style="background-color: blue !important;"/>
+                         </div>           
+                        </div>
+                        </div>
+       
+                        <input type="submit" name="actionRegistered<?php echo $data['Id']; ?>" value="Ukloni korisnika" class="adminButton dugmeukloni">
                     </li>          
                 <?php endforeach ?>
                 <?php endif ?>                                   
