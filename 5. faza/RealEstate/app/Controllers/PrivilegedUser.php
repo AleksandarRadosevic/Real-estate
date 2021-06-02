@@ -66,7 +66,7 @@ class Privilegeduser extends BaseController
                                 }
                                 
                                 
-		echo view('PrivilegedProfile',['user'=>$owner]);
+		return redirect()->to('upload');
             
             
             
@@ -83,13 +83,9 @@ class Privilegeduser extends BaseController
  
        public function upload()
        {
-                              
-          
-         
-     
  
-  // If upload button is clicked ...
-  if (isset($_POST['upload'])) {
+         // If upload button is clicked ...
+        if (isset($_POST['upload'])) {
       
             $msg = "";
           
@@ -112,27 +108,19 @@ WHERE Id=(
            $id=$niz["Id"];
     
         $sql = "INSERT INTO image (filename,IdAd) VALUES ('$filename', '$id')";
- 
+        
         // Execute query
         mysqli_query($db, $sql);
-        
-          
-
-        
-        
+  
         if (move_uploaded_file($tempname, $folder))  {
             $msg = "Image uploaded successfully";
         }else{
             $msg = "Failed to upload image";
       }
-         
-       
-                $session= session();
-                $session->setFlashdata('success', 'Uspesno dodavanje slika');
+ 
+ 
 		//return redirect()->to('/');
-            
-            
-            
+ 
             //validation for 
              
               }
@@ -176,8 +164,7 @@ WHERE Id=(
                 $user->save($values);
                 
                 
-                $session= session();
-                $session->setFlashdata('success', 'Successful Registration');
+                
 		return redirect()->to('/');
             
             

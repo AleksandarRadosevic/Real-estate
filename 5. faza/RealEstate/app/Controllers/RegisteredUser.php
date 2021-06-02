@@ -80,8 +80,7 @@ class Registereduser extends BaseController
            
             
                 
-                $session= session();
-                $session->setFlashdata('success', 'Successful Registration');
+               
 		return redirect()->to('http://localhost:8080/AddAd/upload');
 
                 //validation for       
