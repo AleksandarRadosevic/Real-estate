@@ -118,7 +118,7 @@ class AddAd extends BaseController
           
     $filename = $_FILES["uploadfile"]["name"];
     $tempname = $_FILES["uploadfile"]["tmp_name"];   
-        $folder = "C:\image/".$filename;
+        $folder = "C:/image/".$filename;
          
         $db = mysqli_connect("localhost", "root", "", "realestate");
 

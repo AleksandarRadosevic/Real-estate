@@ -280,7 +280,8 @@ class Admin extends BaseController
         public function advertisments(){
             echo view('adminAdvertisments.php');
         }
-        public function pera(){
-             echo $as;
-        }
+       public function logout(){
+        $this->session->destroy();
+        return redirect()->to("/../../index.html");
+    }
 }
