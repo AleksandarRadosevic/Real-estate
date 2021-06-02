@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Controllers;
+use App\Models\adModel;
+use App\Models\TagModel;
+use App\Models\hasTagModel;
 
 class Registereduser extends BaseController
 {

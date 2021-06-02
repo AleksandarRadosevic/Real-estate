@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Controllers;
-
+use App\Models\adModel;
+use App\Models\TagModel;
+use App\Models\hasTagModel;
 class Privilegeduser extends BaseController
 {
 	public function index()
@@ -22,20 +24,20 @@ class Privilegeduser extends BaseController
            
             
            
-                $user=new adModel();
+                $advertisment=new adModel();
 		//$id=$user->getInsertID();
                 
                 $type1=$_POST["tipNekretnine"];
                 $type2=$_POST["vrstaUsluge"];
                
-            $mesto = $_POST['Beograd'];  
+                $mesto = $_POST['Beograd'];  
        
               
-               
+               $owner=$this->session->get('User');
                
 
                 $values=[
-                    'IdOwner'=>$user['Id'],
+                    'IdOwner'=>$owner['Id'],
                     'Price'=>$this->request->getVar('cena'),
 					'Topic'=>$this->request->getVar('naslov'),
 					'Size'=>$this->request->getVar('kvadratura'),
@@ -47,8 +49,8 @@ class Privilegeduser extends BaseController
 					
                 ];   
                 //add user
-                            $user->save($values);               
-                            $idad= $user->getInsertID();
+                            $advertisment->save($values);               
+                            $idad= $advertisment->getInsertID();
                             if(!empty($_POST['check_list']))
                             {
                                 foreach($_POST['check_list'] as $check)
@@ -64,7 +66,7 @@ class Privilegeduser extends BaseController
                                 }
                                 
                                 
-		echo view('PrivilegedProfile',['user'=>$user]);
+		echo view('PrivilegedProfile',['user'=>$owner]);
             
             
             
@@ -173,12 +175,6 @@ WHERE Id=(
                 //add user
                 $user->save($values);
                 
-                
-             
-               
-                
-              
-
                 
                 $session= session();
                 $session->setFlashdata('success', 'Successful Registration');
