@@ -35,8 +35,7 @@ class Privilegeduser extends BaseController
                
 
                 $values=[
-                    'IdOwner'=>$this->request->getVar('cena'),
-
+                    'IdOwner'=>$user['Id'],
                     'Price'=>$this->request->getVar('cena'),
 					'Topic'=>$this->request->getVar('naslov'),
 					'Size'=>$this->request->getVar('kvadratura'),
@@ -48,13 +47,8 @@ class Privilegeduser extends BaseController
 					
                 ];   
                 //add user
-                $user->save($values);
-                
+                            $user->save($values);               
                             $idad= $user->getInsertID();
-
-                
-                            
-                            
                             if(!empty($_POST['check_list']))
                             {
                                 foreach($_POST['check_list'] as $check)
@@ -67,20 +61,10 @@ class Privilegeduser extends BaseController
                                      $model1=new hasTagModel();
                                      $model1->save($values);
                                 }
-                                
-
-                
                                 }
                                 
                                 
-         
-               
-           
-            
-                
-                $session= session();
-                $session->setFlashdata('success', 'Successful Registration');
-		return redirect()->to('http://localhost:8080/AddAd/upload');
+		echo view('PrivilegedProfile',['user'=>$user]);
             
             
             
