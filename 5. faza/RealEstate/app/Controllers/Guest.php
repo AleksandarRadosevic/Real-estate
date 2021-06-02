@@ -192,50 +192,21 @@ class Guest extends BaseController
             }
              echo view('login.php');  
         }
-        /*
-        
-	public function addAdvertisement(){
-            $data=[];
-            
-            helper(['form']);
-            
-            if ($this->request->getMethod()=='post'){
-            //validation for user
-                $user=new adModel();
-				$id=$user->getInsertID();
-                $type=$_POST["tipNekretnine"];
-               
 
-                $values=[
-                    'IdOwner'=>$this->request->getVar('cena'),
-                    'IdAd'=>444,
-                    'TimePosted'=>$this->request->getVar('cena'),
-                    'Price'=>$this->request->getVar('cena'),
-					'Topic'=>$this->request->getVar('naslov'),
-					'IdType'=>$type,
-					'Size'=>$this->request->getVar('kvadratura'),
-					'Address'=>$this->request->getVar('adresa'),
-					'IdPlace'=>$id,
-					'Description'=>$this->request->getVar('komentar')
-					
-                ];   
-                //add user
-                $user->save($values);
-                $session= session();
-                $session->setFlashdata('success', 'Successful Registration');
-		return redirect()->to('/');
-            
-            
-            
-            //validation for 
-            
-              }
-            
-            
-            echo view('addAdvertisement.php');
-                         echo view('login.php');
+        public function search(){
+            if ($this->request->getMethod()=="post"){
+                
+                $priceFrom=$_POST['priceFrom'];
+                $priceTo=$_POST['priceTo'];
+                $sizeFrom=$_POST['sizeFrom'];
+                $sizeTo=$_POST['sizeTo'];
+                
+                
+                
+                return;
+            }
+            echo view('search');
         }
-		*/
 }
 
 
