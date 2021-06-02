@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styleSearch.css">
     <script src='javascript.js'></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
@@ -72,10 +72,10 @@
 
           </label>
           <div class="dropdown" style="margin-left: 5%;">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" style="width: 100%; ">
+            <button class="btn btn-primary dropdown-toggle" onclick="btnToggle()" style="width: 100%; ">
             Izaberi lokaciju
             </button>
-            <div class="dropdown-menu" style="width: 500px !important;"> 
+            <div id="Dropdown" class="dropdown-menu" style="padding-left:1%; padding-right: 25%;"> 
               <div class="dropdown-item"> <label>
               <input id="checbox1" type="checkbox" name="Prikazi sve">Prikazi sve
             </label></div>
@@ -167,10 +167,10 @@
             </label>
 
             <div class="dropdown" style="margin-left: 10%;">
-              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" style="width: 100%;">
+              <button type="button" class="btn btn-primary" onclick="btnToggleType()" style="width: 100%;">
               Izaberi tip
               </button>
-              <div class="dropdown-menu">
+              <div id="DropdownType" class="dropdown-menu">
               <div class="dropdown-item" > <label>
                 <input type="checkbox" name="Prikazi sve" value=" ">  Prikazi sve
               </label>
