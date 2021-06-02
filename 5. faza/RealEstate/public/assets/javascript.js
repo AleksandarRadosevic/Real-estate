@@ -18,7 +18,29 @@ $(document).ready(function(){
 
         menu.classList.toggle('toggle');
     });
-
+    window.addEventListener("click", function(event) {
+      if (!event.target.matches('.btn')) {
+        
+          var dropdowns = 
+          document.getElementsByClassName("dropdown-menu");
+            
+          var i;
+          for (i = 0; i < dropdowns.length; i++) {
+              var openDropdown = dropdowns[i];
+              if (openDropdown.classList.contains('show')) {
+                  openDropdown.classList.remove('show');
+              }
+          }
+      }
+    });
+    document.getElementById("Dropdown").addEventListener('click', function (event) {
+      event.stopPropagation();
+    });
+    
+    document.getElementById("DropdownType").addEventListener('click', function (event) {
+      document.writeln("Uso");
+      event.stopPropagation();
+    });
     
 }
 
@@ -125,3 +147,16 @@ function logout(){
 function ukloni(obj){
   obj.parentElement.remove();
 }
+
+
+
+function btnToggle() {
+  document.getElementById("Dropdown").classList.toggle("show");
+}
+
+function btnToggleType(){
+  document.getElementById("DropdownType").classList.toggle("show");
+  
+}
+
+
