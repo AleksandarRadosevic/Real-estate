@@ -125,7 +125,7 @@ class Guest extends BaseController
                                         'Username'=>$admin['Username'],
                                         'Type'=>'admin'
                                     ];
-                                    $this->session->set('Admin',$validationData);
+                                    $this->session->set('User',$validationData);
                                     return redirect()->to(site_url('Admin'));
                                 }
                                 else {
@@ -157,6 +157,9 @@ class Guest extends BaseController
                                 'Id'=>$user['Id'],
                                 'Name'=>$isRegistered['Name'],
                                 'Surname'=>$isRegistered['Surname'],
+                                'Phone'=>$user['Phone'],
+                                'Email'=>$user['Email'],
+                                'Username'=>$user['Username'],
                                 'Type'=>'registered'
                             ];
                          
@@ -170,6 +173,9 @@ class Guest extends BaseController
                                 'Id'=>$user['Id'],
                                 'Name'=>$isPrivileged['Name'],
                                 'Surname'=>$isPrivileged['Surname'],
+                                'Phone'=>$user['Phone'],
+                                'Email'=>$user['Email'],
+                                'Username'=>$user['Username'],
                                 'Type'=>'privileged'
                             ];
       
@@ -181,6 +187,9 @@ class Guest extends BaseController
                             $validationData=[
                                 'Id'=>$user['Id'],
                                 'Name'=>$isAgency['Name'],
+                                'Phone'=>$user['Phone'],
+                                'Email'=>$user['Email'],
+                                'Username'=>$user['Username'],
                                 'AverageMark' => $isAgency['AverageMark'],
                                 'Type'=>'agency'
                             ];
@@ -200,12 +209,20 @@ class Guest extends BaseController
                 $priceTo=$_POST['priceTo'];
                 $sizeFrom=$_POST['sizeFrom'];
                 $sizeTo=$_POST['sizeTo'];
-                
+                $val='marko';
+                echo view('showAdvertisments',['marko'=>$val]);
                 
                 
                 return;
             }
             echo view('search');
+        }
+        
+        public function Ads(){
+            echo view('showAdvertisments');
+        }
+        public function Add(){
+            echo view('oneAdvertisment');
         }
 }
 
