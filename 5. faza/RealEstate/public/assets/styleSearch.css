@@ -5,7 +5,7 @@
 }
 
 main{
-    margin-top: 50px;
+    margin-top:1% !important;
     min-height:100vh;
     background:linear-gradient(to right top,#99d6ff,#1aa3ff);
     display: flex;
@@ -149,22 +149,7 @@ nav{
     border-radius: 5px;
 }
   
-  */
- button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 200px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width:20%;
-  }
-  
-  button:hover {
-    opacity: 0.8;
-  }
-  
+ 
   .imgcontainer {
     text-align: center;
     margin: 24px 0 12px 0;
@@ -604,10 +589,11 @@ nav{
  }
 
   #lupa{
+   margin-left: 3px;
     height: 30px;
   }
   
-  #p{
+  .searchTextField{
     width: 20%;
     border-radius: 5px;
 }
@@ -631,5 +617,21 @@ nav{
     
 }
 h3{
-    margin-left: 320px;
+    margin-left: 20% !important;
+    padding-top: 10px !important;
+}
+
+.dropbutton{
+    padding-left: 30% !important;
+    padding-right: 30% !important;
+    
+}
+.drType{
+    padding-left: 36% !important;
+    padding-right: 36% !important;
+}
+
+.searchButton{
+    text-align: center !important; 
+    margin-left: 12% !important;
 }

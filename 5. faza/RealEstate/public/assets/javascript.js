@@ -19,8 +19,9 @@ $(document).ready(function(){
         menu.classList.toggle('toggle');
     });
     window.addEventListener("click", function(event) {
-      if (!event.target.matches('.btn')) {
-        
+      if (!event.target.matches('.dropbutton')) {
+          dropdown1=0;
+          dropdown2=0;
           var dropdowns = 
           document.getElementsByClassName("dropdown-menu");
             
@@ -33,17 +34,15 @@ $(document).ready(function(){
           }
       }
     });
-    document.getElementById("Dropdown").addEventListener('click', function (event) {
+    document.getElementById("Dropdown").addEventListener('click', function (event) {    
       event.stopPropagation();
     });
     
     document.getElementById("DropdownType").addEventListener('click', function (event) {
-      document.writeln("Uso");
       event.stopPropagation();
     });
     
 }
-
 navSlide();
 })
 
@@ -148,15 +147,45 @@ function ukloni(obj){
   obj.parentElement.remove();
 }
 
-
+var dropdown1=0;
+var dropdown2=0;
 
 function btnToggle() {
+  if (dropdown2==1){
+    dropdown1=0;
+    dropdown2=0;
+    var dropdowns = 
+    document.getElementsByClassName("dropdown-menu");
+      
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+        }
+    }
+  }
   document.getElementById("Dropdown").classList.toggle("show");
+  dropdown1++;
 }
 
 function btnToggleType(){
+  if (dropdown1==1){
+    dropdown1=0;
+    dropdown2=0;
+    var dropdowns = 
+    document.getElementsByClassName("dropdown-menu");
+      
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+        }
+    }
+  }
   document.getElementById("DropdownType").classList.toggle("show");
-  
+  dropdown2++;
 }
 
 

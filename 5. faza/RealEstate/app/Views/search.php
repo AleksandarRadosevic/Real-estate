@@ -1,4 +1,4 @@
-<<!-- Autor:Emilija Petrovic 2017/0644-->
+<!-- Autor:Emilija Petrovic 2017/0644-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="styleSearch.css">
-    <script src='javascript.js'></script>
+    <link rel="stylesheet" href="/assets/styleSearch.css">
+    <script src='/assets/javascript.js'></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <title>Prototip</title>
@@ -17,16 +17,14 @@
 </head>
 <body>
   <nav>
- 
-    
     <div class="logo"><h4><a href='../index.html'>Success</a></h4></div>
      <ul class="nav-links" >
        <li><a href='../index.html' class="btn" style="background-color: rgb(33, 74, 255);">Početna stranica</a href></li>
        <li><a href='pretraga.html' class="btn" style="background-color: rgb(33, 74, 255);">Pretraga</a href></li>
        <li><a href='#'class="btn" style="background-color: rgb(33, 74, 255);">Oglasi</a href></li>
        <li><a href='#'class="btn" style="background-color: rgb(33, 74, 255);">O nama</a href></li>
-       <li><a href='login.html' class='btn btn-success'>Prijavite se</a href></li>
-       <li><a href='register.html' class='btn btn-danger'>Registrujte se</a></a href></li> 
+       <li><a href='login' class='btn btn-success'>Prijavite se</a href></li>
+       <li><a href='register' class='btn btn-danger'>Registrujte se</a></a href></li> 
      </ul>
 
      <div class="hidden-menu" style="margin:0px !important; padding:0 !important;">
@@ -36,48 +34,41 @@
      </div>
  </nav>
     <div class="containter">
-      <main style="margin-top:0% !important;">
+      <main>
       
 
       <section class="glassem">
       <br><br>
        
-          <h3>Pretraga</h3>
+      <h3>Pretraga</h3>
 
         
            <br>
            <br>
+           <form method="post">
           <div class="sr">
-          <label>
+          <label style="padding-right: 4%;">
                Cena
             </label>
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
+
             od
-            <input id="p"type='text' name='username'  autocomplete="off" required>
+            <input class="searchTextField" type='number' name='priceFrom'  autocomplete="off">
             do
-            <input id="p"type='text' name='domen' autocomplete="off" required>              
+            <input class="searchTextField" type='number' name='priceTo' autocomplete="off">              
             <br>
             <br>
             <br>
             <br>
           <label id="kolona2">
               Lokacija
-
-
-
           </label>
-          <div class="dropdown" style="margin-left: 5%;">
-            <button class="btn btn-primary dropdown-toggle dropbutton" onclick="btnToggle()" style="width: 100%; ">
+          <div class="dropdown" style="margin-left: 4%;">
+            <button type="button" class="btn btn-primary dropdown-toggle dropbutton" onclick="btnToggle()">
             Izaberi lokaciju
             </button>
             <div id="Dropdown" class="dropdown-menu" style="padding-left:1%; padding-right: 25%;"> 
               <div class="dropdown-item"> <label>
-              <input id="checbox1" type="checkbox" name="Prikazi sve">Prikazi sve
+              <input id="checbox1" type="checkbox" name="Prikazi sve"> Prikazi sve
             </label></div>
             <div  class="dropdown-item" ><label >
               <input type="checkbox" name="Beograd" > Beograd
@@ -85,20 +76,23 @@
             <div class="dropdown-item"><label>
               <input type="checkbox" name="Beograd, Cukarica"> Beograd, Cukarica
             </label>
-           </div>
-           <div class="dropdown-item"> <label>
-            <input type="checkbox" name="Beograd, Novi Beograd"> Beograd, Novi Beograd
-          </label></div>
-          <div class="dropdown-item" ><label>
-            <input type="checkbox" name="Beograd, Palilula"> Beograd, Palilula
-          </label></div>
-          <div class="dropdown-item"><label>
-            <input type="checkbox" name="Beograd, Rakovica"> Beograd, Rakovica
-          </label>
-         </div>
-         <div class="dropdown-item"> <label>
-          <input type="checkbox" name="Beograd, Savski venac"> Beograd, Savski venac
-        </label></div>
+            </div>
+            <div class="dropdown-item"> <label>
+                <input type="checkbox" name="Beograd, Novi Beograd"> Beograd, Novi Beograd
+            </label></div>
+            <div class="dropdown-item" ><label>
+                <input type="checkbox" name="Beograd, Palilula"> Beograd, Palilula
+            </label></div>
+            <div class="dropdown-item">
+                <label>
+                <input type="checkbox" name="Beograd, Rakovica"> Beograd, Rakovica
+                </label>
+            </div>
+            <div class="dropdown-item">
+                <label>
+                <input type="checkbox" name="Beograd, Savski venac"> Beograd, Savski venac
+                </label>
+            </div>
         <div class="dropdown-item" ><label>
           <input type="checkbox" name="Beograd, Stari grad">  Beograd, Stari grad
         </label></div>
@@ -155,9 +149,9 @@
             </label>
             &nbsp;
             od
-            <input id="p"  type='text' name='username' id='username' autocomplete="off" required>
+            <input class="searchTextField" type='number' name='sizeFrom' autocomplete="off">
             do
-            <input id="p"type='text' name='username' id='username' autocomplete="off" required>   
+            <input class="searchTextField" type='number' name='sizeTo' autocomplete="off">   
           <br>
           <br>
           <br>
@@ -166,8 +160,8 @@
              Tip
             </label>
 
-            <div class="dropdown" style="margin-left: 10%;">
-              <button type="button" class="btn btn-primary dropbutton" onclick="btnToggleType()" style="width: 100%;">
+            <div class="dropdown" style="margin-left: 7%;">
+              <button type="button" class="btn btn-primary dropbutton drType" onclick="btnToggleType()">
               Izaberi tip
               </button>
               <div id="DropdownType" class="dropdown-menu">
@@ -196,7 +190,10 @@
           <br>
           <br>
           <br>
-          <div class="btn btn-success"  id="dugme" type='button' onclick="pretrazi()" style="text-align: center; margin-left: 12%;">Pretraga &nbsp;<img id="lupa" src="images/lupa.png" alt="Lupa"></div>
+       
+          <button class="btn btn-success searchButton" type="submit">Pretraga<img id="lupa" src="/assets/images/lupa.png" alt="Lupa"></button>
+       
+          </form>
       </section>
       <div class="circle1"></div>
       <div class="circle2"></div>
@@ -204,4 +201,4 @@
     
   </div>
 </body>
-</html>>
+</html>
