@@ -20,8 +20,6 @@ $(document).ready(function(){
     });
     window.addEventListener("click", function(event) {
       if (!event.target.matches('.dropbutton')) {
-          dropdown1=0;
-          dropdown2=0;
           var dropdowns = 
           document.getElementsByClassName("dropdown-menu");
             
@@ -151,9 +149,10 @@ var dropdown1=0;
 var dropdown2=0;
 
 function btnToggle() {
-  if (dropdown2==1){
-    dropdown1=0;
-    dropdown2=0;
+  
+    if (dropdown2>0){     
+        dropdown2=0;
+       
     var dropdowns = 
     document.getElementsByClassName("dropdown-menu");
       
@@ -164,15 +163,16 @@ function btnToggle() {
             openDropdown.classList.remove('show');
         }
     }
-  }
+    }
+    
   document.getElementById("Dropdown").classList.toggle("show");
   dropdown1++;
 }
 
 function btnToggleType(){
-  if (dropdown1==1){
-    dropdown1=0;
-    dropdown2=0;
+
+    if (dropdown1>0){ 
+        dropdown1=0;
     var dropdowns = 
     document.getElementsByClassName("dropdown-menu");
       
@@ -183,7 +183,7 @@ function btnToggleType(){
             openDropdown.classList.remove('show');
         }
     }
-  }
+    }
   document.getElementById("DropdownType").classList.toggle("show");
   dropdown2++;
 }

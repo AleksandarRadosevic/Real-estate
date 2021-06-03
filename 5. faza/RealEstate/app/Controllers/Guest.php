@@ -5,6 +5,7 @@ use App\Models\RegisteredUserModel;
 use App\Models\PrivilegedUserModel;
 use App\Models\AgencyModel;
 use App\Models\AdminModel;
+use App\Models\adModel;
 class Guest extends BaseController
 {
 	public function index()
@@ -203,19 +204,41 @@ class Guest extends BaseController
         }
 
         public function search(){
-            if ($this->request->getMethod()=="post"){
+             $db=null;
+            if ($this->request->getMethod()=="get" && isset($_GET['priceFrom'])){
                 
-                $priceFrom=$_POST['priceFrom'];
-                $priceTo=$_POST['priceTo'];
-                $sizeFrom=$_POST['sizeFrom'];
-                $sizeTo=$_POST['sizeTo'];
-                $val='marko';
-                echo view('showAdvertisments',['marko'=>$val]);
+                $priceFrom=$_GET['priceFrom'];
+                $priceTo=$_GET['priceTo'];
+                $sizeFrom=$_GET['sizeFrom'];
+                $sizeTo=$_GET['sizeTo'];
+                
+               
+                $sql="(Select Id from advertisement where Price>='$priceFrom' and Price<='$priceTo' and Size>='$sizeFrom' and Size<='$sizeTo')";
+                $sqlLocation="";
+                $stan='pera';
+                $sqlType="Select * from advertisement where RealEstateType='$stan' AND Id IN ".$sql;
+                
+                
+                
+                $values   = $db->query($sqlType);
+                foreach ($values->getResult() as $row){
+                    echo $row->Address.'<br>';
+                    
+                }
+                return;
+                echo view('showAdvertisments',['marko'=>1]);
                 
                 
                 return;
             }
-            echo view('search');
+            if ($db==null){
+                    $db = \Config\Database::connect();
+                    $sqlMunicipalities="Select * from municipality";
+                    $municipalities=$db->query($sqlMunicipalities);
+                    $sqlTypes="Select * from "
+                }
+            
+            echo view('search',['municipalities'=>$municipalities]);
         }
         
         public function Ads(){
