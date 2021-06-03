@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 03, 2021 at 10:29 AM
+-- Generation Time: Jun 03, 2021 at 10:39 AM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -259,7 +259,7 @@ CREATE TABLE IF NOT EXISTS `mark` (
 DROP TABLE IF EXISTS `municipality`;
 CREATE TABLE IF NOT EXISTS `municipality` (
   `Id` int(11) NOT NULL,
-  `Name` varchar(20) DEFAULT NULL,
+  `Name` varchar(20) CHARACTER SET latin2 COLLATE latin2_croatian_ci DEFAULT NULL,
   `City` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -269,14 +269,14 @@ CREATE TABLE IF NOT EXISTS `municipality` (
 --
 
 INSERT INTO `municipality` (`Id`, `Name`, `City`) VALUES
-(1, 'Cukarica', 'Beograd'),
+(1, 'Čukarica', 'Beograd'),
 (2, 'Novi Beograd', 'Beograd'),
 (3, 'Palilula', 'Beograd'),
 (4, 'Rakovica', 'Beograd'),
 (5, 'Savski venac', 'Beograd'),
 (6, 'Stari grad', 'Beograd'),
-(7, 'Vozdovac', 'Beograd'),
-(8, 'Vracar', 'Beograd'),
+(7, 'Voždovac', 'Beograd'),
+(8, 'Vračar', 'Beograd'),
 (9, 'Zemun', 'Beograd'),
 (10, 'Zvezdara', 'Beograd'),
 (11, 'Barajevo', 'Beograd'),
@@ -285,7 +285,7 @@ INSERT INTO `municipality` (`Id`, `Name`, `City`) VALUES
 (14, 'Mladenovac', 'Beograd'),
 (15, 'Obrenovac', 'Beograd'),
 (16, 'Sopot', 'Beograd'),
-(17, 'Surcin', 'Beograd');
+(17, 'Surčin', 'Beograd');
 
 -- --------------------------------------------------------
 
@@ -340,9 +340,18 @@ INSERT INTO `prohibition` (`IdA`, `IdU`) VALUES
 DROP TABLE IF EXISTS `realestatetype`;
 CREATE TABLE IF NOT EXISTS `realestatetype` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Name` varchar(20) DEFAULT NULL,
+  `Name` varchar(20) CHARACTER SET latin2 COLLATE latin2_croatian_ci DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `realestatetype`
+--
+
+INSERT INTO `realestatetype` (`Id`, `Name`) VALUES
+(1, 'Stan'),
+(2, 'Kuća'),
+(3, 'Garaza');
 
 -- --------------------------------------------------------
 

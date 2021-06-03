@@ -235,10 +235,12 @@ class Guest extends BaseController
                     $db = \Config\Database::connect();
                     $sqlMunicipalities="Select * from municipality";
                     $municipalities=$db->query($sqlMunicipalities);
-                    $sqlTypes="Select * from "
+                    $sqlTypes="Select * from realestatetype";
+                    $types=$db->query($sqlTypes);
+
                 }
             
-            echo view('search',['municipalities'=>$municipalities]);
+            echo view('search',['municipalities'=>$municipalities,'types'=>$types]);
         }
         
         public function Ads(){
