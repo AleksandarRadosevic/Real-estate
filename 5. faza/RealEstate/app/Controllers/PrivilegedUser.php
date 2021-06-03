@@ -88,14 +88,20 @@ class Privilegeduser extends BaseController
         if (isset($_POST['upload'])) {
       
             $msg = "";
-          
-            
-            
-          
+                    
+    $user=$this->session->get('User');
+    $userId=$user['Id'];
+    $pathToFolder="assets/userImages/User".$userId;
+    
+    
     $filename = $_FILES["uploadfile"]["name"];
-    $tempname = $_FILES["uploadfile"]["tmp_name"];   
-        $folder = "C:/image/".$filename;
-         
+    $tempname = $_FILES["uploadfile"]["tmp_name"];
+     
+    if (!file_exists($pathToFolder))
+         mkdir("assets/userImages/User".$userId);
+    
+    
+        $folder=$pathToFolder."/".$filename;         
         $db = mysqli_connect("localhost", "root", "", "realestate");
 
 $sql = "SELECT Id 
