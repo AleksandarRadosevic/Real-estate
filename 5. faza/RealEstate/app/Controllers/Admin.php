@@ -267,7 +267,8 @@ class Admin extends BaseController
             $usersR=$dataR->findAll();
             $usersP=$dataP->findAll();
             $usersA=$dataA->findAll();
-            return view('adminUsers', ['usersR' => $usersR,
+            return view('adminUsers', 
+				['usersR' => $usersR,
                 'usersP'=>$usersP,
                 'usersA'=>$usersA,
                 'prohibitions'=>$prohibitions]);

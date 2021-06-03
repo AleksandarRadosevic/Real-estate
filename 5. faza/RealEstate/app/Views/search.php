@@ -45,7 +45,7 @@
         
            <br>
            <br>
-           <form method="post">
+           <form method="get">
           <div class="sr">
           <label style="padding-right: 4%;">
                Cena
@@ -66,78 +66,20 @@
             <button type="button" class="btn btn-primary dropdown-toggle dropbutton" onclick="btnToggle()">
             Izaberi lokaciju
             </button>
-            <div id="Dropdown" class="dropdown-menu" style="padding-left:1%; padding-right: 25%;"> 
+            <div id="Dropdown" class="dropdown-menu" style="padding-left:1%; padding-right: 28%;"> 
               <div class="dropdown-item"> <label>
               <input id="checbox1" type="checkbox" name="Prikazi sve"> Prikazi sve
             </label></div>
-            <div  class="dropdown-item" ><label >
-              <input type="checkbox" name="Beograd" > Beograd
-            </label></div>
-            <div class="dropdown-item"><label>
-              <input type="checkbox" name="Beograd, Cukarica"> Beograd, Cukarica
+            <?php foreach($municipalities->getResult() as $temp){?>
+                <div class="dropdown-item" style="margin-right:0%; padding-right: 0%;"><label>
+              <input type="checkbox" name="<?php echo $temp->City.' '.$temp->Name;?>"> <?php echo $temp->City.', '.$temp->Name;?>
             </label>
+        
+             </div>
+            <?php }?>
             </div>
-            <div class="dropdown-item"> <label>
-                <input type="checkbox" name="Beograd, Novi Beograd"> Beograd, Novi Beograd
-            </label></div>
-            <div class="dropdown-item" ><label>
-                <input type="checkbox" name="Beograd, Palilula"> Beograd, Palilula
-            </label></div>
-            <div class="dropdown-item">
-                <label>
-                <input type="checkbox" name="Beograd, Rakovica"> Beograd, Rakovica
-                </label>
             </div>
-            <div class="dropdown-item">
-                <label>
-                <input type="checkbox" name="Beograd, Savski venac"> Beograd, Savski venac
-                </label>
-            </div>
-        <div class="dropdown-item" ><label>
-          <input type="checkbox" name="Beograd, Stari grad">  Beograd, Stari grad
-        </label></div>
-        <div class="dropdown-item"><label>
-          <input type="checkbox" name="Beograd, Vozdovac"> Beograd, Vozdovac
-        </label>
-       </div>
-       <div class="dropdown-item"> <label>
-        <input type="checkbox" name="Beograd, Vracar"> Beograd, Vracar
-      </label></div>
-      <div class="dropdown-item" ><label>
-        <input type="checkbox" name="Beograd, Zemun"> Beograd, Zemun
-      </label></div>
-      <div class="dropdown-item"><label>
-        <input type="checkbox" name="Beograd, Zvezdara"> Beograd, Zvezdara
-      </label>
-     </div>
-     <div class="dropdown-item"> <label>
-      <input type="checkbox" name="Beograd, Barajevo"> Beograd, Barajevo
-    </label></div>
-    <div class="dropdown-item" ><label>
-      <input type="checkbox" name="Beograd, Grocka"> Beograd, Grocka
-    </label></div>
-    <div class="dropdown-item"><label>
-      <input type="checkbox" name="Beograd, Lazarevac"> Beograd, Lazarevac
-    </label>
-   </div>
-   <div class="dropdown-item"><label>
-    <input type="checkbox" name="Beograd, Mladenovac"> Beograd, Mladenovac
-  </label>
- </div>
- <div class="dropdown-item"> <label>
-  <input type="checkbox" name="Beograd, Obrenovac"> Beograd, Obrenovac
-</label></div>
-<div class="dropdown-item" ><label>
-  <input type="checkbox" name="Beograd, Sopot"> Beograd, Sopot
-</label></div>
-<div class="dropdown-item"><label>
-  <input type="checkbox" name="Beograd, Surcin"> Beograd, Surcin
-</label>
-</div>
-            </div>
-           </div>
-           
-       
+  
           <br>
           <br>
           <br>
@@ -167,21 +109,15 @@
               <div id="DropdownType" class="dropdown-menu">
               <div class="dropdown-item" > <label>
                 <input type="checkbox" name="Prikazi sve" value=" ">  Prikazi sve
-              </label>
-              </div>
-              <div class="dropdown-item" > <label>
-                <input type="checkbox" name="Stan"> Stan
-              </label>
-              </div>
-              <div class="dropdown-item" > <label>
-                <input type="checkbox" name="Kuca"> Kuca
-              </label>
-              </div>
-              <div class="dropdown-item" > <label>
-                <input type="checkbox" name="Garaza"> Garaza
-              </label>
-              </div>
-              </div>
+              </label>             
+              </div>                
+                 <?php foreach($municipalities->getResult() as $temp){?>
+                <div class="dropdown-item" style="margin-right:0%; padding-right: 0%;"><label>
+              <input type="checkbox" name="<?php echo $temp->City.' '.$temp->Name;?>"> <?php echo $temp->City.', '.$temp->Name;?>
+            </label>
+        
+             </div>
+            <?php }?>
              </div>
                 
         

@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 28, 2021 at 06:05 PM
--- Server version: 10.4.10-MariaDB
--- PHP Version: 7.3.12
+-- Generation Time: Jun 03, 2021 at 10:29 AM
+-- Server version: 5.7.31
+-- PHP Version: 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -27,6 +26,27 @@ USE `realestate`;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `activity`
+--
+
+DROP TABLE IF EXISTS `activity`;
+CREATE TABLE IF NOT EXISTS `activity` (
+  `Id` int(18) NOT NULL AUTO_INCREMENT,
+  `Name` char(18) DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `activity`
+--
+
+INSERT INTO `activity` (`Id`, `Name`) VALUES
+(1, 'DodavanjeOglasa'),
+(2, 'Komentarisanje');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `administrator`
 --
 
@@ -36,7 +56,14 @@ CREATE TABLE IF NOT EXISTS `administrator` (
   `Username` varchar(20) DEFAULT NULL,
   `Password` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `administrator`
+--
+
+INSERT INTO `administrator` (`Id`, `Username`, `Password`) VALUES
+(1, 'admin', 'admin');
 
 -- --------------------------------------------------------
 
@@ -48,31 +75,35 @@ DROP TABLE IF EXISTS `advertisement`;
 CREATE TABLE IF NOT EXISTS `advertisement` (
   `IdOwner` int(11) DEFAULT NULL,
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Time` timestamp(6) NULL DEFAULT current_timestamp(6),
+  `Time` timestamp(6) NULL DEFAULT CURRENT_TIMESTAMP(6),
   `Price` int(11) DEFAULT NULL,
   `Topic` varchar(20) DEFAULT NULL,
   `Size` char(18) DEFAULT NULL,
   `Address` char(18) DEFAULT NULL,
   `IdPlace` int(11) NOT NULL,
-  `Description` char(18) DEFAULT NULL,
+  `Description` char(200) DEFAULT NULL,
   `Purpose` varchar(20) NOT NULL,
   `RealEstateType` varchar(30) NOT NULL,
   PRIMARY KEY (`Id`),
   KEY `R_8` (`IdOwner`),
   KEY `R_12` (`IdPlace`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `advertisement`
 --
 
 INSERT INTO `advertisement` (`IdOwner`, `Id`, `Time`, `Price`, `Topic`, `Size`, `Address`, `IdPlace`, `Description`, `Purpose`, `RealEstateType`) VALUES
-(312, 1, '2021-05-28 16:13:52.885345', 312, 'coda', '2131', 'dsadsadas', 2131, 'dsadasasd', 'izdavanje', 'kuca'),
-(321312, 2, '2021-05-28 16:16:33.883554', 321312, 'coda', '122232', 'vojvode stepe 266', 122232, 'asdasdasd', 'izdavanje', 'kuca'),
-(123, 3, '2021-05-28 16:29:03.633437', 123, 'aca', '321231', 'asd', 321231, 'aca', 'izdavanje', 'kuca'),
-(321312, 4, '2021-05-28 16:32:46.160165', 321312, 'aca', '122232', 'vojvode stepe 266', 122232, 'dasdasdas', 'izdavanje', 'kuca'),
-(321312, 5, '2021-05-28 16:34:37.205516', 321312, 'dsad', '122232', 'vojvode stepe 266', 122232, 'acacaca', 'izdavanje', 'kuca'),
-(312312, 6, '2021-05-28 16:40:01.054039', 312312, 'xoxo', '312231', 'xoxo', 312231, 'xoxo', 'izdavanje', 'kuca');
+(81, 16, '2021-06-02 16:35:10.203169', 90000, 'Oglas5', '100', 'Aljehinova 6', 2, '', 'izdavanje', 'kuca'),
+(81, 15, '2021-06-02 15:37:08.411238', 80000, 'Oglas3', '111', 'Aljehinova 6', 2, '', 'prodaja', 'stan'),
+(81, 14, '2021-06-02 15:26:12.194562', 100000, 'Oglas2', '121', 'Aljehinova 6', 1, '', 'prodaja', 'kuca'),
+(81, 7, '2021-06-02 15:04:40.561724', 123456, 'Hej vest', '100', 'Aljehinova 6', 3, 'Dobar stan', 'izdavanje', 'kuca'),
+(81, 8, '2021-06-02 15:06:17.917764', 123456, 'Hej vest', '100', 'Aljehinova 6', 3, 'Dobar stan', 'izdavanje', 'kuca'),
+(81, 9, '2021-06-02 15:11:24.641661', 94000, 'Oglas1', '56', 'Vojvode Stepe 120', 7, 'Stan dobro pozicio', 'izdavanje', 'kuca'),
+(81, 10, '2021-06-02 15:11:53.198138', 94000, 'Oglas1', '56', 'Vojvode Stepe 120', 7, 'Stan dobro pozicio', 'izdavanje', 'kuca'),
+(81, 11, '2021-06-02 15:12:08.091619', 94000, 'Oglas1', '56', 'Vojvode Stepe 120', 7, 'Stan dobro pozicio', 'izdavanje', 'kuca'),
+(81, 12, '2021-06-02 15:12:24.105735', 94000, 'Oglas1', '56', 'Vojvode Stepe 120', 7, 'Stan dobro pozicio', 'izdavanje', 'kuca'),
+(81, 13, '2021-06-02 15:13:27.895733', 94000, 'Oglas1', '56', 'Vojvode Stepe 120', 7, 'Stan dobro pozicio', 'izdavanje', 'kuca');
 
 -- --------------------------------------------------------
 
@@ -93,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `agency` (
 --
 
 INSERT INTO `agency` (`Id`, `Name`, `AverageMark`) VALUES
-(33, 'fsadfsdafa', '0.00');
+(74, 'Agencija1', '0.00');
 
 -- --------------------------------------------------------
 
@@ -128,20 +159,6 @@ CREATE TABLE IF NOT EXISTS `favorites` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `hasprivilege`
---
-
-DROP TABLE IF EXISTS `hasprivilege`;
-CREATE TABLE IF NOT EXISTS `hasprivilege` (
-  `IdP` char(18) NOT NULL,
-  `IdU` int(11) NOT NULL,
-  PRIMARY KEY (`IdP`,`IdU`),
-  KEY `R_29` (`IdU`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `hastag`
 --
 
@@ -152,6 +169,71 @@ CREATE TABLE IF NOT EXISTS `hastag` (
   PRIMARY KEY (`IdAd`,`IdTag`),
   KEY `R_15` (`IdTag`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `hastag`
+--
+
+INSERT INTO `hastag` (`IdAd`, `IdTag`) VALUES
+(7, 2),
+(7, 5),
+(7, 7),
+(7, 11),
+(7, 13),
+(8, 2),
+(8, 5),
+(8, 7),
+(8, 11),
+(8, 13),
+(9, 2),
+(10, 2),
+(11, 2),
+(12, 2),
+(13, 2),
+(14, 2),
+(14, 5),
+(14, 7),
+(14, 11),
+(14, 13),
+(15, 2),
+(15, 5),
+(15, 7),
+(15, 11),
+(15, 13),
+(16, 2),
+(16, 5),
+(16, 7),
+(16, 11),
+(16, 13);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `image`
+--
+
+DROP TABLE IF EXISTS `image`;
+CREATE TABLE IF NOT EXISTS `image` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `filename` varchar(20) DEFAULT NULL,
+  `IdAd` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Id`),
+  KEY `R_17` (`IdAd`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `image`
+--
+
+INSERT INTO `image` (`Id`, `filename`, `IdAd`) VALUES
+(1, '1.jpg', 81),
+(2, '2.jpg', 81),
+(3, '4.jpg', 81),
+(4, '4.jpg', 15),
+(5, '3.jpg', 15),
+(6, '1.jpg', 16),
+(7, '2.jpg', 16),
+(8, '3.jpg', 16);
 
 -- --------------------------------------------------------
 
@@ -176,63 +258,34 @@ CREATE TABLE IF NOT EXISTS `mark` (
 
 DROP TABLE IF EXISTS `municipality`;
 CREATE TABLE IF NOT EXISTS `municipality` (
-  `IdMunicipality` int(11) NOT NULL,
+  `Id` int(11) NOT NULL,
   `Name` varchar(20) DEFAULT NULL,
   `City` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`IdMunicipality`)
+  PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `municipality`
 --
 
-INSERT INTO `municipality` (`IdMunicipality`, `Name`, `City`) VALUES
+INSERT INTO `municipality` (`Id`, `Name`, `City`) VALUES
 (1, 'Cukarica', 'Beograd'),
-(2, 'Palilula', 'Beograd');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `picture`
---
-
-DROP TABLE IF EXISTS `picture`;
-CREATE TABLE IF NOT EXISTS `picture` (
-  `IdPicture` int(11) NOT NULL,
-  `Url` blob DEFAULT NULL,
-  `Width` int(11) DEFAULT NULL,
-  `Height` int(11) DEFAULT NULL,
-  `IdAd` int(11) DEFAULT NULL,
-  PRIMARY KEY (`IdPicture`),
-  KEY `R_17` (`IdAd`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `place`
---
-
-DROP TABLE IF EXISTS `place`;
-CREATE TABLE IF NOT EXISTS `place` (
-  `IdPlace` int(11) NOT NULL,
-  `Name` varchar(20) DEFAULT NULL,
-  `Municipality` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`IdPlace`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `privilege`
---
-
-DROP TABLE IF EXISTS `privilege`;
-CREATE TABLE IF NOT EXISTS `privilege` (
-  `IdPrivilege` char(18) NOT NULL,
-  `Name` char(18) DEFAULT NULL,
-  PRIMARY KEY (`IdPrivilege`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+(2, 'Novi Beograd', 'Beograd'),
+(3, 'Palilula', 'Beograd'),
+(4, 'Rakovica', 'Beograd'),
+(5, 'Savski venac', 'Beograd'),
+(6, 'Stari grad', 'Beograd'),
+(7, 'Vozdovac', 'Beograd'),
+(8, 'Vracar', 'Beograd'),
+(9, 'Zemun', 'Beograd'),
+(10, 'Zvezdara', 'Beograd'),
+(11, 'Barajevo', 'Beograd'),
+(12, 'Grocka', 'Beograd'),
+(13, 'Lazarevac', 'Beograd'),
+(14, 'Mladenovac', 'Beograd'),
+(15, 'Obrenovac', 'Beograd'),
+(16, 'Sopot', 'Beograd'),
+(17, 'Surcin', 'Beograd');
 
 -- --------------------------------------------------------
 
@@ -253,7 +306,30 @@ CREATE TABLE IF NOT EXISTS `privilegeduser` (
 --
 
 INSERT INTO `privilegeduser` (`Id`, `Name`, `Surname`) VALUES
-(32, 'a1', 'a1');
+(81, 'Privilegovan2', 'Privilegovan2'),
+(92, 'Privilegovan3', 'Privilegovan3');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `prohibition`
+--
+
+DROP TABLE IF EXISTS `prohibition`;
+CREATE TABLE IF NOT EXISTS `prohibition` (
+  `IdA` int(18) NOT NULL,
+  `IdU` int(11) NOT NULL,
+  PRIMARY KEY (`IdA`,`IdU`),
+  KEY `R_29` (`IdU`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `prohibition`
+--
+
+INSERT INTO `prohibition` (`IdA`, `IdU`) VALUES
+(1, 74),
+(2, 74);
 
 -- --------------------------------------------------------
 
@@ -263,9 +339,9 @@ INSERT INTO `privilegeduser` (`Id`, `Name`, `Surname`) VALUES
 
 DROP TABLE IF EXISTS `realestatetype`;
 CREATE TABLE IF NOT EXISTS `realestatetype` (
-  `IdType` int(11) NOT NULL,
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`IdType`)
+  PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -287,39 +363,7 @@ CREATE TABLE IF NOT EXISTS `registereduser` (
 --
 
 INSERT INTO `registereduser` (`Id`, `Name`, `Surname`) VALUES
-(16, 'fdasfd', 'fdafdafda'),
-(17, 'fdafa', 'fdafda'),
-(18, 'agasggas', 'gdaga'),
-(48, 'dsad', 'sadsa'),
-(50, 'fdsafdsa', 'fdsafdsafdsa'),
-(51, 'fdsafdas', 'fdsafds'),
-(52, 'fdsafdas', 'fdsafds'),
-(53, 'fdsafdas', 'fdsafds'),
-(54, 'fdsfdsa', 'fdsafdsa');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `renting`
---
-
-DROP TABLE IF EXISTS `renting`;
-CREATE TABLE IF NOT EXISTS `renting` (
-  `IdAd` int(11) NOT NULL,
-  PRIMARY KEY (`IdAd`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sell`
---
-
-DROP TABLE IF EXISTS `sell`;
-CREATE TABLE IF NOT EXISTS `sell` (
-  `IdAd` int(11) NOT NULL,
-  PRIMARY KEY (`IdAd`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+(88, 'Drugi', 'Drugi');
 
 -- --------------------------------------------------------
 
@@ -365,64 +409,20 @@ CREATE TABLE IF NOT EXISTS `user` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Username` varchar(20) DEFAULT NULL,
   `Password` varchar(20) DEFAULT NULL,
-  `Email` varchar(20) DEFAULT NULL,
+  `Email` varchar(50) DEFAULT NULL,
   `Phone` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=MyISAM AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=93 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`Id`, `Username`, `Password`, `Email`, `Phone`) VALUES
-(9, 'fdasfads', '123', 'fdsafdas', 'fdasfasd'),
-(8, 'fads', '123', 'fdasfads', 'afsdfads'),
-(0, 'Marko', 'aca', 'dsadsa', 'dsasda'),
-(10, 'gagdsa', 'aca', 'fdasfdas', 'fdasfdsafdsa'),
-(11, 'gfgadga', '123', 'fdsafdsa', 'fsdafads'),
-(12, 'fdasfads', 'aca', 'fsdfsdaasd', 'fdsafsda'),
-(13, 'fdasfads', 'aca', 'fsdfsdaasd', 'fdsafsda'),
-(14, 'aca', 'aca', 'aaaaaa', 'aaaaaaa'),
-(15, 'adsa', '1111', 'sdadsa', 'dsadsaasd'),
-(16, 'aca1', '123', 'fdsaafdsa', 'fdasfdafdas'),
-(17, 'fdasfads', '123', 'fdafasfd', 'asfdas'),
-(18, 'gasdg', 'agdasgda', 'gagdsa', 'gasgdagas'),
-(19, 'gadgda', 'gdasgdas', 'sgadsgdsagdsa', 'gdasgdasgas'),
-(20, 'gadgda', 'gdasgdas', 'sgadsgdsagdsa', 'gdasgdasgas'),
-(21, 'aca123', 'aca', 'dsadsa', 'dsadsa'),
-(22, 'aca123', 'aca', 'dsadsa', 'dsadsa'),
-(23, 'fgagads', 'gadsgdas', 'gadsgdasgdsa', 'gdsagdsagsda'),
-(24, 'aggda', 'gadsgadsgda', 'gasgasdgasdg', 'gdsagdsa'),
-(25, 'fsdafdsa', 'sfdafads', 'sfdasfdas', 'fdasfdsafdas'),
-(26, 'gadgda', 'gdasgads', 'gdsgds', 'agsdagsdgsd'),
-(27, 'aca121', '111', 'aaa', 'aaaa'),
-(28, 'aca121', '111', 'aaa', 'aaaa'),
-(29, 'aca111', 'a1', 'a1', 'a1'),
-(30, 'aca111', 'a1', 'a1', 'a1'),
-(31, 'priv', 'a1', 'a1', 'a1'),
-(32, 'priv', 'a1', 'a1', 'a1'),
-(33, 'fdasfdsa', 'fsdafds', 'sfdafsdafsda', 'sfdafdsafsda'),
-(34, 'fasdfdas', 'aca', 'a', 'a'),
-(35, 'aaaa', 'aca', 'das', '06362367811111111'),
-(36, 'pera', 'pera', 'pera', '123456789'),
-(37, 'peki', 'peki', 'peki', '123456677'),
-(38, 'jovan', 'a', 'dfdafadfadfa', '063623678'),
-(39, 'ga', 'gdsagds', 'gdsagads', 'gdsadgsgdsa'),
-(40, 'fdas', 'fsad', 'fdsa', 'fasd'),
-(41, 'fdas', 'fsdaf', 'fsdasfdasfda', 'fsdasfdafsda'),
-(42, 'dsa', 'dsa', 'asdsad', 'sdasda'),
-(43, 'dsa', 'dsa', 'asdsad', 'sdasda'),
-(44, 'dsadsa', 'sdaasda', 'aaa', 'aaa'),
-(45, 'dsadsa', 'sdaasda', 'aaa', 'aaa'),
-(46, 'fdas', 'fasdasfdfsad', 'fdsafsda', 'fsdafdsadsa'),
-(47, 'fdas', 'fasdasfdfsad', 'fdsafsda', 'fsdafdsadsa'),
-(48, 'adsa', NULL, 'dsadsasad', 'sdasdasad'),
-(49, 'fda', 'fads', 'fsda', 'sfda'),
-(50, 'fdasfads', 'fads', 'fdsaf', 'dsafdsafdsa'),
-(51, 'fads', 'fsdafds', 'fdsafdsa', 'fdsafdsa'),
-(52, 'fads', 'fsdafds', 'fdsafdsa', 'fdsafdsa'),
-(53, 'fads', 'fsdafds', 'fdsafdsa', 'fdsafdsa'),
-(54, 'fsadfdsa', 'fsdaf', 'fdsafsd', 'dsfafdsafdsadfsa');
+(88, 'Drugi', 'aca', 'Drugi@gmail.com', ''),
+(92, 'Privilegovan3', 'aca', 'aradosevic40@gmail.com', '061123456'),
+(81, 'Privilegovan2', 'aca', 'Privilegovan2@gmail.com', '063623456'),
+(74, 'Agencija1', 'aca', 'agencija1@gmail.com', '063623678');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

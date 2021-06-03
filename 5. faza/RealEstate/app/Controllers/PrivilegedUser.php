@@ -103,6 +103,7 @@ FROM advertisement
 WHERE Id=(
     SELECT max(Id) FROM advertisement
     )";
+    
            $result=    mysqli_query($db, $sql);
            $niz= mysqli_fetch_array($result);
            $id=$niz["Id"];
