@@ -72,7 +72,7 @@
             </label></div>
             <?php foreach($municipalities->getResult() as $temp){?>
                 <div class="dropdown-item" style="margin-right:0%; padding-right: 0%;"><label>
-              <input type="checkbox" name="<?php echo $temp->City.' '.$temp->Name;?>"> <?php echo $temp->City.', '.$temp->Name;?>
+              <input type="checkbox" name="<?php echo $temp->Id;?>" value="<?php echo $temp->Id;?>"> <?php echo $temp->City.', '.$temp->Name;?>
             </label>
         
              </div>
@@ -113,7 +113,7 @@
               </div>                
                  <?php foreach($types->getResult() as $temp){?>
                 <div class="dropdown-item" style="margin-right:0%; padding-right: 0%;"><label>
-              <input type="checkbox" name="<?php echo $temp->Name;?>"> <?php echo $temp->Name;?>
+              <input type="checkbox" name="<?php echo $temp->Name.$temp->Id;?>" value="<?php echo $temp->Id;?>"> <?php echo $temp->Name;?>
             </label>
         
              </div>

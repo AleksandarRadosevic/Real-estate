@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -38,6 +38,17 @@
        <main style="margin-top:0% !important;">
       
          <section class="glass">
+             <?php foreach ($values->getResult() as $row){
+                $db = \Config\Database::connect();
+                 $images=$db->query("Select * from image where IdAd=".$row->Id);
+                 $image=null;
+                 $i=0;
+                 foreach($images->getResult() as $tempCnt){
+                     if ($i==0)
+                         $image=$tempCnt;
+                     $i=$i+1;
+                    }  
+                 ?>
             <div class="row gutters-sm" style="margin-left: 2%; margin-right:2% ;padding-top: 3%;">
                 <div class="col-md-12 ">
                     <a href="PregledOglasa.html" style="text-decoration-line:none">
@@ -47,28 +58,35 @@
                           
                           <div class="row">
                           <div class="col-lg-4 col-sm-12 ">
-                           
-                          <img src="images/slikaZaProjekat1.jpg" alt="Admin" width="100%">
+                          <?php if ($image==null){
+                             echo'<div style="background-color:black;" width="100%"></div>';
+                          }
+                          else {?>
+                              <img src="/assets/userImages/User<?php echo $row->IdOwner.'/'.$image->filename;?>" width="100%">;
+                         
+                           <?php }?>
+            
                           
+                         
                         </div>
                           <div class="col-lg-8 col-sm-12">
 
                           <table class="table table-light table-striped">
                             <tr>
-                                <td colspan="2"><b>Luksuzna kuća u NS</b></td>
+                                <td colspan="2"><b><?php echo $row->Topic;?></b></td>
                              
                             </tr>
                               <tr>
                                   <td>Kvadratura</td>
-                                  <td>300</td>
+                                  <td><?php echo $row->Id;?></td>
                               </tr>
                               <tr>
                                   <td>Cena</td>
-                                  <td>220.000$</td>
+                                  <td><?php echo $row->Price;?></td>
                               </tr>
                               <tr>
                                   <td>Adresa</td>
-                                  <td>Aljehinova 6</td>
+                                  <td><?php echo $row->Address;?></td>
                               </tr>
                              
                           </table>
@@ -79,369 +97,7 @@
                     </a>
                 </div>
             </div>
-            <div class="row gutters-sm" style="margin-left: 2%; margin-right:2% ;padding-top: 1%;">
-                <div class="col-md-12 ">
-                    <a href="PregledOglasa.html" style="text-decoration-line:none">
-                  <div class="card">
-                    <div class="card-body">
-                      
-                          
-                        <div class="row">
-                            <div class="col-lg-4 col-sm-12 ">
-                             
-                            <img src="images/slikaZaProjekat1.jpg" alt="Admin" width="100%">
-                            
-                          </div>
-                            <div class="col-lg-8 col-sm-12">
-  
-                            <table class="table table-light table-striped">
-                              <tr>
-                                  <td colspan="2"><b>Luksuzna kuća u NS</b></td>
-                               
-                              </tr>
-                                <tr>
-                                    <td>Kvadratura</td>
-                                    <td>300</td>
-                                </tr>
-                                <tr>
-                                    <td>Cena</td>
-                                    <td>220.000$</td>
-                                </tr>
-                                <tr>
-                                    <td>Adresa</td>
-                                    <td>Aljehinova 6</td>
-                                </tr>
-                               
-                            </table>
-                          </div>
-                             </div>       
-                    </div>
-                      </div>
-                    </a>
-                </div>
-            </div>
-            <div class="row gutters-sm" style="margin-left: 2%; margin-right:2% ;padding-top: 1%;">
-                <div class="col-md-12 ">
-                    <a href="PregledOglasa.html" style="text-decoration-line:none">
-                  <div class="card">
-                    <div class="card-body">
-                      
-                          
-                        <div class="row">
-                            <div class="col-lg-4 col-sm-12 ">
-                             
-                            <img src="images/slikaZaProjekat1.jpg" alt="Admin" width="100%">
-                            
-                          </div>
-                            <div class="col-lg-8 col-sm-12">
-  
-                            <table class="table table-light table-striped">
-                              <tr>
-                                  <td colspan="2"><b>Luksuzna kuća u NS</b></td>
-                               
-                              </tr>
-                                <tr>
-                                    <td>Kvadratura</td>
-                                    <td>300</td>
-                                </tr>
-                                <tr>
-                                    <td>Cena</td>
-                                    <td>220.000$</td>
-                                </tr>
-                                <tr>
-                                    <td>Adresa</td>
-                                    <td>Aljehinova 6</td>
-                                </tr>
-                               
-                            </table>
-                          </div>
-                             </div>       
-                    </div>
-                      </div>
-                    </a>
-                </div>
-            </div>
-            <div class="row gutters-sm" style="margin-left: 2%; margin-right:2% ;padding-top: 1%;">
-                <div class="col-md-12 ">
-                    <a href="PregledOglasa.html" style="text-decoration-line:none">
-                  <div class="card">
-                    <div class="card-body">
-                      
-                          
-                        <div class="row">
-                            <div class="col-lg-4 col-sm-12 ">
-                             
-                            <img src="images/slikaZaProjekat1.jpg" alt="Admin" width="100%">
-                            
-                          </div>
-                            <div class="col-lg-8 col-sm-12">
-  
-                            <table class="table table-light table-striped">
-                              <tr>
-                                  <td colspan="2"><b>Luksuzna kuća u NS</b></td>
-                               
-                              </tr>
-                                <tr>
-                                    <td>Kvadratura</td>
-                                    <td>300</td>
-                                </tr>
-                                <tr>
-                                    <td>Cena</td>
-                                    <td>220.000$</td>
-                                </tr>
-                                <tr>
-                                    <td>Adresa</td>
-                                    <td>Aljehinova 6</td>
-                                </tr>
-                               
-                            </table>
-                          </div>
-                             </div>       
-                    </div>
-                      </div>
-                    </a>
-                </div>
-            </div><div class="row gutters-sm" style="margin-left: 2%; margin-right:2% ;padding-top: 1%;">
-                <div class="col-md-12 ">
-                    <a href="PregledOglasa.html" style="text-decoration-line:none">
-                  <div class="card">
-                    <div class="card-body">
-                      
-                          
-                        <div class="row">
-                            <div class="col-lg-4 col-sm-12 ">
-                             
-                            <img src="images/slikaZaProjekat1.jpg" alt="Admin" width="100%">
-                            
-                          </div>
-                            <div class="col-lg-8 col-sm-12">
-  
-                            <table class="table table-light table-striped">
-                              <tr>
-                                  <td colspan="2"><b>Luksuzna kuća u NS</b></td>
-                               
-                              </tr>
-                                <tr>
-                                    <td>Kvadratura</td>
-                                    <td>300</td>
-                                </tr>
-                                <tr>
-                                    <td>Cena</td>
-                                    <td>220.000$</td>
-                                </tr>
-                                <tr>
-                                    <td>Adresa</td>
-                                    <td>Aljehinova 6</td>
-                                </tr>
-                               
-                            </table>
-                          </div>
-                             </div>       
-                    </div>
-                      </div>
-                    </a>
-                </div>
-            </div><div class="row gutters-sm" style="margin-left: 2%; margin-right:2% ;padding-top: 1%;">
-                <div class="col-md-12 ">
-                    <a href="PregledOglasa.html" style="text-decoration-line:none">
-                  <div class="card">
-                    <div class="card-body">
-                      
-                          
-                        <div class="row">
-                            <div class="col-lg-4 col-sm-12 ">
-                             
-                            <img src="images/slikaZaProjekat1.jpg" alt="Admin" width="100%">
-                            
-                          </div>
-                            <div class="col-lg-8 col-sm-12">
-  
-                            <table class="table table-light table-striped">
-                              <tr>
-                                  <td colspan="2"><b>Luksuzna kuća u NS</b></td>
-                               
-                              </tr>
-                                <tr>
-                                    <td>Kvadratura</td>
-                                    <td>300</td>
-                                </tr>
-                                <tr>
-                                    <td>Cena</td>
-                                    <td>220.000$</td>
-                                </tr>
-                                <tr>
-                                    <td>Adresa</td>
-                                    <td>Aljehinova 6</td>
-                                </tr>
-                               
-                            </table>
-                          </div>
-                             </div>       
-                    </div>
-                      </div>
-                    </a>
-                </div>
-            </div><div class="row gutters-sm" style="margin-left: 2%; margin-right:2% ;padding-top: 1%;">
-                <div class="col-md-12 ">
-                    <a href="PregledOglasa.html" style="text-decoration-line:none">
-                  <div class="card">
-                    <div class="card-body">
-                      
-                          
-                        <div class="row">
-                            <div class="col-lg-4 col-sm-12 ">
-                             
-                            <img src="images/slikaZaProjekat1.jpg" alt="Admin" width="100%">
-                            
-                          </div>
-                            <div class="col-lg-8 col-sm-12">
-  
-                            <table class="table table-light table-striped">
-                              <tr>
-                                  <td colspan="2"><b>Luksuzna kuća u NS</b></td>
-                               
-                              </tr>
-                                <tr>
-                                    <td>Kvadratura</td>
-                                    <td>300</td>
-                                </tr>
-                                <tr>
-                                    <td>Cena</td>
-                                    <td>220.000$</td>
-                                </tr>
-                                <tr>
-                                    <td>Adresa</td>
-                                    <td>Aljehinova 6</td>
-                                </tr>
-                               
-                            </table>
-                          </div>
-                             </div>       
-                    </div>
-                      </div>
-                    </a>
-                </div>
-            </div><div class="row gutters-sm" style="margin-left: 2%; margin-right:2% ;padding-top: 1%;">
-                <div class="col-md-12 ">
-                    <a href="PregledOglasa.html" style="text-decoration-line:none">
-                  <div class="card">
-                    <div class="card-body">
-                      
-                          
-                        <div class="row">
-                            <div class="col-lg-4 col-sm-12 ">
-                             
-                            <img src="images/slikaZaProjekat1.jpg" alt="Admin" width="100%">
-                            
-                          </div>
-                            <div class="col-lg-8 col-sm-12">
-  
-                            <table class="table table-light table-striped">
-                              <tr>
-                                  <td colspan="2"><b>Luksuzna kuća u NS</b></td>
-                               
-                              </tr>
-                                <tr>
-                                    <td>Kvadratura</td>
-                                    <td>300</td>
-                                </tr>
-                                <tr>
-                                    <td>Cena</td>
-                                    <td>220.000$</td>
-                                </tr>
-                                <tr>
-                                    <td>Adresa</td>
-                                    <td>Aljehinova 6</td>
-                                </tr>
-                               
-                            </table>
-                          </div>
-                             </div>       
-                    </div>
-                      </div>
-                    </a>
-                </div>
-            </div><div class="row gutters-sm" style="margin-left: 2%; margin-right:2% ;padding-top: 1%;">
-                <div class="col-md-12 ">
-                    <a href="PregledOglasa.html" style="text-decoration-line:none">
-                  <div class="card">
-                    <div class="card-body">
-                      
-                          
-                        <div class="row">
-                            <div class="col-lg-4 col-sm-12 ">
-                             
-                            <img src="images/slikaZaProjekat1.jpg" alt="Admin" width="100%">
-                            
-                          </div>
-                            <div class="col-lg-8 col-sm-12">
-  
-                            <table class="table table-light table-striped">
-                              <tr>
-                                  <td colspan="2"><b>Luksuzna kuća u NS</b></td>
-                               
-                              </tr>
-                                <tr>
-                                    <td>Kvadratura</td>
-                                    <td>300</td>
-                                </tr>
-                                <tr>
-                                    <td>Cena</td>
-                                    <td>220.000$</td>
-                                </tr>
-                                <tr>
-                                    <td>Adresa</td>
-                                    <td>Aljehinova 6</td>
-                                </tr>
-                               
-                            </table>
-                          </div>
-                             </div>       
-                    </div>
-                      </div>
-                    </a>
-                </div>
-            </div><div class="row gutters-sm" style="margin-left: 2%; margin-right:2% ;padding-top: 1%;">
-                <div class="col-md-12 ">
-                    <a href="PregledOglasa.html" style="text-decoration-line:none">
-                  <div class="card">
-                    <div class="card-body">
-                      
-                          
-                        <div class="row">
-                            <div class="col-lg-4 col-sm-12 ">
-                             
-                            <img src="images/slikaZaProjekat1.jpg" alt="Admin" width="100%">
-                            
-                          </div>
-                            <div class="col-lg-8 col-sm-12">
-  
-                            <table class="table table-light table-striped">
-                              <tr>
-                                  <td colspan="2"><b>Luksuzna kuća u NS</b></td>
-                               
-                              </tr>
-                                <tr>
-                                    <td>Kvadratura</td>
-                                    <td>300</td>
-                                </tr>
-                                <tr>
-                                    <td>Cena</td>
-                                    <td>220.000$</td>
-                                </tr>
-                                <tr>
-                                    <td>Adresa</td>
-                                    <td>Aljehinova 6</td>
-                                </tr>
-                               
-                            </table>
-                          </div>
-                             </div>       
-                    </div>
-                      </div>
-                    </a>
-                </div>
-            </div>      
+            <?php }?>
             <ul class="pagination" style="padding-left: 40%; margin-top: 5%;">
                 <li class="page-item"><a class="pagelink" href="#">Prethodna</a></li>&nbsp &nbsp
                 <li class="page-item"><a class="pagelink" href="#">1</a></li> &nbsp&nbsp
@@ -453,4 +109,4 @@
      </main>
      </div>
      </body>
-     </html>
+</html> 

@@ -6,6 +6,7 @@ use App\Models\PrivilegedUserModel;
 use App\Models\AgencyModel;
 use App\Models\AdminModel;
 use App\Models\adModel;
+define('MAXINT','99999999999999999999999999');
 class Guest extends BaseController
 {
 	public function index()
@@ -204,42 +205,87 @@ class Guest extends BaseController
         }
 
         public function search(){
-             $db=null;
+            $db = \Config\Database::connect();
             if ($this->request->getMethod()=="get" && isset($_GET['priceFrom'])){
                 
                 $priceFrom=$_GET['priceFrom'];
                 $priceTo=$_GET['priceTo'];
                 $sizeFrom=$_GET['sizeFrom'];
                 $sizeTo=$_GET['sizeTo'];
-                
-               
+                if ($priceTo==0){
+                    $priceTo=MAXINT;
+                }
+                if ($sizeTo==0){
+                    $sizeTo=MAXINT;
+                }
+                //get advertisments based on size and price
                 $sql="(Select Id from advertisement where Price>='$priceFrom' and Price<='$priceTo' and Size>='$sizeFrom' and Size<='$sizeTo')";
-                $sqlLocation="";
-                $stan='pera';
-                $sqlType="Select * from advertisement where RealEstateType='$stan' AND Id IN ".$sql;
                 
                 
                 
+                
+                //get advertisments based on place
+                $sqlLocation="(Select Id from municipality";
+                $GetAllPlaces="Select * from municipality";
+                $places=$db->query($GetAllPlaces);
+                $rememberPlaces="";
+                $j=0;
+                foreach ($places->getResult() as $place){
+                    if (isset($_GET[$place->Id])){
+                        if ($j==0){
+                             $rememberPlaces=" WHERE ";
+                             $j=$j+1;
+                        }
+                        else {
+                            $rememberPlaces.=" OR ";
+                        }
+                        $rememberPlaces.="Id=".$place->Id;                        
+                    }
+                }
+                $sqlLocation.=$rememberPlaces.")";
+           
+                
+                //get advertisments based on size and price
+                $sqlFindType="(Select Name from realestatetype";
+                $GetAllTypes="Select * from realestatetype";               
+                $typesQ=$db->query($GetAllTypes);
+                $rememberTypes="";
+                $j=0;
+                foreach($typesQ->getResult() as $type){
+                    if (isset ($_GET[$type->Name."".$type->Id])){
+                        if ($j==0){
+                             $rememberTypes=" WHERE ";
+                             $j=$j+1;
+                        }
+                        else {
+                            $rememberTypes.=" OR ";
+                        }
+                        $rememberTypes.="Id=".$type->Id;                                     
+                    }
+                }
+                $sqlFindType.=$rememberTypes.")";
+                //echo $rememberTypes;
+                $sqlType="Select * from advertisement where Id In ".$sql."AND IdPlace In".$sqlLocation."AND RealEstateType In".$sqlFindType;
                 $values   = $db->query($sqlType);
+                $images;
+                $tags;/*
                 foreach ($values->getResult() as $row){
-                    echo $row->Address.'<br>';
-                    
+                    $imgs=$db->query("Select * from Image where IdAd=".$row->Id)->getResult();
+                    $images.=$imgs;
+                    $t=$db->query("Select * from hastag where IdAd=".$row->Id)->getResult();
+                    $tags.=$t;
                 }
+                echo view('showAdvertisments',['values'=>$values,'images'=>$images,'tags'=>$tags]);
+                 */
+                echo view('showAdvertisments',['values'=>$values]);
                 return;
-                echo view('showAdvertisments',['marko'=>1]);
-                
-                
-                return;
-            }
-            if ($db==null){
-                    $db = \Config\Database::connect();
-                    $sqlMunicipalities="Select * from municipality";
-                    $municipalities=$db->query($sqlMunicipalities);
-                    $sqlTypes="Select * from realestatetype";
-                    $types=$db->query($sqlTypes);
+            }       
 
-                }
-            
+            $sqlMunicipalities="Select * from municipality";
+            $municipalities=$db->query($sqlMunicipalities);
+            $sqlTypes="Select * from realestatetype";
+            $types=$db->query($sqlTypes);
+
             echo view('search',['municipalities'=>$municipalities,'types'=>$types]);
         }
         
