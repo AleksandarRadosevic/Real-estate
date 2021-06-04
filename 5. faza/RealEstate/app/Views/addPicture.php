@@ -51,53 +51,29 @@
                 action=""
                 enctype="multipart/form-data">
 
-<script>
-function goBackToMain() {
-            window.location.href = "http://localhost:8080/"
-        }
-        
-       
-       
-
-</script>
-               
-
-
-                <input type="file" style="margin-left: 600px;"name="uploadfile" value="Dodaj Sliku" />
-
+                 <input type="file" style="margin-left: 600px;"name="uploadfile" value="Dodaj Sliku" />
                 <br>
 
                 <button type='submit' name="upload" class="btn-lg btn btn-success" >Dodaj sliku </button>
-
-              <button type="button" onclick="goBackToMain()"class="btn btn-lg btn-info" >Završi</button>
-            
-
-                           
-
-
+                <?php 
+                if ($user['Type']=='privileged'){
+                    echo '<a href="/Privilegeduser"><button type="button" class="btn btn-lg btn-info" >Završi</button></a>';                  
+                }
+                else if ($user['Type'=='agency']){
+                 echo '<a href="/Agency"><button type="button" class="btn btn-lg btn-info" >Završi</button></a>';
+                }
+                else if ($user['Type']=='registered'){
+                    echo '<a href="/Registereduser"><button type="button" class="btn btn-lg btn-info" >Završi</button></a>';
+                }
+                ?>
+                
 
             </div>
-
             <div class="addPicture2">
             <img src="/assets/images/slikaZaProjekat1.jpg" style="width:50%"  >
             </div>
 
-
-          
-            
-               
-             
-
-
-
-
-
-           
-
         </form>
-
-
-
         </section>
         <div class="circle1"></div>
         <div class="circle2"></div>
