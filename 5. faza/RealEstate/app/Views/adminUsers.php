@@ -14,7 +14,7 @@
     <title>Prototip</title>
 </head>
 <body>
-  <nav>
+    <nav >
         <div class="logo"><h4><a  href='../index.html'>Success</a></h4></div>
         
         <div class="logo"id="logo2">

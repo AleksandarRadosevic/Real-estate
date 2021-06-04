@@ -54,6 +54,10 @@
         </ol>
         <div class="carousel-inner">
             <?php $i=0;
+            if (sizeof($pictures)==0){
+                echo "<div class='carousel-item active'><img class='d-block w-100' src='/assets/images/noImage5.png'></div>";
+            
+            }
             foreach($pictures as $image){
                 if ($i==0){?>
                 <div class="carousel-item active">
