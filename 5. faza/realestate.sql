@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 04, 2021 at 06:48 PM
+-- Generation Time: Jun 04, 2021 at 09:09 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -370,9 +370,7 @@ CREATE TABLE IF NOT EXISTS `prohibition` (
 --
 
 INSERT INTO `prohibition` (`IdA`, `IdU`) VALUES
-(1, 74),
-(2, 74),
-(2, 88);
+(2, 92);
 
 -- --------------------------------------------------------
 

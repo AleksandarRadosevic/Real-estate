@@ -20,8 +20,8 @@ class Admin extends BaseController
         
    
         public function users(){
-            $user=$this->session->get('User');
-                if ($user['Type']!='admin'){                   
+            $userAdmin=$this->session->get('User');
+                if ($userAdmin['Type']!='admin'){                   
                 return redirect()->to(site_url('Home'));
                 }
              if ($this->request->getMethod()=="post"){
@@ -166,9 +166,9 @@ class Admin extends BaseController
                         }
                         else {
                     $id=$user['Id'];;
-                    $agency=new AgencyModel();
+                    $privileged=new PrivilegedUserModel();
                     $user=new UserModel();
-                    $agency->delete($id);
+                    $privileged->delete($id);
                     $user->delete($id);
                     
                     $db = \Config\Database::connect();
@@ -282,13 +282,51 @@ class Admin extends BaseController
              
         }
         
-        public function advertisments(){
+        public function advertisements(){
             $user=$this->session->get('User');
                 if ($user['Type']!='admin'){                   
                 return redirect()->to(site_url('Home'));
                 }
-            echo view('adminAdvertisments.php');
+                    $sql="select * from advertisement";
+                    $db = \Config\Database::connect();
+                    $values=$db->query($sql);
+                    $numberOfRows=count($values->getResult());
+                    echo view('adminAdvertisments',['values'=>$values,'numberOfRows'=>$numberOfRows]);
+                  
         }
+        
+        public function delete(){
+            if ($this->request->getMethod()=='post'){ 
+            $ad=new \App\Models\adModel();
+            $ads=$ad->findAll();
+            foreach ($ads as $temp){
+                if (isset($_POST['BId'.$temp['Id']])){    
+                    
+                    //delete images from folder
+                    
+                    $dirname="assets/userImages/Advertisement".$temp['Id'];
+                    if (file_exists($dirname)){
+                    array_map('unlink', glob("$dirname/*.*"));
+                    rmdir($dirname);
+                    }
+                    $ad->where('Id',$temp['Id'])->delete();      
+                    $sqlforTags="Delete from hasTag where IdAd=".$temp['Id'];
+                    $sqlForPictures="Delete from image where IdAd=".$temp['Id'];
+                    $sqlComments="Delete from comment where IdAd=".$temp['Id'];
+                    $sqlFavorites="Delete from favorites where IdAd=".$temp['Id'];
+                    $db = \Config\Database::connect();
+                    $db->query($sqlforTags);
+                    $db->query($sqlFavorites);
+                    $db->query($sqlForPictures);
+                    $db->query($sqlComments);         
+                    
+                }
+            }
+            }
+         
+           return redirect()->to(site_url('Admin/advertisements'));
+        }
+        
        public function logout(){
         $this->session->destroy();
         return redirect()->to("/../../index.html");

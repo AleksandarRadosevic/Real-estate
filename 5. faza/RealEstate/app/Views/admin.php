@@ -50,7 +50,7 @@
                 <div class="container-fluid" style="text-align:center !important;">
                     <div class="row">
                         <div class="col-sm-12">
-                        <a href='Admin/advertisments'>
+                        <a href='Admin/advertisements'>
                         <button class='btn btn-dark btn-lg btns'>Oglasi</button> 
                         </a>
                     </div>
