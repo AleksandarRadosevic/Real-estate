@@ -218,12 +218,15 @@ class Guest extends BaseController
                 if ($sizeTo==0){
                     $sizeTo=MAXINT;
                 }
+                
+                
+                
+                
+                
+                
                 //get advertisments based on size and price
                 $sql="(Select Id from advertisement where Price>='$priceFrom' and Price<='$priceTo' and Size>='$sizeFrom' and Size<='$sizeTo')";
-                
-                
-                
-                
+                $purpose=$_GET['purpose'];
                 //get advertisments based on place
                 $sqlLocation="(Select Id from municipality";
                 $GetAllPlaces="Select * from municipality";
@@ -265,10 +268,8 @@ class Guest extends BaseController
                 }
                 $sqlFindType.=$rememberTypes.")";
                 //echo $rememberTypes;
-                $sqlType="Select * from advertisement where Id In ".$sql."AND IdPlace In".$sqlLocation."AND RealEstateType In".$sqlFindType;
+                $sqlType="Select * from advertisement where Id In ".$sql."AND IdPlace In".$sqlLocation."AND RealEstateType In".$sqlFindType."AND Purpose='$purpose'";
                 $values   = $db->query($sqlType);
-                $images;
-                $tags;
                 $numberOfRows=count($values->getResult());
                 echo view('showAdvertisments',['values'=>$values,'numberOfRows'=>$numberOfRows]);
                 return;
@@ -283,7 +284,12 @@ class Guest extends BaseController
         }
         
         public function Ads(){
-            echo view('showAdvertisments');
+                $db = \Config\Database::connect();
+                $sqlType="Select * from advertisement";
+                $values   = $db->query($sqlType);
+                $numberOfRows=count($values->getResult());
+            
+            echo view('showAdvertisments',['values'=>$values,'numberOfRows'=>$numberOfRows]);
         }
         public function Add(){
             if ($this->request->getMethod()=='get'){

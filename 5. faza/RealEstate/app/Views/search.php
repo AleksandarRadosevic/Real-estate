@@ -20,9 +20,8 @@
     <div class="logo"><h4><a href='../index.html'>Success</a></h4></div>
      <ul class="nav-links" >
        <li><a href='../index.html' class="btn" style="background-color: rgb(33, 74, 255);">Početna stranica</a href></li>
-       <li><a href='pretraga.html' class="btn" style="background-color: rgb(33, 74, 255);">Pretraga</a href></li>
-       <li><a href='#'class="btn" style="background-color: rgb(33, 74, 255);">Oglasi</a href></li>
-       <li><a href='#'class="btn" style="background-color: rgb(33, 74, 255);">O nama</a href></li>
+       <li><a href='search' class="btn" style="background-color: rgb(33, 74, 255);">Pretraga</a href></li>
+       <li><a href='Ads'class="btn" style="background-color: rgb(33, 74, 255);">Oglasi</a href></li>
        <li><a href='login' class='btn btn-success'>Prijavite se</a href></li>
        <li><a href='register' class='btn btn-danger'>Registrujte se</a></a href></li> 
      </ul>
@@ -126,7 +125,15 @@
           <br>
           <br>
           <br>
-       
+          <label>Usluga</label>
+          <input id="prodaja" type="radio" name="purpose" value="prodaja" style="margin-left: 7%;" checked>
+          <label for="prodaja">Prodaja</label>
+          <input id="izdavanje" type="radio" name="purpose" value="izdavanje" style="margin-left: 18;">
+          <label for="izdavanje">Izdavanje</label>
+          <br>
+          <br>
+          <br>
+          <br>
           <button class="btn btn-success searchButton" type="submit">Pretraga<img id="lupa" src="/assets/images/lupa.png" alt="Lupa"></button>
        
           </form>

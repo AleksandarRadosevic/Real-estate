@@ -14,7 +14,7 @@
     <title>Prototip</title>
 </head>
 <body>
-  <nav>
+    <nav >
         <div class="logo"><h4><a  href='../index.html'>Success</a></h4></div>
         
         <div class="logo"id="logo2">
@@ -164,7 +164,7 @@
                                 <input type="checkbox" name="commentR<?php echo $data['Id']; ?>" <?php echo ($flag2==1 ? 'checked' : '');?>>&nbsp;Komentarisanje
                         </label></div>
                             <div class="dropdown-item" style="padding-left:3px; padding-right: 10px;"> <label>
-                                 <input type="checkbox" name="addR<?php echo $data['Id']; ?>" <?php echo ($flag1==1 ? 'checked' : '');?>>&nbsp;Dodavanje oglasa
+                                 <input type="hidden" name="addR<?php echo $data['Id']; ?>" <?php echo ($flag1==1 ? 'checked' : '');?>>&nbsp;<!-- Dodavanje oglasa-->
                         </label></div>
                          <div class="dropdown-item" style="padding-left:3px; padding-right: 10px;">
                              <input type="submit" name="actionRegistered<?php echo $data['Id']; ?>" value="Promeni privilegije" class="adminButton dugme2" style="background-color: blue !important;"/>

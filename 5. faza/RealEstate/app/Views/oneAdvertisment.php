@@ -20,11 +20,10 @@
     <div class="logo"><h4><a href='../index.html'>Success</a></h4></div>
      <ul class="nav-links" >
        <li><a href='../index.html' class="btn" style="background-color: rgb(33, 74, 255);">Početna stranica</a href></li>
-       <li><a href='pretraga.html' class="btn" style="background-color: rgb(33, 74, 255);">Pretraga</a href></li>
-       <li><a href='pregledSvihOglasa.html'class="btn" style="background-color: rgb(33, 74, 255);">Oglasi</a href></li>
-       <li><a href='#'class="btn" style="background-color: rgb(33, 74, 255);">O nama</a href></li>
-       <li><a href='login.html' class='btn btn-success'>Prijavite se</a href></li>
-       <li><a href='register.html' class='btn btn-danger'>Registrujte se</a></a href></li> 
+       <li><a href='search' class="btn" style="background-color: rgb(33, 74, 255);">Pretraga</a href></li>
+       <li><a href='Ads'class="btn" style="background-color: rgb(33, 74, 255);">Oglasi</a href></li>
+       <li><a href='login' class='btn btn-success'>Prijavite se</a href></li>
+       <li><a href='register' class='btn btn-danger'>Registrujte se</a></a href></li> 
      </ul>
 
      <div class="hidden-menu" style="margin:0px !important; padding:0 !important;">
@@ -38,8 +37,14 @@
      <main style="margin-top:0% !important;">
     
        <section class="glass">
-        <h2 style="color:black; margin-top: 5%; margin-left: 5%;"><?php echo $ad['Topic']; ?></h2>
-       <div class="row">
+           <div class="row" style="margin-top:4%;">
+               <div class="col">
+        <h2 style="color:black;margin-left: 8%;"><?php echo $ad['Topic']; ?></h2>
+        </div>
+        <div class="col text-right">
+            <div class="btn btn-success" style="margin-right:7%;"> Dodaj u omiljene</div></div>
+          </div>
+           <div class="row">
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width: 50%; margin-left:5%">
         <ol class="carousel-indicators">
             <?php $j=0;
@@ -54,15 +59,19 @@
         </ol>
         <div class="carousel-inner">
             <?php $i=0;
+            if (sizeof($pictures)==0){
+                echo "<div class='carousel-item active'><img class='d-block w-100' src='/assets/images/noImage5.png'></div>";
+            
+            }
             foreach($pictures as $image){
                 if ($i==0){?>
                 <div class="carousel-item active">
-                <img class="d-block w-100" src="/assets/userImages/User<?php echo $owner['Id'].'/'.$image['filename'];?>">
+                <img class="d-block w-100" src="/assets/userImages/Advertisement<?php echo $ad['Id'].'/'.$image['filename'];?>">
                 </div>             
                <?php $i=1;}
              else { ?>
                  <div class="carousel-item">
-                <img class="d-block w-100" src="/assets/userImages/User<?php echo $owner['Id'].'/'.$image['filename'];?>"></div>   
+                <img class="d-block w-100" src="/assets/userImages/Advertisement<?php echo $ad['Id'].'/'.$image['filename'];?>"></div>   
                             <?php }}?>
                   </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
