@@ -11,15 +11,19 @@ class Admin extends BaseController
 
 	public function index()
 	{
+                $user=$this->session->get('User');
+                if ($user['Type']!='admin'){                   
+                return redirect()->to(site_url('Home'));
+                }
              echo view('admin.php');
 	}
         
-        
-        public function showPage(){
-           
-        }
-        
+   
         public function users(){
+            $user=$this->session->get('User');
+                if ($user['Type']!='admin'){                   
+                return redirect()->to(site_url('Home'));
+                }
              if ($this->request->getMethod()=="post"){
                 
                 //check if agency is changed
@@ -279,6 +283,10 @@ class Admin extends BaseController
         }
         
         public function advertisments(){
+            $user=$this->session->get('User');
+                if ($user['Type']!='admin'){                   
+                return redirect()->to(site_url('Home'));
+                }
             echo view('adminAdvertisments.php');
         }
        public function logout(){

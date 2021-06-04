@@ -64,7 +64,7 @@
                             }
                             ?>
                             <div class="dropdown-item" style="padding-left:3px; padding-right: 10px;"> <label>                                  
-                                <input type="checkbox" name="commentA<?php echo $data['Id']; ?>" <?php echo ($flag1==1 ? 'checked' : '');?>>
+                                <input type="checkbox" name="commentA<?php echo $data['Id']; ?>" <?php echo ($flag2==1 ? 'checked' : '');?>>
                                 &nbsp;Komentarisanje
                         </label></div>
                             <div class="dropdown-item" style="padding-left:3px; padding-right: 10px;"> <label>
@@ -112,7 +112,7 @@
                             }
                             ?>
                             <div class="dropdown-item" style="padding-left:3px; padding-right: 10px;"> <label>                                  
-                                <input type="checkbox" name="commentP<?php echo $data['Id']; ?>" <?php echo ($flag1==2 ? 'checked' : '');?>>&nbsp;Komentarisanje
+                                <input type="checkbox" name="commentP<?php echo $data['Id']; ?>" <?php echo ($flag2==2 ? 'checked' : '');?>>&nbsp;Komentarisanje
                         </label></div>
                             <div class="dropdown-item" style="padding-left:3px; padding-right: 10px;"> <label>
                                  <input  type="checkbox" name="addP<?php echo $data['Id']; ?>" <?php echo ($flag1==1 ? 'checked' : '');?>>&nbsp;Dodavanje oglasa

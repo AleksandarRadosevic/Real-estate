@@ -9,6 +9,9 @@ class Privilegeduser extends BaseController
 	public function index()
 	{
                 $user=$this->session->get('User');
+                if ($user['Type']!='privileged'){                   
+                return redirect()->to(site_url('Home'));
+                }
                 echo view('PrivilegedProfile',['user'=>$user]);
 	}
         
@@ -18,7 +21,22 @@ class Privilegeduser extends BaseController
             $data=[];
             
             helper(['form']);
-            
+            $user=$this->session->get('User');
+                if ($user['Type']!='privileged'){                   
+                return redirect()->to(site_url('Home'));
+                }
+                 else {
+                    //check if adding advertisements is prohibited
+                    
+                    $sql="Select * from prohibition where IdA=1 And IdU=".$user['Id'];
+                    $db = \Config\Database::connect();
+                    $p=$db->query($sql);
+                    if (sizeof($p->getResult())>0){
+                        $message="Zabranjeno dodavanje oglasa!";
+                        echo "<script>alert('$message');"
+                                . "window.location='/Privilegeduser'</script>";
+                    }
+                }
             if ($this->request->getMethod()=='post'){
             //validation for user
            
@@ -83,7 +101,22 @@ class Privilegeduser extends BaseController
  
        public function upload()
        {
- 
+                $user=$this->session->get('User');
+                if ($user['Type']!='privileged'){                   
+                return redirect()->to(site_url('Home'));
+                }
+                 else {
+                    //check if adding advertisements is prohibited
+                    
+                    $sql="Select * from prohibition where IdA=1 And IdU=".$user['Id'];
+                    $db = \Config\Database::connect();
+                    $p=$db->query($sql);
+                    if (sizeof($p->getResult())>0){
+                        $message="Zabranjeno dodavanje slika!";
+                        echo "<script>alert('$message');"
+                                . "window.location='/Privilegeduser'</script>";
+                    }
+                }
          // If upload button is clicked ...
         if (isset($_POST['upload'])) {
       
@@ -134,7 +167,22 @@ class Privilegeduser extends BaseController
   }
 
 	public function updateAdvertisement(){
-                       
+                $user=$this->session->get('User');
+                if ($user['Type']!='privileged'){                   
+                return redirect()->to(site_url('Home'));
+                }
+                 else {
+                    //check if adding advertisements is prohibited
+                    
+                    $sql="Select * from prohibition where IdA=1 And IdU=".$user['Id'];
+                    $db = \Config\Database::connect();
+                    $p=$db->query($sql);
+                    if (sizeof($p->getResult())>0){
+                        $message="Zabranjeno azuriranje oglasa!";
+                        echo "<script>alert('$message');"
+                                . "window.location='/Privilegeduser'</script>";
+                    }
+                }
 
 $id=2;
 $advertisment=new adModel();

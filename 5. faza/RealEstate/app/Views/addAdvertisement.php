@@ -59,8 +59,8 @@
             <td>Tip nekretnine:</td>
             <td>
                 <label for='muski'>Stan</label>
-                <input id="stan" value="stan" type='radio' name='tipNekretnine'>
-                <input type='radio'  value="kuca" id="kuca" name='tipNekretnine' checked>Kuća
+                <input id="stan" value="Stan" type='radio' name='tipNekretnine'>
+                <input type='radio'  value="Kuća" id="kuca" name='tipNekretnine' checked>Kuća
             </td>
         </tr>
         <tr>
