@@ -38,8 +38,14 @@
      <main style="margin-top:0% !important;">
     
        <section class="glass">
-        <h2 style="color:black; margin-top: 5%; margin-left: 5%;"><?php echo $ad['Topic']; ?></h2>
-       <div class="row">
+           <div class="row" style="margin-top:4%;">
+               <div class="col">
+        <h2 style="color:black;margin-left: 8%;"><?php echo $ad['Topic']; ?></h2>
+        </div>
+        <div class="col text-right">
+            <div class="btn btn-success" style="margin-right:7%;"> Dodaj u omiljene</div></div>
+          </div>
+           <div class="row">
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width: 50%; margin-left:5%">
         <ol class="carousel-indicators">
             <?php $j=0;
