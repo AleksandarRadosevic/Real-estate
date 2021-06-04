@@ -101,24 +101,6 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-12">
-                      <a class="btn btn-info " href="advertisments.html" style="width: 100%; ">Pogledaj svoje oglase kao gost</a>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <a class="btn btn-info " href="dodajOglas.html" style="width: 100%; ">Dodaj novi oglas</a>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <a class="btn btn-info " href="azurirajObrisi.html" style="width:100%; ">Ažuriraj oglas</a>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-12">
                       <a class="btn btn-info " href="omiljeno.html" style="width: 100%;">Omiljeno</a>
                     </div>
                   </div>
