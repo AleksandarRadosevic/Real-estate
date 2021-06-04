@@ -268,16 +268,9 @@ class Guest extends BaseController
                 $sqlType="Select * from advertisement where Id In ".$sql."AND IdPlace In".$sqlLocation."AND RealEstateType In".$sqlFindType;
                 $values   = $db->query($sqlType);
                 $images;
-                $tags;/*
-                foreach ($values->getResult() as $row){
-                    $imgs=$db->query("Select * from Image where IdAd=".$row->Id)->getResult();
-                    $images.=$imgs;
-                    $t=$db->query("Select * from hastag where IdAd=".$row->Id)->getResult();
-                    $tags.=$t;
-                }
-                echo view('showAdvertisments',['values'=>$values,'images'=>$images,'tags'=>$tags]);
-                 */
-                echo view('showAdvertisments',['values'=>$values]);
+                $tags;
+                $numberOfRows=count($values->getResult());
+                echo view('showAdvertisments',['values'=>$values,'numberOfRows'=>$numberOfRows]);
                 return;
             }       
 
@@ -293,7 +286,32 @@ class Guest extends BaseController
             echo view('showAdvertisments');
         }
         public function Add(){
-            echo view('oneAdvertisment');
+            if ($this->request->getMethod()=='post'){
+                echo 'da';
+            $ad=new adModel();
+            $ads=$ad->findAll();
+            foreach ($ads as $temp){
+                if (isset($_POST['Id'.$temp['Id']])){
+                    $own=new UserModel();
+                    $owner=$own->find($temp['IdOwner']);
+                    $pl=new \App\Models\MunicipalityModel();
+                    $place=$pl->find($temp['IdPlace']);
+                    $pics=new \App\Models\ImageModel();
+                    $db = \Config\Database::connect();
+                    $sqlPictures="Select * from image where IdAd=".$temp['Id'];
+                    $pictures=$db->query($sqlPictures);
+                    echo $temp['Id'];
+                    foreach ($pictures->getResult() as $image){
+                        echo $image->filename;
+                    }
+   foreach ($pictures->getResult() as $image){
+                        echo $image->filename;
+                    }
+                    return;
+                    echo view('oneAdvertisment',['temp'=>$temp,'owner'=>$owner,'place'=>$place,'pictures'=>$pictures]);
+                }
+            }
+            }
         }
 }
 
