@@ -169,7 +169,7 @@
         <tr>
             <td>Dodatno:</td>
             <td>
-                <input type='checkbox' value="Uknjizen" name='check_list[]' checked> Uknjizen
+                <input type='checkbox' value="Uknjižen" name='check_list[]' checked> Uknjižen
                 <input type='checkbox' value="Potkrovlje" name='check_list[]'> Potkrovlje
                 <input type='checkbox' value="Hitna prodaja" name='check_list[]' > Hitna prodaja
                 <input type='checkbox' value="Garaza" name='check_list[]'> Garaza
@@ -183,7 +183,7 @@
                 <input type='checkbox' value="Izvorno stanje" name='check_list[]' checked> Izvorno stanje
                 <input type='checkbox'  value="Renovirano"name='check_list[]'> Renovirano
                 <input type='checkbox' value="Lux"  name='check_list[]' checked> Lux
-                <input type='checkbox' value="Za renvoranje" name='check_list[]'> Za renvoranje
+                <input type='checkbox' value="Za renoviranje" name='check_list[]'> Za renvoranje
                 
             </td>
         </tr>

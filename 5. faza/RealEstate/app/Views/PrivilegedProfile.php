@@ -98,7 +98,7 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-12">
-                      <a class="btn btn-info " href="advertisments.html" style="width: 100%; ">Pogledaj svoje oglase kao gost</a>
+                      <a class="btn btn-info " href="Privilegeduser/advertisements" style="width: 100%; ">Pogledaj svoje oglase</a>
                     </div>
                   </div>
                   <hr>

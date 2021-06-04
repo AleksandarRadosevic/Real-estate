@@ -15,7 +15,7 @@ class Privilegeduser extends BaseController
                 echo view('PrivilegedProfile',['user'=>$user]);
 	}
         
-            
+        
     
     public function addAdvertisement(){
             $data=[];
@@ -166,7 +166,7 @@ class Privilegeduser extends BaseController
       
   }
 
-	public function updateAdvertisement(){
+	public function updateAdvertisement($updateId){
                 $user=$this->session->get('User');
                 if ($user['Type']!='privileged'){                   
                 return redirect()->to(site_url('Home'));
@@ -377,6 +377,68 @@ $result = $hastag->where('IdAd', 2)
              
         }
      
+        public function advertisements(){
+            $user=$this->session->get('User');
+                if ($user['Type']!='privileged'){                   
+                return redirect()->to(site_url('Home'));
+                }
+                    $sql="select * from advertisement where IdOwner=".$user['Id'];
+                    $db = \Config\Database::connect();
+                    $values=$db->query($sql);
+                    $numberOfRows=count($values->getResult());
+                    echo view('userAdvertisements',['values'=>$values,'numberOfRows'=>$numberOfRows]);
+                  
+        }
+        
+        public function changeAdvertisements() {
+            $user=$this->session->get('User');
+                if ($user['Type']!='privileged'){                   
+                return redirect()->to(site_url('Home'));
+                }
+                 else {
+                    //check if adding advertisements is prohibited                   
+                    $sql="Select * from prohibition where IdA=1 And IdU=".$user['Id'];
+                    $db = \Config\Database::connect();
+                    $p=$db->query($sql);
+                    if (sizeof($p->getResult())>0){
+                        $message="Zabranjeno azuriranje oglasa!";
+                        echo "<script>alert('$message');"
+                                . "window.location='/Privilegeduser'</script>";
+                    }
+                }
+                if ($this->request->getMethod()=="post"){
+            $ad=new \App\Models\adModel();
+            $ads=$ad->where('IdOwner',$user['Id'])->findAll();
+            foreach ($ads as $temp){
+                if (isset($_POST['BDId'.$temp['Id']])){    
+                    
+                    //delete images from folder if exists                   
+                    $dirname="assets/userImages/Advertisement".$temp['Id'];
+                    if (file_exists($dirname)){
+                    array_map('unlink', glob("$dirname/*.*"));
+                    rmdir($dirname);
+                    }
+                    $ad->where('Id',$temp['Id'])->delete();      
+                    $sqlforTags="Delete from hasTag where IdAd=".$temp['Id'];
+                    $sqlForPictures="Delete from image where IdAd=".$temp['Id'];
+                    $sqlComments="Delete from comment where IdAd=".$temp['Id'];
+                    $sqlFavorites="Delete from favorites where IdAd=".$temp['Id'];
+                    $db = \Config\Database::connect();
+                    $db->query($sqlforTags);
+                    $db->query($sqlFavorites);
+                    $db->query($sqlForPictures);
+                    $db->query($sqlComments);         
+                    break;
+                }
+                else if (isset($_POST['BAId'.$temp['Id']])){
+                    $first=1;
+                    $this->updateAdvertisement($temp['Id']);
+                }
+            }
+            return redirect()->to(site_url('Privilegeduser/advertisements'));
+                }
+                
+        }
         public function logout(){
         $this->session->destroy();
         return redirect()->to("/../../index.html");
