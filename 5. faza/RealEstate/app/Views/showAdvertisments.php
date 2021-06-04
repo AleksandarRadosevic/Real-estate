@@ -45,6 +45,9 @@
              <div class="col col-sm-12 alert alert-danger text-center" style="padding-top:3%; font-size: 20pt;">Nema rezultata za datu pretragu</div>
           
              <?php }
+             else {?>
+                 <div class="col col-sm-12 alert alert-success text-center" style="padding-top:3%; font-size: 10pt;">Rezultati pretrage</div>
+            <?php }
              foreach ($values->getResult() as $row){
                  $cntAdvertisment=$cntAdvertisment+1;
                 $db = \Config\Database::connect();
@@ -56,7 +59,7 @@
                      break;
                     }  
                  ?>
-            <div class="row gutters-sm" style="margin-left: 2%; margin-right:2% ;padding-top: 3%;">
+            <div class="row gutters-sm" style="margin-left: 2%; margin-right:2% ;padding-top: 2%;">
                 <div class="col-md-12 ">
                                    
                   <div class="card">
