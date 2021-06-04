@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,7 +13,7 @@
     <title>Prototip</title>
     
 </head>
-<body>
+<body><form id="my_form" method="get" action="Add">
     <nav>
      
       
@@ -37,44 +37,44 @@
       <div class="containter">
        <main style="margin-top:0% !important;">     
          <section class="glass">
-             <?php foreach ($values->getResult() as $row){
+             <?php $cntAdvertisment=0;
+             echo $numRows=count($values->getResult());
+
+             foreach ($values->getResult() as $row){
+                 $cntAdvertisment=$cntAdvertisment+1;
                 $db = \Config\Database::connect();
                  $images=$db->query("Select * from image where IdAd=".$row->Id);
                  $image=null;
-                 $i=0;
-                 foreach($images->getResult() as $tempCnt){
-                     if ($i==0)
+              
+                 foreach($images->getResult() as $tempCnt){                 
                          $image=$tempCnt;
                      break;
                     }  
                  ?>
             <div class="row gutters-sm" style="margin-left: 2%; margin-right:2% ;padding-top: 3%;">
                 <div class="col-md-12 ">
-                    <a href="javascript:{}" onclick="document.getElementById('my_form').submit();" style="text-decoration-line:none">
-                        <input type="hidden" value="<?php echo $row->Id;?>">
+                                   
                   <div class="card">
-                    <div class="card-body">
-                      
-                          
+                    <div class="card-body">                                             
                           <div class="row">
                           <div class="col-lg-4 col-sm-12 ">
-                          <?php if ($image==null){
-                             echo'<div style="text-align:center;background-color:lightgray; width:100%; height:100%;" > </div>';
-                          }
-                          else {?>
+                          <?php if ($image==null){?>
+                              <div style="background-color:lightgray; width: 100%; height:100%;">
+                                  <h5 style="padding-top:20%;text-align: center">Nema slike</h5>
+                              </div>                          
+                          <?php } else {?>
                               <img src="/assets/userImages/User<?php echo $row->IdOwner.'/'.$image->filename;?>" width="100%">
                          
-                           <?php }?>
-            
-                          
-                         
+                           <?php }
+                           ?>
+        
                         </div>
                           <div class="col-lg-8 col-sm-12">
 
                           <table class="table table-light table-striped">
                             <tr>
-                                <td colspan="2"><b><?php echo $row->Topic;?></b></td>
-                             
+                                <td><b><?php echo $row->Topic;?></b></td> 
+                                <td><input class="btn btn-primary" type="submit" name="BId<?php echo $row->Id;?>" value="Pogledaj oglas"></td>
                             </tr>
                               <tr>
                                   <td>Kvadratura</td>
@@ -94,21 +94,18 @@
                            </div>          
                     </div>
                     </div>
-                    </a>
                 </div>
             </div>            
             <?php }?>
+             <?php $numPages=intdiv($numRows,10);  ?>
           
             <ul class="pagination" style="padding-left: 40%; margin-top: 5%;">
                 <li class="page-item"><a class="pagelink" href="#">Prethodna</a></li>&nbsp &nbsp
-                <li class="page-item"><a class="pagelink" href="#">1</a></li> &nbsp&nbsp
-                <li class="page-item active"><a class="pagelink" href="#">2</a></li> &nbsp&nbsp
-                <li class="page-item"><a class="pagelink" href="#">3</a></li> &nbsp &nbsp
                 <li class="page-item"><a class="pagelink" href="#">Sledeca</a></li>
                </ul>
          </section>
      </main>
      </div>
-     </form>
+           </form>
      </body>
 </html> 
