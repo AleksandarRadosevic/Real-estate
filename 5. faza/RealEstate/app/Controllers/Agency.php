@@ -19,8 +19,8 @@ class Agency extends BaseController
             helper(['form']);
              $user=$this->session->get('User');
                 if ($user['Type']!='Agency'){
-                    echo 'greska';
-                return ;
+                    
+                return redirect()->to(site_url('Home'));
                 }
                 else {
                     $proh=new \App\Models\ProhibitionUserModel();
