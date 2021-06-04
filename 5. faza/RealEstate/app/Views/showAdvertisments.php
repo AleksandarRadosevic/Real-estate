@@ -33,10 +33,9 @@
            <div class="line3"></div>
        </div>
    </nav>
-   
+    <form name='my_form' method='post' action='Guest/Add'>
       <div class="containter">
-       <main style="margin-top:0% !important;">
-      
+       <main style="margin-top:0% !important;">     
          <section class="glass">
              <?php foreach ($values->getResult() as $row){
                 $db = \Config\Database::connect();
@@ -46,12 +45,13 @@
                  foreach($images->getResult() as $tempCnt){
                      if ($i==0)
                          $image=$tempCnt;
-                     $i=$i+1;
+                     break;
                     }  
                  ?>
             <div class="row gutters-sm" style="margin-left: 2%; margin-right:2% ;padding-top: 3%;">
                 <div class="col-md-12 ">
-                    <a href="PregledOglasa.html" style="text-decoration-line:none">
+                    <a href="javascript:{}" onclick="document.getElementById('my_form').submit();" style="text-decoration-line:none">
+                        <input type="hidden" value="<?php echo $row->Id;?>">
                   <div class="card">
                     <div class="card-body">
                       
@@ -59,10 +59,10 @@
                           <div class="row">
                           <div class="col-lg-4 col-sm-12 ">
                           <?php if ($image==null){
-                             echo'<div style="background-color:black;" width="100%"></div>';
+                             echo'<div style="text-align:center;background-color:lightgray; width:100%; height:100%;" > </div>';
                           }
                           else {?>
-                              <img src="/assets/userImages/User<?php echo $row->IdOwner.'/'.$image->filename;?>" width="100%">;
+                              <img src="/assets/userImages/User<?php echo $row->IdOwner.'/'.$image->filename;?>" width="100%">
                          
                            <?php }?>
             
@@ -78,7 +78,7 @@
                             </tr>
                               <tr>
                                   <td>Kvadratura</td>
-                                  <td><?php echo $row->Id;?></td>
+                                  <td><?php echo $row->Size;?></td>
                               </tr>
                               <tr>
                                   <td>Cena</td>
@@ -96,8 +96,9 @@
                     </div>
                     </a>
                 </div>
-            </div>
+            </div>            
             <?php }?>
+          
             <ul class="pagination" style="padding-left: 40%; margin-top: 5%;">
                 <li class="page-item"><a class="pagelink" href="#">Prethodna</a></li>&nbsp &nbsp
                 <li class="page-item"><a class="pagelink" href="#">1</a></li> &nbsp&nbsp
@@ -108,5 +109,6 @@
          </section>
      </main>
      </div>
+     </form>
      </body>
 </html> 

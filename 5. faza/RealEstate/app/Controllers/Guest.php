@@ -293,6 +293,11 @@ class Guest extends BaseController
             echo view('showAdvertisments');
         }
         public function Add(){
+            echo 'dadadaa';
+            if ($this->request->getMethod()=='get'){
+                echo 'dada';
+                return;
+            }
             echo view('oneAdvertisment');
         }
 }
