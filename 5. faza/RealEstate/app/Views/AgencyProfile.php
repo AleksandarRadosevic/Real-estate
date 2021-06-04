@@ -104,13 +104,13 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-12">
-                      <a class="btn btn-info " href="dodajOglas.html" style="width: 100%; ">Dodaj novi oglas</a>
+                      <a class="btn btn-info " href="Agency/addAdvertisement" style="width: 100%; ">Dodaj novi oglas</a>
                     </div>
                   </div>
                   <hr>
                   <div class="row">
                     <div class="col-sm-12">
-                      <a class="btn btn-info " href="azurirajObrisi.html" style="width:100%; ">Ažuriraj oglas</a>
+                        <a class="btn btn-info " href="Agency/updateAdvertisement" style="width:100%; ">Ažuriraj oglas</a>
                     </div>
                   </div>
                   <hr>
