@@ -8,27 +8,34 @@ class Agency extends BaseController
 {
 	public function index()
 	{
-            
+                $user=$this->session->get('User');
+                if ($user['Type']!='agency'){                   
+                return redirect()->to(site_url('Home'));
+                }
                 $user=$this->session->get('User');
 		echo view('AgencyProfile',['user'=>$user]);
 	}
         
     public function addAdvertisement(){
-            $data=[];
-            
+            $data=[];           
             helper(['form']);
+            
+            
              $user=$this->session->get('User');
-                if ($user['Type']!='Agency'){
-                    
+                if ($user['Type']!='agency'){                   
                 return redirect()->to(site_url('Home'));
                 }
+                
                 else {
-                    $proh=new \App\Models\ProhibitionUserModel();
-                    $p=$proh->where("IdU",$user['Id'])->find();
-                    if ($p!=null){
+                    //check if adding advertisements is prohibited
+                    
+                    $sql="Select * from prohibition where IdA=1 And IdU=".$user['Id'];
+                    $db = \Config\Database::connect();
+                    $p=$db->query($sql);
+                    if (sizeof($p->getResult())>0){
                         $message="Zabranjeno dodavanje oglasa!";
-                        echo "<script>alert('$message')</script>";
-                        return redirect()->to(site_url('Agency'));
+                        echo "<script>alert('$message');"
+                                . "window.location='/Agency'</script>";
                     }
                 }
               
@@ -94,7 +101,23 @@ class Agency extends BaseController
  
        public function upload()
        {
- 
+                $user=$this->session->get('User');
+                if ($user['Type']!='agency'){                   
+                return redirect()->to(site_url('Home'));
+                }
+                 else {
+                    //check if adding advertisements is prohibited
+                    
+                    $sql="Select * from prohibition where IdA=1 And IdU=".$user['Id'];
+                    $db = \Config\Database::connect();
+                    $p=$db->query($sql);
+                    if (sizeof($p->getResult())>0){
+                        $message="Zabranjeno dodavanje slika!";
+                        echo "<script>alert('$message');"
+                                . "window.location='/Agency'</script>";
+                    }
+                }
+                
          // If upload button is clicked ...
         if (isset($_POST['upload'])) {
       
@@ -145,7 +168,22 @@ class Agency extends BaseController
   }
 
 	public function updateAdvertisement(){
-                       
+                 $user=$this->session->get('User');
+                 if ($user['Type']!='agency'){                   
+                return redirect()->to(site_url('Home'));
+                }
+                 else {
+                    //check if adding advertisements is prohibited
+                    
+                    $sql="Select * from prohibition where IdA=1 And IdU=".$user['Id'];
+                    $db = \Config\Database::connect();
+                    $p=$db->query($sql);
+                    if (sizeof($p->getResult())>0){
+                        $message="Zabranjeno azuriranje oglasa!";
+                        echo "<script>alert('$message');"
+                                . "window.location='/Agency'</script>";
+                    }
+                }
 
 $id=2;
 $advertisment=new adModel();
