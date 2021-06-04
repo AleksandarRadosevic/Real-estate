@@ -18,14 +18,10 @@
 <body>
   <nav>
      <div class="logo"><h4><a href='../index.html'>Success</a></h4></div>
-     <ul class="nav-links">
-       <li><a href='../index.html' class="btn" style="background-color: rgb(33, 74, 255);">Početna stranica</a href></li>
-       <li><a href='pretraga.html' class="btn" style="background-color: rgb(33, 74, 255);">Pretraga</a href></li>
-       <li><a href='#'class="btn" style="background-color: rgb(33, 74, 255);">Oglasi</a href></li>
-       <li><a href='#'class="btn" style="background-color: rgb(33, 74, 255);">O nama</a href></li>
-       <li><a href='login' class='btn btn-success'>Prijavite se</a href></li>
-       <li><a href='register' class='btn btn-danger'>Registrujte se</a></a href></li>
-     </ul>
+        <div class="logo"id="logo2">
+               <a href='Pregled.html' id="myProf"><div class="btn btn-success">Moj profil</div></a href>&nbsp;
+               <a href='Registereduser/logout' ><div class="btn btn-danger">Odjavi se</div></a href>
+               </div>
   
      <div class="hidden-menu">
          <div class="line1"></div>
