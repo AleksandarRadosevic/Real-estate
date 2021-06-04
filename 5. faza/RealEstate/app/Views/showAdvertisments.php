@@ -13,7 +13,7 @@
     <title>Prototip</title>
     
 </head>
-<body><form id="my_form"method="post" action="Add">
+<body><form id="my_form" method="get" action="Add">
     <nav>
      
       
@@ -54,9 +54,7 @@
                  ?>
             <div class="row gutters-sm" style="margin-left: 2%; margin-right:2% ;padding-top: 3%;">
                 <div class="col-md-12 ">
-                    
-                  <a href="javascript:{}" onclick="document.getElementById('my_form').submit(); return false;"style="text-decoration-line:none;">
-                      
+                                   
                   <div class="card">
                     <div class="card-body">                                             
                           <div class="row">
@@ -68,16 +66,16 @@
                           <?php } else {?>
                               <img src="/assets/userImages/User<?php echo $row->IdOwner.'/'.$image->filename;?>" width="100%">
                          
-                           <?php }?>
-                              <input type="hidden" name="Id<?php echo $row->Id;?>" value="<?php echo $row->Id;?>">
-                          
-                         
+                           <?php }
+                           ?>
+        
                         </div>
                           <div class="col-lg-8 col-sm-12">
 
                           <table class="table table-light table-striped">
                             <tr>
-                                <td colspan="2"><b><?php echo $row->Topic;?></b></td>                            
+                                <td><b><?php echo $row->Topic;?></b></td> 
+                                <td><input class="btn btn-primary" type="submit" name="BId<?php echo $row->Id;?>" value="Pogledaj oglas"></td>
                             </tr>
                               <tr>
                                   <td>Kvadratura</td>
@@ -97,7 +95,6 @@
                            </div>          
                     </div>
                     </div>
-                    </a>
                 </div>
             </div>
             <?php }?>

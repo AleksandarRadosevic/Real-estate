@@ -38,48 +38,14 @@
      <main style="margin-top:0% !important;">
     
        <section class="glass">
-    
-     <!--   <div class="slidershow middle" style="width: 45%; height: 40%; margin-left: -15%;">
-
-          <div class="slides">
-            <input type="radio" name="r" id="r1" checked="">
-            <input type="radio" name="r" id="r2">
-            <input type="radio" name="r" id="r3">
-            <input type="radio" name="r" id="r4">
-            <input type="radio" name="r" id="r5">
-            <div class="slide s1">
-              <img src="images/novisad.jpg" alt="">
-            </div>
-            <div class="slide">
-              <img src="images/slikaZaProjekat1.jpg" alt="">
-            </div>
-            <div class="slide">
-              <img src="images/slikaZaProjekat2.jpg" alt="">
-            </div>
-            <div class="slide">
-              <img src="images/slikaZaProjekat3.jpg" alt="">
-            </div>
-            <div class="slide">
-              <img src="images/slikaZaProjekat4.jpg" alt="">
-            </div>
-          </div>
-    
-          <div class="navigation">
-            <label for="r1" class="bar"></label>
-            <label for="r2" class="bar"></label>
-            <label for="r3" class="bar"></label>
-            <label for="r4" class="bar"></label>
-            <label for="r5" class="bar"></label>
-          </div>
-        </div>
-      --> <div class="row">
+        <h2 style="color:black; margin-top: 5%; margin-left: 5%;"><?php echo $ad['Topic']; ?></h2>
+       <div class="row">
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width: 50%; margin-left:5%">
         <ol class="carousel-indicators">
             <?php $j=0;
         foreach ($pictures as $pic){
         if ($j==0){
-            echo'<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>';
-            
+            echo'<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>';           
         }
         else {
             echo'<li data-target="#carouselExampleIndicators" data-slide-to="$j"></li>';
@@ -91,12 +57,12 @@
             foreach($pictures as $image){
                 if ($i==0){?>
                 <div class="carousel-item active">
-                <img class="d-block w-100" src="/assets/userImages/User<?php echo $owner['Id'].'/'.$image['filename'];?>" alt="First slide">
+                <img class="d-block w-100" src="/assets/userImages/User<?php echo $owner['Id'].'/'.$image['filename'];?>">
                 </div>             
                <?php $i=1;}
              else { ?>
                  <div class="carousel-item">
-                <img class="d-block w-100" src="/assets/userImages/User<?php echo $owner['Id'].'/'.$image['filename'];?>" alt="First slide"></div>   
+                <img class="d-block w-100" src="/assets/userImages/User<?php echo $owner['Id'].'/'.$image['filename'];?>"></div>   
                             <?php }}?>
                   </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -107,7 +73,7 @@
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
-
+ </div>
       <div class="col-xl-5 col-md-12">
         <div class="card mb-3">
           <div class="card-body">
@@ -116,7 +82,7 @@
                 <h6 class="mb-0">Cena</h6>
               </div>
               <div class="col-sm-9 text-secondary">
-               <?php echo $temp['Price'];?>
+               <?php echo $ad['Price'];?>
               </div>
             </div>
             <hr>
@@ -125,7 +91,7 @@
                 <h6 class="mb-0">Kvadratura</h6>
               </div>
               <div class="col-sm-9 text-secondary">
-                <?php echo $temp['Size'];?>
+                <?php echo $ad['Size'];?>
               </div>
             </div>
             <hr>
@@ -134,7 +100,7 @@
                 <h6 class="mb-0">Tip nekretnine</h6>
               </div>
               <div class="col-sm-9 text-secondary">
-                <?php echo $temp['RealEstateType'];?>
+                <?php echo $ad['RealEstateType'];?>
               </div>
             </div>
             <hr>
@@ -173,9 +139,9 @@
               <div class="card">
                 <div class="card-body">
                   
-                      <h4><?php echo $temp['Topic']; ?></h4>
+                      <h4><?php echo $ad['Topic']; ?></h4>
                       
-                      <p><?php echo $temp['Description']; ?></p>
+                      <p><?php echo $ad['Description']; ?></p>
                       
                     </div>
                   </div>

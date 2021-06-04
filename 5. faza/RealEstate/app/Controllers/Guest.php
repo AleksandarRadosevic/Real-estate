@@ -286,29 +286,20 @@ class Guest extends BaseController
             echo view('showAdvertisments');
         }
         public function Add(){
-            if ($this->request->getMethod()=='post'){
-                echo 'da';
+            if ($this->request->getMethod()=='get'){
+           
             $ad=new adModel();
             $ads=$ad->findAll();
             foreach ($ads as $temp){
-                if (isset($_POST['Id'.$temp['Id']])){
+                if (isset($_GET['BId'.$temp['Id']])){
                     $own=new UserModel();
                     $owner=$own->find($temp['IdOwner']);
                     $pl=new \App\Models\MunicipalityModel();
                     $place=$pl->find($temp['IdPlace']);
-                    $pics=new \App\Models\ImageModel();
-                    $db = \Config\Database::connect();
-                    $sqlPictures="Select * from image where IdAd=".$temp['Id'];
-                    $pictures=$db->query($sqlPictures);
-                    echo $temp['Id'];
-                    foreach ($pictures->getResult() as $image){
-                        echo $image->filename;
-                    }
-   foreach ($pictures->getResult() as $image){
-                        echo $image->filename;
-                    }
-                    return;
-                    echo view('oneAdvertisment',['temp'=>$temp,'owner'=>$owner,'place'=>$place,'pictures'=>$pictures]);
+                    $pics=new \App\Models\ImageModel();                  
+                    $pictures=$pics->where('IdAd',$temp['Id'])->findAll();  
+          
+                    echo view('oneAdvertisment',['ad'=>$temp,'owner'=>$owner,'place'=>$place,'pictures'=>$pictures]);
                 }
             }
             }
