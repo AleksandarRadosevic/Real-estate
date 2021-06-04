@@ -64,7 +64,7 @@
                                   <h5 style="padding-top:20%;text-align: center">Nema slike</h5>
                               </div>                          
                           <?php } else {?>
-                              <img src="/assets/userImages/User<?php echo $row->IdOwner.'/'.$image->filename;?>" width="100%">
+                              <img src="/assets/userImages/Advertisement<?php echo $row->Id.'/'.$image->filename;?>" width="100%">
                          
                            <?php }
                            ?>
@@ -74,7 +74,7 @@
 
                           <table class="table table-light table-striped">
                             <tr>
-                                <td><b><?php echo $row->Topic;?></b></td> 
+                                <td><b><?php echo $row->Id;?></b></td> 
                                 <td><input class="btn btn-primary" type="submit" name="BId<?php echo $row->Id;?>" value="Pogledaj oglas"></td>
                             </tr>
                               <tr>

@@ -57,12 +57,12 @@
             foreach($pictures as $image){
                 if ($i==0){?>
                 <div class="carousel-item active">
-                <img class="d-block w-100" src="/assets/userImages/User<?php echo $owner['Id'].'/'.$image['filename'];?>">
+                <img class="d-block w-100" src="/assets/userImages/Advertisement<?php echo $ad['Id'].'/'.$image['filename'];?>">
                 </div>             
                <?php $i=1;}
              else { ?>
                  <div class="carousel-item">
-                <img class="d-block w-100" src="/assets/userImages/User<?php echo $owner['Id'].'/'.$image['filename'];?>"></div>   
+                <img class="d-block w-100" src="/assets/userImages/Advertisement<?php echo $ad['Id'].'/'.$image['filename'];?>"></div>   
                             <?php }}?>
                   </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
