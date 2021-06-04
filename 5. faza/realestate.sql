@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 03, 2021 at 10:39 AM
+-- Generation Time: Jun 04, 2021 at 06:48 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -32,7 +32,7 @@ USE `realestate`;
 DROP TABLE IF EXISTS `activity`;
 CREATE TABLE IF NOT EXISTS `activity` (
   `Id` int(18) NOT NULL AUTO_INCREMENT,
-  `Name` char(18) DEFAULT NULL,
+  `Name` char(18) CHARACTER SET latin2 COLLATE latin2_croatian_ci DEFAULT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
@@ -77,33 +77,38 @@ CREATE TABLE IF NOT EXISTS `advertisement` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Time` timestamp(6) NULL DEFAULT CURRENT_TIMESTAMP(6),
   `Price` int(11) DEFAULT NULL,
-  `Topic` varchar(20) DEFAULT NULL,
-  `Size` char(18) DEFAULT NULL,
-  `Address` char(18) DEFAULT NULL,
+  `Topic` varchar(20) CHARACTER SET latin2 COLLATE latin2_croatian_ci DEFAULT NULL,
+  `Size` int(18) DEFAULT NULL,
+  `Address` char(30) CHARACTER SET latin2 COLLATE latin2_croatian_ci DEFAULT NULL,
   `IdPlace` int(11) NOT NULL,
-  `Description` char(200) DEFAULT NULL,
+  `Description` char(200) CHARACTER SET latin2 COLLATE latin2_croatian_ci DEFAULT NULL,
   `Purpose` varchar(20) NOT NULL,
-  `RealEstateType` varchar(30) NOT NULL,
+  `RealEstateType` varchar(30) CHARACTER SET latin2 COLLATE latin2_croatian_ci NOT NULL,
   PRIMARY KEY (`Id`),
   KEY `R_8` (`IdOwner`),
   KEY `R_12` (`IdPlace`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `advertisement`
 --
 
 INSERT INTO `advertisement` (`IdOwner`, `Id`, `Time`, `Price`, `Topic`, `Size`, `Address`, `IdPlace`, `Description`, `Purpose`, `RealEstateType`) VALUES
-(81, 16, '2021-06-02 16:35:10.203169', 90000, 'Oglas5', '100', 'Aljehinova 6', 2, '', 'izdavanje', 'kuca'),
-(81, 15, '2021-06-02 15:37:08.411238', 80000, 'Oglas3', '111', 'Aljehinova 6', 2, '', 'prodaja', 'stan'),
-(81, 14, '2021-06-02 15:26:12.194562', 100000, 'Oglas2', '121', 'Aljehinova 6', 1, '', 'prodaja', 'kuca'),
-(81, 7, '2021-06-02 15:04:40.561724', 123456, 'Hej vest', '100', 'Aljehinova 6', 3, 'Dobar stan', 'izdavanje', 'kuca'),
-(81, 8, '2021-06-02 15:06:17.917764', 123456, 'Hej vest', '100', 'Aljehinova 6', 3, 'Dobar stan', 'izdavanje', 'kuca'),
-(81, 9, '2021-06-02 15:11:24.641661', 94000, 'Oglas1', '56', 'Vojvode Stepe 120', 7, 'Stan dobro pozicio', 'izdavanje', 'kuca'),
-(81, 10, '2021-06-02 15:11:53.198138', 94000, 'Oglas1', '56', 'Vojvode Stepe 120', 7, 'Stan dobro pozicio', 'izdavanje', 'kuca'),
-(81, 11, '2021-06-02 15:12:08.091619', 94000, 'Oglas1', '56', 'Vojvode Stepe 120', 7, 'Stan dobro pozicio', 'izdavanje', 'kuca'),
-(81, 12, '2021-06-02 15:12:24.105735', 94000, 'Oglas1', '56', 'Vojvode Stepe 120', 7, 'Stan dobro pozicio', 'izdavanje', 'kuca'),
-(81, 13, '2021-06-02 15:13:27.895733', 94000, 'Oglas1', '56', 'Vojvode Stepe 120', 7, 'Stan dobro pozicio', 'izdavanje', 'kuca');
+(81, 16, '2021-06-02 16:35:10.203169', 90000, 'Oglas5', 100, 'Aljehinova 6', 2, 'Ovo je mnogo dobar stan mnogo dobro grejanje djakuzi', 'izdavanje', 'Kuća'),
+(81, 15, '2021-06-02 15:37:08.411238', 80000, 'Oglas3', 111, 'Aljehinova 6', 2, '', 'prodaja', 'Stan'),
+(81, 14, '2021-06-02 15:26:12.194562', 100000, 'Oglas2', 121, 'Aljehinova 6', 1, '', 'prodaja', 'Kuća'),
+(81, 18, '2021-06-03 14:43:42.032540', 231312, 'fasdsfad', 321, 'Cerski Venac', 1, '', 'izdavanje', 'Kuća'),
+(81, 17, '2021-06-03 14:36:04.601572', 100000, 'NoviOglas', 200, 'Vracarska 120', 8, 'To je jako lepo stan', 'izdavanje', 'Stan'),
+(81, 9, '2021-06-02 15:11:24.641661', 94000, 'Oglas1', 56, 'Vojvode Stepe 120', 7, 'Stan dobro pozicio', 'izdavanje', 'Kuća'),
+(81, 10, '2021-06-02 15:11:53.198138', 94000, 'Oglas1', 56, 'Vojvode Stepe 120', 7, 'Stan dobro pozicio', 'izdavanje', 'Stan'),
+(81, 11, '2021-06-02 15:12:08.091619', 94000, 'Oglas1', 56, 'Vojvode Stepe 120', 7, 'Stan dobro pozicio', 'izdavanje', 'Stan'),
+(81, 12, '2021-06-02 15:12:24.105735', 94000, 'Oglas1', 56, 'Vojvode Stepe 120', 7, 'Stan dobro pozicio', 'izdavanje', 'Stan'),
+(81, 13, '2021-06-02 15:13:27.895733', 94000, 'Oglas1', 20, 'Vojvode Stepe 120', 7, 'Stan dobro pozicio', 'izdavanje', 'Garaža'),
+(92, 19, '2021-06-03 17:24:45.461869', 70000, 'Stan na brdu', 80, 'Savski venac 4', 5, 'Dobar stan lep uknjizen', 'prodaja', 'Stan'),
+(81, 20, '2021-06-04 10:29:32.498922', 800000, 'Lux stan Beograd', 88, 'Savski venac 4', 1, 'dobar stan', 'prodaja', 'Stan'),
+(81, 21, '2021-06-04 10:36:26.623577', 999999, 'Oglas33', 321, 'Aljehinova 6', 1, 'fsafdasfdasfads', 'izdavanje', 'Kuća'),
+(81, 22, '2021-06-04 10:38:49.687625', 999999, 'Oglas33', 321, 'Aljehinova 6', 1, 'fsafdasfdasfads', 'izdavanje', 'Kuća'),
+(81, 23, '2021-06-04 18:37:40.172302', 55000, 'Stan na Ceraku', 55, 'Vinogradski Venac', 1, '', 'prodaja', 'stan');
 
 -- --------------------------------------------------------
 
@@ -114,7 +119,7 @@ INSERT INTO `advertisement` (`IdOwner`, `Id`, `Time`, `Price`, `Topic`, `Size`, 
 DROP TABLE IF EXISTS `agency`;
 CREATE TABLE IF NOT EXISTS `agency` (
   `Id` int(11) NOT NULL,
-  `Name` varchar(20) DEFAULT NULL,
+  `Name` varchar(20) CHARACTER SET latin2 COLLATE latin2_croatian_ci DEFAULT NULL,
   `AverageMark` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -134,7 +139,7 @@ INSERT INTO `agency` (`Id`, `Name`, `AverageMark`) VALUES
 
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE IF NOT EXISTS `comment` (
-  `Description` varchar(200) DEFAULT NULL,
+  `Description` varchar(200) CHARACTER SET latin2 COLLATE latin2_croatian_ci DEFAULT NULL,
   `IdK` int(11) NOT NULL,
   `IdOglas` int(11) NOT NULL,
   `Time` timestamp NULL DEFAULT NULL,
@@ -204,7 +209,44 @@ INSERT INTO `hastag` (`IdAd`, `IdTag`) VALUES
 (16, 5),
 (16, 7),
 (16, 11),
-(16, 13);
+(16, 13),
+(17, 2),
+(17, 5),
+(17, 7),
+(17, 11),
+(17, 13),
+(18, 2),
+(18, 5),
+(18, 7),
+(18, 11),
+(18, 13),
+(19, 2),
+(19, 5),
+(19, 7),
+(19, 11),
+(19, 13),
+(20, 2),
+(20, 5),
+(20, 7),
+(20, 11),
+(20, 13),
+(21, 2),
+(21, 5),
+(21, 7),
+(21, 11),
+(21, 13),
+(22, 2),
+(22, 5),
+(22, 7),
+(22, 11),
+(22, 13),
+(23, 1),
+(23, 2),
+(23, 3),
+(23, 5),
+(23, 7),
+(23, 11),
+(23, 13);
 
 -- --------------------------------------------------------
 
@@ -219,21 +261,21 @@ CREATE TABLE IF NOT EXISTS `image` (
   `IdAd` int(11) DEFAULT NULL,
   PRIMARY KEY (`Id`),
   KEY `R_17` (`IdAd`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `image`
 --
 
 INSERT INTO `image` (`Id`, `filename`, `IdAd`) VALUES
-(1, '1.jpg', 81),
-(2, '2.jpg', 81),
-(3, '4.jpg', 81),
-(4, '4.jpg', 15),
-(5, '3.jpg', 15),
-(6, '1.jpg', 16),
-(7, '2.jpg', 16),
-(8, '3.jpg', 16);
+(30, '2.jpg', 23),
+(29, '4.jpg', 23),
+(28, '3.jpg', 23),
+(27, '4.jpg', 22),
+(26, '4.jpg', 20),
+(25, '1.jpg', 20),
+(31, '5.jpg', 23),
+(32, '1.jpg', 23);
 
 -- --------------------------------------------------------
 
@@ -296,8 +338,8 @@ INSERT INTO `municipality` (`Id`, `Name`, `City`) VALUES
 DROP TABLE IF EXISTS `privilegeduser`;
 CREATE TABLE IF NOT EXISTS `privilegeduser` (
   `Id` int(11) NOT NULL,
-  `Name` varchar(30) NOT NULL,
-  `Surname` varchar(30) NOT NULL,
+  `Name` varchar(30) CHARACTER SET latin2 COLLATE latin2_croatian_ci NOT NULL,
+  `Surname` varchar(30) CHARACTER SET latin2 COLLATE latin2_croatian_ci NOT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -329,7 +371,8 @@ CREATE TABLE IF NOT EXISTS `prohibition` (
 
 INSERT INTO `prohibition` (`IdA`, `IdU`) VALUES
 (1, 74),
-(2, 74);
+(2, 74),
+(2, 88);
 
 -- --------------------------------------------------------
 
@@ -351,7 +394,7 @@ CREATE TABLE IF NOT EXISTS `realestatetype` (
 INSERT INTO `realestatetype` (`Id`, `Name`) VALUES
 (1, 'Stan'),
 (2, 'Kuća'),
-(3, 'Garaza');
+(3, 'Garaža');
 
 -- --------------------------------------------------------
 
@@ -362,8 +405,8 @@ INSERT INTO `realestatetype` (`Id`, `Name`) VALUES
 DROP TABLE IF EXISTS `registereduser`;
 CREATE TABLE IF NOT EXISTS `registereduser` (
   `Id` int(11) NOT NULL,
-  `Name` varchar(30) NOT NULL,
-  `Surname` varchar(30) NOT NULL,
+  `Name` varchar(30) CHARACTER SET latin2 COLLATE latin2_croatian_ci NOT NULL,
+  `Surname` varchar(30) CHARACTER SET latin2 COLLATE latin2_croatian_ci NOT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -383,7 +426,7 @@ INSERT INTO `registereduser` (`Id`, `Name`, `Surname`) VALUES
 DROP TABLE IF EXISTS `tags`;
 CREATE TABLE IF NOT EXISTS `tags` (
   `IdTag` int(11) NOT NULL,
-  `Name` varchar(20) DEFAULT NULL,
+  `Name` varchar(20) CHARACTER SET latin2 COLLATE latin2_croatian_ci DEFAULT NULL,
   PRIMARY KEY (`IdTag`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -393,7 +436,7 @@ CREATE TABLE IF NOT EXISTS `tags` (
 
 INSERT INTO `tags` (`IdTag`, `Name`) VALUES
 (1, 'Potkrovlje'),
-(2, 'Uknjizen'),
+(2, 'Uknjižen'),
 (3, 'Hitna prodaja'),
 (4, 'Garaza'),
 (5, 'Lift'),
@@ -421,7 +464,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `Email` varchar(50) DEFAULT NULL,
   `Phone` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=MyISAM AUTO_INCREMENT=93 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=95 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
