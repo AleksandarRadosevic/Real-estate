@@ -126,7 +126,15 @@
           <br>
           <br>
           <br>
-       
+          <label>Usluga</label>
+          <input id="prodaja" type="radio" name="purpose" value="prodaja" style="margin-left: 7%;" checked>
+          <label for="prodaja">Prodaja</label>
+          <input id="izdavanje" type="radio" name="purpose" value="izdavanje" style="margin-left: 18;">
+          <label for="izdavanje">Izdavanje</label>
+          <br>
+          <br>
+          <br>
+          <br>
           <button class="btn btn-success searchButton" type="submit">Pretraga<img id="lupa" src="/assets/images/lupa.png" alt="Lupa"></button>
        
           </form>

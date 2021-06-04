@@ -39,8 +39,15 @@
       
          <section class="glass">
              <?php $cntAdvertisment=0;
-             echo $numRows=count($values->getResult());
-
+             $numRows=count($values->getResult());
+             if ($numRows==0){ ?>
+            
+             <div class="col col-sm-12 alert alert-danger text-center" style="padding-top:3%; font-size: 20pt;">Nema rezultata za datu pretragu</div>
+          
+             <?php }
+             else {?>
+                 <div class="col col-sm-12 alert alert-success text-center" style="padding-top:3%; font-size: 10pt;">Rezultati pretrage</div>
+            <?php }
              foreach ($values->getResult() as $row){
                  $cntAdvertisment=$cntAdvertisment+1;
                 $db = \Config\Database::connect();
@@ -52,7 +59,7 @@
                      break;
                     }  
                  ?>
-            <div class="row gutters-sm" style="margin-left: 2%; margin-right:2% ;padding-top: 3%;">
+            <div class="row gutters-sm" style="margin-left: 2%; margin-right:2% ;padding-top: 2%;">
                 <div class="col-md-12 ">
                                    
                   <div class="card">
@@ -60,11 +67,11 @@
                           <div class="row">
                           <div class="col-lg-4 col-sm-12 ">
                           <?php if ($image==null){?>
-                              <div style="background-color:lightgray; width: 100%; height:100%;">
-                                  <h5 style="padding-top:20%;text-align: center">Nema slike</h5>
-                              </div>                          
+                              
+                                  <img class="img-fluid" src="/assets/images/noImage5.png" style="width:100%; height: 100%;">
+                                              
                           <?php } else {?>
-                              <img src="/assets/userImages/Advertisement<?php echo $row->Id.'/'.$image->filename;?>" width="100%">
+                              <img class="img-fluid" src="/assets/userImages/Advertisement<?php echo $row->Id.'/'.$image->filename;?>">
                          
                            <?php }
                            ?>
@@ -74,20 +81,20 @@
 
                           <table class="table table-light table-striped">
                             <tr>
-                                <td><b><?php echo $row->Id;?></b></td> 
-                                <td><input class="btn btn-primary" type="submit" name="BId<?php echo $row->Id;?>" value="Pogledaj oglas"></td>
+                                <td><b><?php echo $row->Topic;?></b></td> 
+                                <td class="text-right"><input class="btn btn-primary" type="submit" name="BId<?php echo $row->Id;?>" value="Pogledaj oglas"></td>
                             </tr>
                               <tr>
                                   <td>Kvadratura</td>
-                                  <td><?php echo $row->Size;?></td>
+                                  <td class="text-right"><?php echo $row->Size;?></td>
                               </tr>
                               <tr>
                                   <td>Cena</td>
-                                  <td><?php echo $row->Price;?></td>
+                                  <td class="text-right"><?php echo $row->Price;?></td>
                               </tr>
                               <tr>
                                   <td>Adresa</td>
-                                  <td><?php echo $row->Address;?></td>
+                                  <td class="text-right"><?php echo $row->Address;?></td>
                               </tr>
                              
                           </table>
@@ -99,11 +106,7 @@
             </div>
             <?php }?>
              <?php $numPages=intdiv($numRows,10);  ?>
-          
-            <ul class="pagination" style="padding-left: 40%; margin-top: 5%;">
-                <li class="page-item"><a class="pagelink" href="#">Prethodna</a></li>&nbsp &nbsp
-                <li class="page-item"><a class="pagelink" href="#">Sledeca</a></li>
-               </ul>
+ 
          </section>
      </main>
      </div>
