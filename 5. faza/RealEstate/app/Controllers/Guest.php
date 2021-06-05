@@ -296,12 +296,21 @@ class Guest extends BaseController
             echo view('showAdvertisments',['values'=>$values,'numberOfRows'=>$numberOfRows]);
         }
         public function Add(){
-            if ($this->request->getMethod()=='get'){
+            
+            $idsearchAdd=-1;
+            $user=$this->session->get('User');
+            if ($user!=null){
+                $idsearchAdd=$user['Temp'];
+            }
+            
+            //if ($this->request->getMethod()=='get'){
            
             $ad=new adModel();
             $ads=$ad->findAll();
+           
+            
             foreach ($ads as $temp){
-                if (isset($_GET['BId'.$temp['Id']])){
+                if (isset($_GET['BId'.$temp['Id']]) || (!isset($_GET['BId'.$temp['Id']]) && $temp['Id']==$idsearchAdd)){
                     $own=new UserModel();
                     $owner=$own->find($temp['IdOwner']);
                     $pl=new \App\Models\MunicipalityModel();
@@ -315,14 +324,24 @@ class Guest extends BaseController
                         $user['Temp']=$temp['Id'];
                         $this->session->set('User',$user);
                     }
+                    else {
+                         $validationData=['Advertisement'=>$temp['Id']];
+                    }
                     echo view('oneAdvertisment',['ad'=>$temp,'owner'=>$owner,'place'=>$place,'pictures'=>$pictures,'tags'=>$tags]);
                 }
             }
-            }
+           // }
         }
         public function comment(){
-             $user=$this->session->get('User');           
-            if($this->request->getMethod()=='post'){
+             $user=$this->session->get('User');
+             if ($user==null)
+             {
+                 $message="Korisnik mora biti ulogovan da bi komentarisao!";
+                        echo "<script>alert('$message');"
+                                . "window.location='/Guest/login'</script>";
+                         return;
+             }
+            else if($this->request->getMethod()=='post'){
                 $data=[
                         'IdK'=>$user['Id'],
                         'Time'=>$_POST['time'],
