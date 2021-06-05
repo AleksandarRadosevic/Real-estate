@@ -307,10 +307,10 @@ class Guest extends BaseController
            
             $ad=new adModel();
             $ads=$ad->findAll();
-           
+            
             
             foreach ($ads as $temp){
-                if (isset($_GET['BId'.$temp['Id']]) || (!isset($_GET['BId'.$temp['Id']]) && $temp['Id']==$idsearchAdd)){
+                if (isset($_GET['BId'.$temp['Id']])){
                     $own=new UserModel();
                     $owner=$own->find($temp['IdOwner']);
                     $pl=new \App\Models\MunicipalityModel();
@@ -328,6 +328,28 @@ class Guest extends BaseController
                          $validationData=['Advertisement'=>$temp['Id']];
                     }
                     echo view('oneAdvertisment',['ad'=>$temp,'owner'=>$owner,'place'=>$place,'pictures'=>$pictures,'tags'=>$tags]);
+                    return;
+                }
+            }   foreach ($ads as $temp){
+                if (!isset($_GET['BId'.$temp['Id']]) && $temp['Id']==$idsearchAdd){
+                    $own=new UserModel();
+                    $owner=$own->find($temp['IdOwner']);
+                    $pl=new \App\Models\MunicipalityModel();
+                    $place=$pl->find($temp['IdPlace']);
+                    $pics=new \App\Models\ImageModel();                  
+                    $pictures=$pics->where('IdAd',$temp['Id'])->findAll();  
+                    $tag=new \App\Models\hasTagModel();
+                    $tags=$tag->where('IdAd',$temp['Id'])->findAll();
+                    $user=$this->session->get('User');
+                    if ($user!=null){
+                        $user['Temp']=$temp['Id'];
+                        $this->session->set('User',$user);
+                    }
+                    else {
+                         $validationData=['Advertisement'=>$temp['Id']];
+                    }
+                    echo view('oneAdvertisment',['ad'=>$temp,'owner'=>$owner,'place'=>$place,'pictures'=>$pictures,'tags'=>$tags]);
+                    return;
                 }
             }
            // }
