@@ -378,6 +378,54 @@ $result = $hastag->where('IdAd', 2)
              
         }
      
+                   public function izmena(){
+        $data=[];
+        helper(['form']);
+        $user=$this->session->get('User');
+        
+        if($this->request->getMethod()=='post'){
+            $data1=[
+                    'Id'=>$user['Id'],
+                    'Username'=>$_POST['korime'],
+                    'Password'=>$_POST['lozinka'],
+                    'Email'=>$_POST['email'],
+                    'Phone'=>$_POST['tel'],
+                    ];
+            $data2=[
+                'Id'=>$user['Id'],
+                'Name'=>$_POST['agencija'],
+                'AverageMark' => $user['AverageMark'],
+            ];
+                $noviuser=[
+                    'Id'=>$user['Id'],
+                    'Username'=>$_POST['korime'],
+                    'Email'=>$_POST['email'],
+                    'Phone'=>$_POST['tel'],
+                    'Name'=>$_POST['agencija'],
+                    'Type'=>$user['Type'],
+                    'AverageMark' => $user['AverageMark'],
+                    'Temp'=>''
+                ];
+                $user=$noviuser;
+                $db = \Config\Database::connect();
+                $id=$user['Id'];
+                $username=$user['Username'];
+                $password=$data1['Password'];
+                $email=$user['Email'];
+                $phone=$user['Phone'];
+                $name=$user['Name'];
+                $averageMark=$user['AverageMark'];
+                $sqlUpdate="Update user set Username='$username', Password='$password',Email='$email',Phone='$phone' where Id=$id";
+                $sqlUpdate2="Update agency set Name='$name',AverageMark='$averageMark' where Id=$id";
+                $db->query($sqlUpdate);
+                $db->query($sqlUpdate2);
+                $this->session->set('User',$user);
+                return redirect()->to(site_url('Agency'));
+            }
+        
+        echo view('izmena.php',['User'=>$user]);
+}
+        
         public function logout(){
         $this->session->destroy();
         return redirect()->to("/../../index.html");

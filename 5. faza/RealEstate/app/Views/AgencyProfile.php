@@ -92,7 +92,7 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-12">
-                      <a class="btn btn-info " href="register.html" style="width: 100%; ">Izmeni podatke</a>
+                      <a class="btn btn-info " href="Agency/izmena" style="width: 100%; ">Izmeni podatke</a>
                     </div>
                   </div>
                   <hr>

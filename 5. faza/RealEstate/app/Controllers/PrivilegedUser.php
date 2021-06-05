@@ -4,6 +4,8 @@ namespace App\Controllers;
 use App\Models\adModel;
 use App\Models\TagModel;
 use App\Models\hasTagModel;
+use App\Models\UserModel;
+use App\Models\PrivilegedUserModel;
 class Privilegeduser extends BaseController
 {
 	public function index()
@@ -17,7 +19,7 @@ class Privilegeduser extends BaseController
         
         
     
-    public function addAdvertisement(){
+        public function addAdvertisement(){
             $data=[];
             
             helper(['form']);
@@ -97,10 +99,8 @@ class Privilegeduser extends BaseController
             echo view('addAdvertisement.php');
           
         }
-               
 
- 
-       public function upload()
+        public function upload()
        {
                 $user=$this->session->get('User');
                 if ($user['Type']!='privileged'){                   
@@ -434,6 +434,53 @@ $db = mysqli_connect("localhost", "root", "", "realestate");
                 }
                 
         }
+           public function izmena(){
+        $data=[];
+        helper(['form']);
+        $user=$this->session->get('User');
+        
+        if($this->request->getMethod()=='post'){
+            $data1=[
+                    'Id'=>$user['Id'],
+                    'Username'=>$_POST['korime'],
+                    'Password'=>$_POST['lozinka'],
+                    'Email'=>$_POST['email'],
+                    'Phone'=>$_POST['tel'],
+                    ];
+            $data2=[
+                'Id'=>$user['Id'],
+                'Name'=>$_POST['ime'],
+                'Surname'=>$_POST['prezime']
+            ];
+                $noviuser=[
+                    'Id'=>$user['Id'],
+                    'Username'=>$_POST['korime'],
+                    'Email'=>$_POST['email'],
+                    'Phone'=>$_POST['tel'],
+                    'Name'=>$_POST['ime'],
+                    'Surname'=>$_POST['prezime'],
+                    'Type'=>$user['Type'],
+                    'Temp'=>''
+                ];
+                $user=$noviuser;
+                $db = \Config\Database::connect();
+                $id=$user['Id'];
+                $username=$user['Username'];
+                $password=$data1['Password'];
+                $email=$user['Email'];
+                $phone=$user['Phone'];
+                $name=$user['Name'];
+                $surname=$user['Surname'];
+                $sqlUpdate="Update user set Username='$username', Password='$password',Email='$email',Phone='$phone' where Id=$id";
+                $sqlUpdate2="Update privilegeduser set Name='$name', Surname='$surname' where Id=$id";
+                $db->query($sqlUpdate);
+                $db->query($sqlUpdate2);
+                $this->session->set('User',$user);
+                return redirect()->to(site_url('Privilegeduser'));
+            }
+        
+        echo view('izmena.php',['User'=>$user]);
+}
         public function logout(){
         $this->session->destroy();
         return redirect()->to("/../../index.html");
