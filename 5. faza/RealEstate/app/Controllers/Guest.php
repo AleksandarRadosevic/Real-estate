@@ -6,6 +6,7 @@ use App\Models\PrivilegedUserModel;
 use App\Models\AgencyModel;
 use App\Models\AdminModel;
 use App\Models\adModel;
+use App\Models\CommentModel;
 define('MAXINT','99999999999999999999999999');
 class Guest extends BaseController
 {
@@ -309,11 +310,29 @@ class Guest extends BaseController
                     $pictures=$pics->where('IdAd',$temp['Id'])->findAll();  
                     $tag=new \App\Models\hasTagModel();
                     $tags=$tag->where('IdAd',$temp['Id'])->findAll();
-                    
+                    $user=$this->session->get('User');
+                    if ($user!=null){
+                        $user['Temp']=$temp['Id'];
+                        $this->session->set('User',$user);
+                    }
                     echo view('oneAdvertisment',['ad'=>$temp,'owner'=>$owner,'place'=>$place,'pictures'=>$pictures,'tags'=>$tags]);
                 }
             }
             }
+        }
+        public function comment(){
+             $user=$this->session->get('User');           
+            if($this->request->getMethod()=='post'){
+                $data=[
+                        'IdK'=>$user['Id'],
+                        'Time'=>$_POST['time'],
+                        'IdAd'=>$user['Temp'],
+                        'Description'=>$_POST['message']
+                        ];
+                $comment=new CommentModel();
+                $comment->save($data);
+                }
+                return redirect()->to(site_url('Guest/Add'));
         }
 }
 
