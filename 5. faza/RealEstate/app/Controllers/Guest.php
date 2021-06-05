@@ -7,6 +7,8 @@ use App\Models\AgencyModel;
 use App\Models\AdminModel;
 use App\Models\adModel;
 use App\Models\CommentModel;
+use App\Models\MarkModel;
+use App\Models\FavoriteModel;
 define('MAXINT','99999999999999999999999999');
 class Guest extends BaseController
 {
@@ -374,6 +376,67 @@ class Guest extends BaseController
                 $comment->save($data);
                 }
                 return redirect()->to(site_url('Guest/Add'));
+        }
+        public function ocena(){
+            $user=$this->session->get('User');
+            if ($user==null)
+             {
+                 $message="Korisnik mora biti ulogovan da bi komentarisao!";
+                        echo "<script>alert('$message');"
+                                . "window.location='/Guest/login'</script>";
+                         return;
+             }
+            if($this->request->getMethod()=='post'){
+                $data=[];
+                helper(['form']);
+                $data=[
+                        'IdK'=>$user['Id'],
+                        'IdA'=>$_POST['IdA'],
+                        'Number'=>$_POST['ocjena']
+                        ];
+                $mark=new MarkModel();
+                $agency=new AgencyModel();
+                $result=$agency->where('Id',$data['IdA'])->findAll();
+                foreach ($result as $row){
+                    $suma+=$row['Number'];
+                    $suma=$suma/4;
+                }
+                if($mark->where('IdK',$data['IdK'])->where('IdA',$data['IdA'])->find()){
+                    $mark->replace($data);
+                    return redirect()->to(site_url('Guest/Add'));
+                }
+                else{
+                    $mark->save($data);
+                    return redirect()->to(site_url('Guest/Add'));
+                }
+                }
+        }
+        public function favorite(){
+            $user=$this->session->get('User');
+            if ($user==null)
+             {
+                 $message="Korisnik mora biti ulogovan da bi komentarisao!";
+                        echo "<script>alert('$message');"
+                                . "window.location='/Guest/login'</script>";
+                         return;
+             }
+            if($this->request->getMethod()=='post'){
+                $data=[];
+                helper(['form']);
+                $data=[
+                        'IdU'=>$user['Id'],
+                        'IdAd'=>$user['Temp'],
+                        ];
+                $favorite=new FavoriteModel();
+                if($favorite->where('IdU',$data['IdU'])->where('IdAd',$data['IdAd'])->find()){
+                    $favorite->where('IdU',$data['IdU'])->where('IdAd',$data['IdAd'])->delete();
+                    return redirect()->to(site_url('Guest/Add'));
+                }
+                else{
+                    $favorite->save($data);
+                    return redirect()->to(site_url('Guest/Add'));
+                }
+                }
         }
 }
 
