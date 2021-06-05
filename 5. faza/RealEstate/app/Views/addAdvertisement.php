@@ -183,7 +183,7 @@
                 <input type='checkbox' value="Izvorno stanje" name='check_list[]' checked> Izvorno stanje
                 <input type='checkbox'  value="Renovirano"name='check_list[]'> Renovirano
                 <input type='checkbox' value="Lux"  name='check_list[]' checked> Lux
-                <input type='checkbox' value="Za renoviranje" name='check_list[]'> Za renvoranje
+                <input type='checkbox' value="Za renoviranje" name='check_list[]'> Za renoviranje
                 
             </td>
         </tr>

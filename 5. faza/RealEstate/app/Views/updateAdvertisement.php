@@ -275,14 +275,14 @@
        
     }
     }                   ?> > Lux
-                <input type='checkbox' value="Za renvoranje" name='check_list[]' <?php  {
+                <input type='checkbox' value="Za renoviranje" name='check_list[]' <?php  {
     foreach ($result as $key => $value) {
         if ($value['IdTag'] == '14') {
             echo "checked";
         }
        
     }
-    }                   ?>> Za renvoranje
+    }                   ?>> Za renoviranje
                 
             </td>
         </tr>
