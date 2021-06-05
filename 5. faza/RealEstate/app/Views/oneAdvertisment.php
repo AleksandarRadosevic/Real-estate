@@ -146,12 +146,57 @@
                   </div>
                 </div>
               </div>
-   
+
+           </br>
+            <div class="row gutters-sm" style="margin-left: 2%; margin-right:2% ;">
+             <div class="col-md-12 ">
+              <div class="card">
+                <div class="card-body">
+            <?php
+            $session=session();
+                echo "<form method='POST' action='comment'>
+                    <input type='hidden' name='uid' value='".$session->get['Id']."'>
+                    <input type='hidden' name='time' value='".date('Y-m-d H:i:s')."'>
+                    <textarea name='message' style='resize:none' rows='3' cols='80'></textarea><br>
+                    <button type='submit' class='btn btn-primary fav' name='commentSubmit'>Postavi komentar</button>
+                </form>";
+                
+            ?>
+                </div>
+                  </div>
+                </div>
             </div>
-            </div>
+           </br>
+              <div class="row gutters-sm" style="margin-left: 2%; margin-right:2% ;">
+                <div class="col-md-12 ">
+                    <div class="card">
+                        <div class="card-body">
+                        <h1 class="izmena-naslov">Komentari</h1> 
+                        <?php
+        
+    use App\Models\CommentModel;
+    use App\Models\UserModel;
+        $comment= new CommentModel();
+        $result=$comment->where('IdAd',$ad['Id'])->findAll();
+        $user=new UserModel();
+        foreach ($result as $row) {
+            $data=$user->find($row['IdK']);
+            echo" <div class='media ograda'>
+                <img src='/assets/images/avatar.png' alt='avatar' class='mr-3 mt-3 rounded-circle' style='width:60px;'>
+                <div class='media-body'>
+                 <h4>".$data['Username']. "<small><i> &nbsp; &nbsp;Objavljeno ".$row['Time']."</i></small></h4>
+                    <p>".$row['Description']."</p>
+                </div>
+            </div>";
+
+        }
+        ?>
+                    </div>
+                  </div>
+                </div>
+              </div>
        </section>
      </main>
    </div>
  </body>
 </html>
-          
