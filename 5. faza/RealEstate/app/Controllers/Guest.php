@@ -162,7 +162,8 @@ class Guest extends BaseController
                                 'Phone'=>$user['Phone'],
                                 'Email'=>$user['Email'],
                                 'Username'=>$user['Username'],
-                                'Type'=>'registered'
+                                'Type'=>'registered',
+                                'Temp'=>''
                             ];
                          
                         $this->session->set('User',$validationData);
@@ -178,7 +179,8 @@ class Guest extends BaseController
                                 'Phone'=>$user['Phone'],
                                 'Email'=>$user['Email'],
                                 'Username'=>$user['Username'],
-                                'Type'=>'privileged'
+                                'Type'=>'privileged',
+                                'Temp'=>''
                             ];
       
                         $this->session->set('User',$validationData);
@@ -193,7 +195,8 @@ class Guest extends BaseController
                                 'Email'=>$user['Email'],
                                 'Username'=>$user['Username'],
                                 'AverageMark' => $isAgency['AverageMark'],
-                                'Type'=>'agency'
+                                'Type'=>'agency',
+                                'Temp'=>''
                             ];
                         }
                                               
@@ -304,8 +307,9 @@ class Guest extends BaseController
                     $place=$pl->find($temp['IdPlace']);
                     $pics=new \App\Models\ImageModel();                  
                     $pictures=$pics->where('IdAd',$temp['Id'])->findAll();  
-          
-                    echo view('oneAdvertisment',['ad'=>$temp,'owner'=>$owner,'place'=>$place,'pictures'=>$pictures]);
+                    $tag=new \App\Models\hasTagModel();
+                    $tags=$tag->where('IdAd',$temp['Id'])->findAll();
+                    echo view('oneAdvertisment',['ad'=>$temp,'owner'=>$owner,'place'=>$place,'pictures'=>$pictures,'tags'=>$tags]);
                 }
             }
             }
