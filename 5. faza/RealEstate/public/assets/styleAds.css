@@ -634,4 +634,26 @@ h3{
     margin-left: 320px;
 }
 
-  
+.izmena-naslov{
+    color:rgb(0, 0, 0);
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #000000;
+}
+
+.ograda{
+padding:20px;
+border: 2px solid rgb(117, 117, 117);
+border-radius: 11px;
+margin: 10px;
+}
+
+.fav{
+   background-color: #00C5BE;
+   border: none;
+   color: #fff;
+   font-size: 1em;
+   padding: 10px 50px;
+   text-transform: uppercase;
+   font-weight: normal;
+}
