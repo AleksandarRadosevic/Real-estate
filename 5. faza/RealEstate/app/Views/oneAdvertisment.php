@@ -143,6 +143,20 @@
           </div>
           </div>
           </div>
+            <div class="row gutters-sm" style="margin-left: 2%; margin-right:2% ; padding-top: 1%; ">
+                <div class="col-md-12 ">
+                    <div class="card">
+                    <div class="card-body" >
+                    <h6>Dodatne informacije</h6>
+               <?php 
+               foreach($tags as $tag){
+                   $temp=new App\Models\TagModel();
+                   $nameTag=$temp->where('IdTag',$tag['IdTag'])->find();
+                   echo '<input type="checkbox" checked/>'.$nameTag['Name'].'$nbsp;$nbsp;';
+               } 
+               ?>
+               
+           </div>
           <div class="row gutters-sm" style="margin-left: 2%; margin-right:2% ;">
             <div class="col-md-12 ">
               <div class="card">
