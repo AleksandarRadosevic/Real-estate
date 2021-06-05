@@ -324,9 +324,7 @@ class Guest extends BaseController
                         $user['Temp']=$temp['Id'];
                         $this->session->set('User',$user);
                     }
-                    else {
-                         $validationData=['Advertisement'=>$temp['Id']];
-                    }
+
                     echo view('oneAdvertisment',['ad'=>$temp,'owner'=>$owner,'place'=>$place,'pictures'=>$pictures,'tags'=>$tags]);
                     return;
                 }
@@ -345,23 +343,25 @@ class Guest extends BaseController
                         $user['Temp']=$temp['Id'];
                         $this->session->set('User',$user);
                     }
-                    else {
-                         $validationData=['Advertisement'=>$temp['Id']];
-                    }
+ 
                     echo view('oneAdvertisment',['ad'=>$temp,'owner'=>$owner,'place'=>$place,'pictures'=>$pictures,'tags'=>$tags]);
                     return;
                 }
             }
-           // }
+      
         }
         public function comment(){
              $user=$this->session->get('User');
-             if ($user==null)
+             if ($user==null && $this->request->getMethod()=="post")
              {
                  $message="Korisnik mora biti ulogovan da bi komentarisao!";
                         echo "<script>alert('$message');"
                                 . "window.location='/Guest/login'</script>";
+                        
                          return;
+             }
+             else if ($user==null && $this->request->getMethod()!="post"){
+                 return redirect()->to(site_url('Home'));
              }
             else if($this->request->getMethod()=='post'){
                 $data=[
