@@ -18,7 +18,6 @@ class Privilegeduser extends BaseController
 	}
         
         
-    
         public function addAdvertisement(){
             $data=[];
             
@@ -96,7 +95,7 @@ class Privilegeduser extends BaseController
               }
             
             
-            echo view('addAdvertisement.php');
+            echo view('addAdvertisement.php',['User'=>$user]);
           
         }
 
@@ -166,7 +165,6 @@ class Privilegeduser extends BaseController
           
       
   }
-
 	public function updateAdvertisement(){
             
                 $user=$this->session->get('User');
@@ -366,11 +364,12 @@ $db = mysqli_connect("localhost", "root", "", "realestate");
                 'description'=>$description,
                 'purpose'=>$purpose,
                  'result'=>$result,
-                'type'=>$type]);
-            echo view('updateAdvertisement.php');
+                'type'=>$type,
+                 'User'=>$user]);
+            echo view('updateAdvertisement.php',['User'=>$user]);
               
-        }
-     
+        }     
+        
         public function advertisements(){
             $user=$this->session->get('User');
                 if ($user['Type']!='privileged'){                   
@@ -380,7 +379,7 @@ $db = mysqli_connect("localhost", "root", "", "realestate");
                     $db = \Config\Database::connect();
                     $values=$db->query($sql);
                     $numberOfRows=count($values->getResult());
-                    echo view('userAdvertisements',['values'=>$values,'numberOfRows'=>$numberOfRows]);
+                    echo view('userAdvertisements',['values'=>$values,'numberOfRows'=>$numberOfRows,'User'=>$user]);
                   
         }
         
@@ -434,7 +433,8 @@ $db = mysqli_connect("localhost", "root", "", "realestate");
                 }
                 
         }
-           public function izmena(){
+        
+        public function izmena(){
         $data=[];
         helper(['form']);
         $user=$this->session->get('User');
@@ -481,6 +481,7 @@ $db = mysqli_connect("localhost", "root", "", "realestate");
         
         echo view('izmena.php',['User'=>$user]);
 }
+
         public function logout(){
         $this->session->destroy();
         return redirect()->to("/../../index.html");

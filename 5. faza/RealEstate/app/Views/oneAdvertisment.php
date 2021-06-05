@@ -199,7 +199,7 @@
                 <div class="card-body">
             <?php
             $session=session();
-                if (!$session->get['Type']=='agency'){echo "
+                if ($session->get['Type']=='agency'){echo "
                     </br>
                     <div class='row gutters-sm' style='margin-left: 2%; margin-right:2% ;'>
                     <div class='col-md-12 '>

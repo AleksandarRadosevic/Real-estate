@@ -99,7 +99,7 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-12">
-                      <a class="btn btn-info " href="advertisments.html" style="width: 100%; ">Pogledaj svoje oglase kao gost</a>
+                      <a class="btn btn-info " href="Agency/advertisements" style="width: 100%; ">Pogledaj svoje oglase kao gost</a>
                     </div>
                   </div>
                   <hr>
