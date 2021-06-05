@@ -42,7 +42,26 @@
         <h2 style="color:black;margin-left: 8%;"><?php echo $ad['Topic']; ?></h2>
         </div>
         <div class="col text-right">
-            <div class="btn btn-success" style="margin-right:7%;"> Dodaj u omiljene</div></div>
+            <form method='post' action='favorite'>
+            <button type='submit' class='btn btn-primary fav omiljen'>
+                <?php 
+                $temp=new App\Models\FavoriteModel();
+                $session=session();
+               $user=$session->get('User');
+             if ($user==null)
+             {
+                 echo "Dodaj u omiljene";
+             }
+             else if($temp->where('IdU',$user['Id'])->where('IdAd',$user['Temp'])->find()){
+                    echo "Izbaci iz omiljenih";
+                }
+            else{
+                echo "Dodaj u omiljene";
+            }
+               ?>
+            </button>
+            </form>
+        </div>
           </div>
            <div class="row">
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width: 50%; margin-left:4%">
@@ -137,11 +156,37 @@
             <div class="col-md-12 ">
               <div class="card">
                 <div class="card-body">
-                  
+                    <div class="ograda_opis">
                       <h4><?php echo $ad['Topic']; ?></h4>
                       
                       <p><?php echo $ad['Description']; ?></p>
-                      
+                      </div>
+                    <form method='POST' action='ocena'>
+                        <div id="radios">
+                                <label for="jedan" class="material-icons">
+                                    <input type="radio" name="ocjena" id="jedan" value="1" checked/>
+                                    <span>1</span>
+                                </label>								
+                                <label for="dva" class="material-icons">
+                                    <input type="radio" name="ocjena" id="dva" value="2" />
+                                    <span>2</span>
+                                </label>
+                                <label for="tri" class="material-icons">
+                                    <input type="radio" name="ocjena" id="tri" value="3" />
+                                    <span>3</span>
+                                </label>
+                                <label for="cetiri" class="material-icons">
+                                    <input type="radio" name="ocjena" id="cetiri" value="4" />
+                                    <span>4</span>
+                                </label>
+                                <label for="petak" class="material-icons">
+                                    <input type="radio" name="ocjena" id="petak" value="5" />
+                                    <span>5</span>
+                                </label>
+                        </div>
+                        <input type='hidden' name='IdA' value='<?php echo $owner['Id']; ?>'>
+                        <button type='submit' class='btn btn-primary fav oceni'>Oceni Agenciju</button>
+                      </form>
                     </div>
                   </div>
                 </div>
@@ -154,13 +199,23 @@
                 <div class="card-body">
             <?php
             $session=session();
-                echo "<form method='POST' action='comment'>
-                    <input type='hidden' name='uid' value='".$session->get['Id']."'>
+                if (!$session->get['Type']=='agency'){echo "
+                    </br>
+                    <div class='row gutters-sm' style='margin-left: 2%; margin-right:2% ;'>
+                    <div class='col-md-12 '>
+                    <div class='card'>
+                    <div class='card-body'>
+                    <form method='POST' action='comment'>
                     <input type='hidden' name='time' value='".date('Y-m-d H:i:s')."'>
                     <textarea name='message' style='resize:none' rows='3' cols='80'></textarea><br>
                     <button type='submit' class='btn btn-primary fav' name='commentSubmit'>Postavi komentar</button>
-                </form>";
+                </form>
                 
+                </div>
+                  </div>
+                </div>
+            </div>";
+                }
             ?>
                 </div>
                   </div>
