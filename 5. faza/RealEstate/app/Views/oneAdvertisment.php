@@ -45,7 +45,7 @@
             <div class="btn btn-success" style="margin-right:7%;"> Dodaj u omiljene</div></div>
           </div>
            <div class="row">
-      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width: 50%; margin-left:5%">
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width: 50%; margin-left:4%">
         <ol class="carousel-indicators">
             <?php $j=0;
         foreach ($pictures as $pic){
@@ -65,12 +65,12 @@
             }
             foreach($pictures as $image){
                 if ($i==0){?>
-                <div class="carousel-item active">
-                <img class="d-block w-100" src="/assets/userImages/Advertisement<?php echo $ad['Id'].'/'.$image['filename'];?>">
+                <div class="carousel-item active" >
+                    <img class="img-fluid d-block w-100"style="border-radius: 1%;" src="/assets/userImages/Advertisement<?php echo $ad['Id'].'/'.$image['filename'];?>">
                 </div>             
                <?php $i=1;}
              else { ?>
-                 <div class="carousel-item">
+                <div class="carousel-item">
                 <img class="d-block w-100" src="/assets/userImages/Advertisement<?php echo $ad['Id'].'/'.$image['filename'];?>"></div>   
                             <?php }}?>
                   </div>
@@ -83,81 +83,57 @@
           <span class="sr-only">Next</span>
         </a>
  </div>
-      <div class="col-xl-5 col-md-12">
-        <div class="card mb-3">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-sm-3">
-                <h6 class="mb-0">Cena</h6>
-              </div>
-              <div class="col-sm-9 text-secondary">
-               <?php echo $ad['Price'];?>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <h6 class="mb-0">Kvadratura</h6>
-              </div>
-              <div class="col-sm-9 text-secondary">
-                <?php echo $ad['Size'];?>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <h6 class="mb-0">Tip nekretnine</h6>
-              </div>
-              <div class="col-sm-9 text-secondary">
-                <?php echo $ad['RealEstateType'];?>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <h6 class="mb-0">Lokacija</h6>
-              </div>
-              <div class="col-sm-9 text-secondary">
-                 <?php echo $place['City'].','.$place['Name']; ?>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <h6 class="mb-0">Broj telefona</h6>
-              </div>
-              <div class="col-sm-9 text-secondary">
-                <?php echo $owner['Phone']; ?>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <h6 class="mb-0">Email adresa</h6>
-              </div>
-              <div class="col-sm-9 text-secondary">
-                <?php echo $owner['Email']; ?>
-              </div>
-            </div>
-            </div>
+               <div class="col-xl-5 col-sm-6" style="padding-right:0 !important;">
+            <table class="table table-light table-striped" style="border-radius: 1%;height: 100%;">
+                <tr>
+                  <th>Cena</th>
+                  <td><?php echo $ad['Price'];?></td>
+                </tr>
+                <tr>
+                  <th>Kvadratura</th>
+                  <td><?php echo $ad['Size'];?></td>
+                </tr>
+                <tr>
+                  <th>Tip nekretnine</th>
+                  <td><?php echo $ad['RealEstateType'];?></td>
+                </tr>
+                <tr>
+                  <th>Lokacija</th>
+                  <td><?php echo $place['City'].','.$place['Name']; ?></td>
+                </tr>
+                <tr>
+                  <th>Broj telefona</th>
+                  <td><?php echo $owner['Phone']; ?>
+                </td>
+                </tr>
+                <tr>
+                  <th>Email adresa</th>
+                  <td> <?php echo $owner['Email']; ?></td>
+                </tr>
+            </table>
           </div>
           </div>
-          </div>
-            <div class="row gutters-sm" style="margin-left: 2%; margin-right:2% ; padding-top: 1%; ">
+            <div class="row gutters-sm" style="margin-left: 2%;margin-right: 2%; padding-top: 1%; ">
                 <div class="col-md-12 ">
                     <div class="card">
                     <div class="card-body" >
-                    <h6>Dodatne informacije</h6>
-               <?php 
-               foreach($tags as $tag){
-                   $temp=new App\Models\TagModel();
+               <?php $temp=new App\Models\TagModel();             
+               foreach($tags as $tag){                   
                    $nameTag=$temp->where('IdTag',$tag['IdTag'])->find();
-                   echo '<input type="checkbox" checked/>'.$nameTag['Name'].'$nbsp;$nbsp;';
+                   $sql="select * from tags where IdTag=".$tag['IdTag'];
+                   $db = \Config\Database::connect();
+                   $values=$db->query($sql);
+                   foreach ($values->getResult() as $val){
+                   echo '<input type="checkbox" disabled/>&nbsp;&nbsp;'.$val->Name.'&nbsp;&nbsp;';                 
+                   }
                } 
                ?>
                
-           </div>
-          <div class="row gutters-sm" style="margin-left: 2%; margin-right:2% ;">
+            </div>
+              </div>
+                </div>
+            </div>
+          <div class="row gutters-sm" style="margin-left: 2%;margin-right: 2%; margin-top: 3px;">
             <div class="col-md-12 ">
               <div class="card">
                 <div class="card-body">

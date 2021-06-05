@@ -309,6 +309,7 @@ class Guest extends BaseController
                     $pictures=$pics->where('IdAd',$temp['Id'])->findAll();  
                     $tag=new \App\Models\hasTagModel();
                     $tags=$tag->where('IdAd',$temp['Id'])->findAll();
+                    
                     echo view('oneAdvertisment',['ad'=>$temp,'owner'=>$owner,'place'=>$place,'pictures'=>$pictures,'tags'=>$tags]);
                 }
             }
