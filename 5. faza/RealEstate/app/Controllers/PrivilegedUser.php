@@ -83,7 +83,8 @@ class Privilegeduser extends BaseController
                                 }
                                 }
                                 
-                                
+                $user['Temp']=$idad;    
+                $this->session->set('User',$user);
 		return redirect()->to('upload');
             
             
@@ -130,7 +131,7 @@ class Privilegeduser extends BaseController
     
            $result=mysqli_query($db, $sql);
            $niz= mysqli_fetch_array($result);
-           $id=$niz["Id"];               
+           $id=$user['Temp'];               
   
             
     $pathToFolder="assets/userImages/Advertisement".$id;
@@ -347,7 +348,7 @@ $db = mysqli_connect("localhost", "root", "", "realestate");
                                 }
                                 }
       
-		return redirect()->to('http://localhost:8080/');
+		return redirect()->to('upload');
             
             
             
