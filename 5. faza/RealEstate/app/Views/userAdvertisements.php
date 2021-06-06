@@ -91,7 +91,7 @@
                                     <input class="btn btn-primary" type="submit" name="BId<?php echo $row->Id;?>" value="Pogledaj oglas">
                                     </form>
                                     <form id="my_form" method="post" action="changeAdvertisements">
-                                    <input class="btn btn-success" type="submit" name="BAId<?php echo $row->Id;?>" value="Azuriraj oglas">
+                                    <input class="btn btn-success" type="submit" name="BAId<?php echo $row->Id;?>" value="Ažuriraj oglas">
                                     <input class="btn btn-danger" type="submit" name="BDId<?php echo $row->Id;?>" value="Obriši oglas">&nbsp;
                                                </form>
 
