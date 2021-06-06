@@ -171,8 +171,7 @@ class Agency extends BaseController
                 return redirect()->to(site_url('Home'));
                 }
                  else {
-                    //check if adding advertisements is prohibited
-                    
+                    //check if adding advertisements is prohibited                   
                     $sql="Select * from prohibition where IdA=1 And IdU=".$user['Id'];
                     $db = \Config\Database::connect();
                     $p=$db->query($sql);
@@ -182,8 +181,8 @@ class Agency extends BaseController
                                 . "window.location='/Agency'</script>";
                     }
                 }
-
-$id=2;
+$updateId=$user['Temp'];
+$id=$user['Temp'];
 $advertisment=new adModel();
 $data=$advertisment->find($id);
        
@@ -220,10 +219,12 @@ $db = mysqli_connect("localhost", "root", "", "realestate");
                   //  $sql="SELECT * FROM hastag where IdAd='2'";
                    // $resultt= mysqli_query($db, $sql);
  
-$result = $hastag->where('IdAd', 2)
+                    $result = $hastag->where('IdAd', $updateId)
                    ->findAll();
-
-            if ($this->request->getMethod()=='post'){
+                    
+                    
+           
+            if ($this->request->getMethod()=='post' && ($_POST['tipNekretnine'])){
             //validation for user
            
                  $db = mysqli_connect("localhost", "root", "", "realestate");
@@ -234,12 +235,12 @@ $result = $hastag->where('IdAd', 2)
                 
                 
                 
-                $idoglasa=2;
+                $idoglasa=$updateId;
             
                 $advertisments=new adModel();
 		
                 
-               $red=$advertisments->where('Id','2')->first();
+               $red=$advertisments->where('Id',$updateId)->first();
                 
                 $type1=$_POST["tipNekretnine"];
                 $type2=$_POST["vrstaUsluge"];
@@ -260,7 +261,7 @@ $result = $hastag->where('IdAd', 2)
                $sql = "UPDATE advertisement SET 
                 Price = '".$price."'
            
-                  WHERE Id='2'";
+                  WHERE Id='$updateId'";
                mysqli_query($db, $sql);
                
            }
@@ -270,7 +271,7 @@ $result = $hastag->where('IdAd', 2)
                  $topic=$this->request->getVar('naslov');
                  
                   $sql = "UPDATE advertisement SET 
-                Topic = '".$topic."' WHERE Id='2'";
+                Topic = '".$topic."' WHERE Id='$updateId'";
                mysqli_query($db, $sql);
                
                }
@@ -279,7 +280,7 @@ $result = $hastag->where('IdAd', 2)
                   $size=$this->request->getVar('kvadratura');
                  
                   $sql = "UPDATE advertisement SET 
-                Size = '".$size."' WHERE Id='2'";
+                Size = '".$size."' WHERE Id='$updateId'";
                mysqli_query($db, $sql);
                   
               }
@@ -288,7 +289,7 @@ $result = $hastag->where('IdAd', 2)
                   $address=$this->request->getVar('adresa');
                  
                  $sql = "UPDATE advertisement SET 
-                 Address = '".$address."' WHERE Id='2'";
+                 Address = '".$address."' WHERE Id='$updateId'";
                  mysqli_query($db, $sql);
                   
               }
@@ -298,7 +299,7 @@ $result = $hastag->where('IdAd', 2)
                   $description=$this->request->getVar('komentar');
                  
                  $sql = "UPDATE advertisement SET 
-                 Description = '".$description."' WHERE Id='2'";
+                 Description = '".$description."' WHERE Id='$updateId'";
                  mysqli_query($db, $sql);
                   
               }
@@ -307,29 +308,29 @@ $result = $hastag->where('IdAd', 2)
               
                  
                  $sql = "UPDATE advertisement SET 
-                 IdPlace = '".$mesto."' WHERE Id='2'";
+                 IdPlace = '".$mesto."' WHERE Id='$updateId'";
                  mysqli_query($db, $sql);
                  
                  
                  
                  $sql = "UPDATE advertisement SET 
-                 Purpose = '".$type2."' WHERE Id='2'";
+                 Purpose = '".$type2."' WHERE Id='$updateId'";
                  mysqli_query($db, $sql);
                  
                  
                  $sql = "UPDATE advertisement SET 
-                 RealEstateType = '". $type1."' WHERE Id='2'";
+                 RealEstateType = '". $type1."' WHERE Id='$updateId'";
                  mysqli_query($db, $sql);
                  
                  
-                 $sql="DELETE FROM hastag WHERE IdAd='2' ";
+                 $sql="DELETE FROM hastag WHERE IdAd='$updateId' ";
                  
                 
                   mysqli_query($db, $sql);
                  
               
 
-                            $idad= '2';
+                            $idad=$updateId;
                             if(!empty($_POST['check_list']))
                             {
                                 foreach($_POST['check_list'] as $check)
@@ -343,12 +344,7 @@ $result = $hastag->where('IdAd', 2)
                                      $model1->save($values);
                                 }
                                 }
-                                
-                
-                
-               
-                                
-                                
+      
 		return redirect()->to('upload');
             
             
@@ -357,7 +353,7 @@ $result = $hastag->where('IdAd', 2)
             
               }
               
-           
+              
             
              return view('updateAdvertisement', ['price' => $price,
                 'topic'=>$topic,
@@ -370,6 +366,7 @@ $result = $hastag->where('IdAd', 2)
                 'type'=>$type,
                  'User'=>$user]);
             echo view('updateAdvertisement.php',['User'=>$user]);
+              
         }
    
           public function advertisements(){
