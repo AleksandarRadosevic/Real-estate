@@ -181,45 +181,54 @@
                       
                       <p><?php echo $ad['Description']; ?></p>
                       </div>
+                    <?php 
+                    $ads=new App\Models\adModel();
+                    $session=session();
+                    $user=$session->get('User');
+                    $advert=$ads->find($user['Temp']);
+                    if($user['Id']!=$advert['IdOwner']){
+                    echo"
                     <form method='POST' action='ocena'>
-                        <div id="radios">
-                                <label for="jedan" class="material-icons">
-                                    <input type="radio" name="ocjena" id="jedan" value="1" checked/>
+                        <div id='radios'>
+                                <label for='jedan' class='material-icons'>
+                                    <input type='radio' name='ocjena' id='jedan' value='1' checked/>
                                     <span>1</span>
                                 </label>								
-                                <label for="dva" class="material-icons">
-                                    <input type="radio" name="ocjena" id="dva" value="2" />
+                                <label for='dva' class='material-icons'>
+                                    <input type='radio' name='ocjena' id='dva' value='2' />
                                     <span>2</span>
                                 </label>
-                                <label for="tri" class="material-icons">
-                                    <input type="radio" name="ocjena" id="tri" value="3" />
+                                <label for='tri' class='material-icons'>
+                                    <input type='radio' name='ocjena' id='tri' value='3' />
                                     <span>3</span>
                                 </label>
-                                <label for="cetiri" class="material-icons">
-                                    <input type="radio" name="ocjena" id="cetiri" value="4" />
+                                <label for='cetiri' class='material-icons'>
+                                    <input type='radio' name='ocjena' id='cetiri' value='4' />
                                     <span>4</span>
                                 </label>
-                                <label for="petak" class="material-icons">
-                                    <input type="radio" name="ocjena" id="petak" value="5" />
+                                <label for='petak' class='material-icons'>
+                                    <input type='radio' name='ocjena' id='petak' value='5' />
                                     <span>5</span>
                                 </label>
                         </div>
-                        <input type='hidden' name='IdA' value='<?php echo $owner['Id']; ?>'>
                         <button type='submit' class='btn btn-primary fav oceni'>Oceni Agenciju</button>
-                      </form>
+                    </form> ";}
+                            ?>
                     </div>
                   </div>
                 </div>
               </div>
-
-           </br>
-            <div class="row gutters-sm" style="margin-left: 2%; margin-right:2% ;">
-             <div class="col-md-12 ">
-              <div class="card">
-                <div class="card-body">
             <?php
+            $zabrana=new App\Models\ProhibitionUserModel(); 
             $session=session();
-                if ($session->get['Type']=='agency'){echo "
+            $user=$session->get('User');
+            if(!($zabrana->where('IdA',2)->where('IdU',$user['Id'])->find())){
+            echo "
+           </br>
+            <div class='row gutters-sm' style='margin-left: 2%; margin-right:2% ;'>
+             <div class='col-md-12 '>
+              <div class='card'>
+                <div class='card-body'>
                     </br>
                     <div class='row gutters-sm' style='margin-left: 2%; margin-right:2% ;'>
                     <div class='col-md-12 '>
@@ -234,13 +243,12 @@
                 </div>
                   </div>
                 </div>
-            </div>";
-                }
-            ?>
+            </div>
                 </div>
                   </div>
                 </div>
-            </div>
+             </div>";}
+            ?>
            </br>
               <div class="row gutters-sm" style="margin-left: 2%; margin-right:2% ;">
                 <div class="col-md-12 ">

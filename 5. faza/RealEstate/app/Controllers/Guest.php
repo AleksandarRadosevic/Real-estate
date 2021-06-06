@@ -354,7 +354,7 @@ class Guest extends BaseController
             }
       
         }
-        public function comment(){
+       public function comment(){
              $user=$this->session->get('User');
              if ($user==null && $this->request->getMethod()=="post")
              {
@@ -383,32 +383,55 @@ class Guest extends BaseController
             $user=$this->session->get('User');
             if ($user==null)
              {
-                 $message="Korisnik mora biti ulogovan da bi komentarisao!";
+                 $message="Korisnik mora biti ulogovan da bi ocenjivao!";
                         echo "<script>alert('$message');"
                                 . "window.location='/Guest/login'</script>";
                          return;
              }
+            $ads=new adModel();
+            $korisnici=new UserModel();
+            $agency=new AgencyModel();
             if($this->request->getMethod()=='post'){
+                $suma=0.0;
+                $advert=$ads->find($user['Temp']);
+                $agencija=$agency->find($advert['IdOwner']);
                 $data=[];
+                $data2=[];
                 helper(['form']);
                 $data=[
                         'IdK'=>$user['Id'],
-                        'IdA'=>$_POST['IdA'],
+                        'IdA'=>$advert['Id'],
                         'Number'=>$_POST['ocjena']
                         ];
                 $mark=new MarkModel();
-                $agency=new AgencyModel();
-                $result=$agency->where('Id',$data['IdA'])->findAll();
-                foreach ($result as $row){
-                    $suma+=$row['Number'];
-                    $suma=$suma/4;
-                }
                 if($mark->where('IdK',$data['IdK'])->where('IdA',$data['IdA'])->find()){
                     $mark->replace($data);
+                    $result=$mark->where('IdA',$data['IdA'])->findAll();
+                    foreach ($result as $row){
+                        $suma=$suma+$row['Number'];
+                    }
+                    $suma=$suma/count($result);
+                    $data2=[
+                        'Id'=>$agencija['Id'],
+                        'Name'=>$agencija['Name'],
+                        'AverageMark'=>$suma
+                    ];
+                    $agency->replace($data2);
                     return redirect()->to(site_url('Guest/Add'));
                 }
                 else{
                     $mark->save($data);
+                    $result=$mark->where('IdA',$data['IdA'])->findAll();
+                    foreach ($result as $row){
+                        $suma=$suma+$row['Number'];
+                        }
+                    $suma=$suma/count($result);
+                    $data2=[
+                        'Id'=>$agencija['Id'],
+                        'Name'=>$agencija['Name'],
+                        'AverageMark'=>$suma
+                    ];
+                    $agency->replace($data2);
                     return redirect()->to(site_url('Guest/Add'));
                 }
                 }
@@ -417,7 +440,7 @@ class Guest extends BaseController
             $user=$this->session->get('User');
             if ($user==null)
              {
-                 $message="Korisnik mora biti ulogovan da bi komentarisao!";
+                 $message="Korisnik mora biti ulogovan da bi dodavao u omiljene!";
                         echo "<script>alert('$message');"
                                 . "window.location='/Guest/login'</script>";
                          return;
