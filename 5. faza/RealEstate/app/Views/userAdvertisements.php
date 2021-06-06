@@ -12,7 +12,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <title>Prototip</title>
 </head>
-<body><form id="my_form" method="post" action="changeAdvertisements">
+<body>
     <nav>
         <div class="logo"><h4><a  href='../index.html'>Success</a></h4></div>
         
@@ -87,9 +87,14 @@
                             <tr>
                                 <td><b><?php echo $row->Topic;?></b></td> 
                                 <td class="text-right">
-                                    
+                                    <form id="my_form" method="get" action="/Guest/Add" style="float: right;">
+                                    <input class="btn btn-primary" type="submit" name="BId<?php echo $row->Id;?>" value="Pogledaj oglas">
+                                    </form>
+                                    <form id="my_form" method="post" action="changeAdvertisements">
                                     <input class="btn btn-success" type="submit" name="BAId<?php echo $row->Id;?>" value="Azuriraj oglas">
-                                    <input class="btn btn-danger" type="submit" name="BDId<?php echo $row->Id;?>" value="Obriši oglas">
+                                    <input class="btn btn-danger" type="submit" name="BDId<?php echo $row->Id;?>" value="Obriši oglas">&nbsp;
+                                               </form>
+
                                 </td>
                             </tr>
                               <tr>
@@ -117,6 +122,5 @@
          </section>
      </main>
      </div>
-           </form>
      </body>
 </html> 

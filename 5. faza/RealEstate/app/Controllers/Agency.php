@@ -479,7 +479,18 @@ $db = mysqli_connect("localhost", "root", "", "realestate");
         
         echo view('izmena.php',['User'=>$user]);
 }
+                public function favorites(){
+        $db = \Config\Database::connect();
         
+        $user=$this->session->get('User');
+        if ($user==null || $user['Type']!='agency'){
+            return redirect()->to(site_url('Home'));
+        }
+        $sqlFavorites="Select * from advertisement where Id in (select IdAd from favorites where IdU=".$user['Id'].')';
+        $favorites=$db->query($sqlFavorites);
+        $numberOfRows=count($favorites->getResult());
+        echo view('favorites.php',['User'=>$user,'values'=>$favorites,'numberOfRows'=>$numberOfRows]);
+        }
         public function logout(){
         $this->session->destroy();
         return redirect()->to(site_url('Home'));
