@@ -110,10 +110,11 @@
                       <a class="btn btn-info " href="Privilegeduser/addAdvertisement" style="width: 100%; ">Dodaj novi oglas</a>
                     </div>
                   </div>
+     
                   <hr>
                   <div class="row">
                     <div class="col-sm-12">
-                      <a class="btn btn-info " href="omiljeno.html" style="width: 100%;">Omiljeno</a>
+                      <a class="btn btn-info " href="Privilegeduser/favorites" style="width: 100%;">Omiljeno</a>
                     </div>
                   </div>
                 </div>
