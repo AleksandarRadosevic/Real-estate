@@ -186,6 +186,7 @@
                     $session=session();
                     $user=$session->get('User');
                     $advert=$ads->find($user['Temp']);
+                    if ($user!=null)
                     if($user['Id']!=$advert['IdOwner']){
                     echo"
                     <form method='POST' action='ocena'>
