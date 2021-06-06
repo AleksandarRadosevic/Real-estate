@@ -101,7 +101,7 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-12">
-                      <a class="btn btn-info " href="Agency/advertisements" style="width: 100%; ">Pogledaj svoje oglase kao gost</a>
+                      <a class="btn btn-info " href="Agency/advertisements" style="width: 100%; ">Pogledaj svoje oglase</a>
                     </div>
                   </div>
                   <hr>
@@ -109,17 +109,11 @@
                     <div class="col-sm-12">
                       <a class="btn btn-info " href="Agency/addAdvertisement" style="width: 100%; ">Dodaj novi oglas</a>
                     </div>
-                  </div>
+                  </div>                
                   <hr>
                   <div class="row">
                     <div class="col-sm-12">
-                        <a class="btn btn-info " href="Agency/updateAdvertisement" style="width:100%; ">Ažuriraj oglas</a>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <a class="btn btn-info " href="omiljeno.html" style="width: 100%;">Omiljeno</a>
+                      <a class="btn btn-info " href="Agency/favorites" style="width: 100%;">Omiljeno</a>
                     </div>
                   </div>
                 </div>

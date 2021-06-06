@@ -248,15 +248,8 @@ $db = mysqli_connect("localhost", "root", "", "realestate");
                
                 $mesto = $_POST['Beograd'];  
        
-                
-            
-
-                
-              
-             
-            
-           if($this->request->getVar('cena')!=null)
-           {
+            if($this->request->getVar('cena')!=null)
+            {
                $price=$this->request->getVar('cena');
                      
                $sql = "UPDATE advertisement SET 
@@ -265,7 +258,7 @@ $db = mysqli_connect("localhost", "root", "", "realestate");
                   WHERE Id='$updateId'";
                mysqli_query($db, $sql);
                
-           }
+            }
            
                if($this->request->getVar('naslov')!=null)
                {
@@ -304,16 +297,11 @@ $db = mysqli_connect("localhost", "root", "", "realestate");
                  mysqli_query($db, $sql);
                   
               }
-              
-              
-              
-                 
+                    
                  $sql = "UPDATE advertisement SET 
                  IdPlace = '".$mesto."' WHERE Id='$updateId'";
                  mysqli_query($db, $sql);
-                 
-                 
-                 
+                    
                  $sql = "UPDATE advertisement SET 
                  Purpose = '".$type2."' WHERE Id='$updateId'";
                  mysqli_query($db, $sql);
@@ -323,14 +311,10 @@ $db = mysqli_connect("localhost", "root", "", "realestate");
                  RealEstateType = '". $type1."' WHERE Id='$updateId'";
                  mysqli_query($db, $sql);
                  
-                 
                  $sql="DELETE FROM hastag WHERE IdAd='$updateId' ";
-                 
-                
+        
                   mysqli_query($db, $sql);
                  
-              
-
                             $idad=$updateId;
                             if(!empty($_POST['check_list']))
                             {
@@ -347,15 +331,8 @@ $db = mysqli_connect("localhost", "root", "", "realestate");
                                 }
       
 		return redirect()->to('upload');
-            
-            
-            
-            //validation for 
-            
+
               }
-              
-              
-            
              return view('updateAdvertisement', ['price' => $price,
                 'topic'=>$topic,
                 'size'=>$size,
@@ -481,6 +458,19 @@ $db = mysqli_connect("localhost", "root", "", "realestate");
         
         echo view('izmena.php',['User'=>$user]);
 }
+
+        public function favorites(){
+        $db = \Config\Database::connect();
+        
+        $user=$this->session->get('User');
+        if ($user==null || $user['Type']!='privileged'){
+            return redirect()->to(site_url('Home'));
+        }
+        $sqlFavorites="Select * from advertisement where Id in (select IdAd from favorites where IdU=".$user['Id'].')';
+        $favorites=$db->query($sqlFavorites);
+        $numberOfRows=count($favorites->getResult());
+        echo view('favorites.php',['User'=>$user,'values'=>$favorites,'numberOfRows'=>$numberOfRows]);
+        }
 
         public function logout(){
         $this->session->destroy();
