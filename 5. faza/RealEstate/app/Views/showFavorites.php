@@ -26,6 +26,10 @@
                     echo "<a href='/Agency' id='myProf'><div class='btn btn-success'>Moj profil</div></a href>&nbsp";
                     echo "<a href='/Agency/logout'><div class='btn btn-danger'>Odjavi se</div></a href>";
                 }
+                else if ($User['Type']=='registered'){
+                    echo "<a href='/Registereduser' id='myProf'><div class='btn btn-success'>Moj profil</div></a href>&nbsp";
+                    echo "<a href='/Registereduser/logout'><div class='btn btn-danger'>Odjavi se</div></a href>";
+                }
                 ?>
 
                </div>

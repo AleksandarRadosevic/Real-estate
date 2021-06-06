@@ -18,11 +18,12 @@
         <div class="logo"><h4><a  href='../index.html'>Success</a></h4></div>
         
         <div class="logo"id="logo2">
-               <a href='../Admin' id="myProf"><div class="btn btn-success">Moj profil</div></a href>&nbsp;
-               <a href='../../Admin/logout' ><div class="btn btn-danger">Odjavi se</div></a href>
+            <a href='/Home' class="btn" style="background-color: rgb(33, 74, 255);">Početna stranica</a>
+            <a href='/Guest/search' class="btn" style="background-color: rgb(33, 74, 255);">Pretraga</a>
+            <a href='/Guest/Ads'class="btn" style="background-color: rgb(33, 74, 255);">Oglasi</a>
+               <a href='../Admin' id="myProf"><div class="btn btn-success">Moj profil</div></a>&nbsp;
+               <a href='../../Admin/logout' ><div class="btn btn-danger">Odjavi se</div></a>
                </div>
-
-
         <div class="hidden-menu">
             <div class="line1"></div>
             <div class="line2"></div>

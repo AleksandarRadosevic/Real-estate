@@ -19,7 +19,7 @@
  
     <div class="logo"><h4><a href='../index.html'>Success</a></h4></div>
      <ul class="nav-links">
-       <li><a href='../index.html' class="btn" style="background-color: rgb(33, 74, 255);">Početna stranica</a href></li>
+       <li><a href='/Home' class="btn" style="background-color: rgb(33, 74, 255);">Početna stranica</a href></li>
        <li><a href='search' class="btn" style="background-color: rgb(33, 74, 255);">Pretraga</a href></li>
        <li><a href='Ads'class="btn" style="background-color: rgb(33, 74, 255);">Oglasi</a href></li>
        <li><a href='login' class='btn btn-success'>Prijavite se</a href></li>

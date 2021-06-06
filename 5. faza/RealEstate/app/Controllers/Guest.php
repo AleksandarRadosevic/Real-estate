@@ -14,7 +14,8 @@ class Guest extends BaseController
 {
 	public function index()
 	{
-		echo view('../../public/index.html');
+                $user=$this->session->get('User');
+		echo view('index.php',['User'=>$user]);
 	}
        
         
@@ -277,7 +278,7 @@ class Guest extends BaseController
                 $sqlType="Select * from advertisement where Id In ".$sql."AND IdPlace In".$sqlLocation."AND RealEstateType In".$sqlFindType."AND Purpose='$purpose'";
                 $values   = $db->query($sqlType);
                 $numberOfRows=count($values->getResult());
-                echo view('showAdvertisments',['values'=>$values,'numberOfRows'=>$numberOfRows]);
+                echo view('showAdvertisments',['values'=>$values,'numberOfRows'=>$numberOfRows,'User'=>$user]);
                 return;
             }       
 
@@ -285,8 +286,9 @@ class Guest extends BaseController
             $municipalities=$db->query($sqlMunicipalities);
             $sqlTypes="Select * from realestatetype";
             $types=$db->query($sqlTypes);
-
-            echo view('search',['municipalities'=>$municipalities,'types'=>$types]);
+            
+            $user=$this->session->get('User');
+            echo view('search',['municipalities'=>$municipalities,'types'=>$types,'User'=>$user]);
         }
         
         public function Ads(){
@@ -294,8 +296,8 @@ class Guest extends BaseController
                 $sqlType="Select * from advertisement";
                 $values   = $db->query($sqlType);
                 $numberOfRows=count($values->getResult());
-            
-            echo view('showAdvertisments',['values'=>$values,'numberOfRows'=>$numberOfRows]);
+            $user= $this->session->get('User');
+            echo view('showAdvertisments',['values'=>$values,'numberOfRows'=>$numberOfRows,'User'=>$user]);
         }
         public function Add(){
             
@@ -327,7 +329,7 @@ class Guest extends BaseController
                         $this->session->set('User',$user);
                     }
 
-                    echo view('oneAdvertisment',['ad'=>$temp,'owner'=>$owner,'place'=>$place,'pictures'=>$pictures,'tags'=>$tags]);
+                    echo view('oneAdvertisment',['ad'=>$temp,'owner'=>$owner,'place'=>$place,'pictures'=>$pictures,'tags'=>$tags,'User'=>$user]);
                     return;
                 }
             }   foreach ($ads as $temp){
@@ -346,7 +348,7 @@ class Guest extends BaseController
                         $this->session->set('User',$user);
                     }
  
-                    echo view('oneAdvertisment',['ad'=>$temp,'owner'=>$owner,'place'=>$place,'pictures'=>$pictures,'tags'=>$tags]);
+                    echo view('oneAdvertisment',['ad'=>$temp,'owner'=>$owner,'place'=>$place,'pictures'=>$pictures,'tags'=>$tags,'User'=>$user]);
                     return;
                 }
             }

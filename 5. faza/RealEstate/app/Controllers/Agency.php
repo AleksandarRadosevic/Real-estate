@@ -485,6 +485,6 @@ $result = $hastag->where('IdAd', 2)
         
         public function logout(){
         $this->session->destroy();
-        return redirect()->to("/../../index.html");
+        return redirect()->to(site_url('Home'));
     }
 }
