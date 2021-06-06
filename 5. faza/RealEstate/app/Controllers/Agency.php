@@ -16,7 +16,7 @@ class Agency extends BaseController
 		echo view('AgencyProfile',['user'=>$user]);
 	}
         
-    public function addAdvertisement(){
+        public function addAdvertisement(){
             $data=[];           
             helper(['form']);
             
@@ -93,13 +93,11 @@ class Agency extends BaseController
               }
             
             
-            echo view('addAdvertisement.php');
+            echo view('addAdvertisement.php',['User'=>$user]);
           
         }
                
-
- 
-       public function upload()
+        public function upload()
        {
                 $user=$this->session->get('User');
                 if ($user['Type']!='agency'){                   
@@ -162,7 +160,7 @@ class Agency extends BaseController
             //validation for             
               }
             
-             echo view('addPicture.php',['user'=>$this->session->get('User')]);
+             echo view('addPicture.php',['user'=>$user]);
           
       
   }
@@ -351,7 +349,7 @@ $result = $hastag->where('IdAd', 2)
                
                                 
                                 
-		return redirect()->to('http://localhost:8080/');
+		return redirect()->to('upload');
             
             
             
@@ -369,16 +367,75 @@ $result = $hastag->where('IdAd', 2)
                 'description'=>$description,
                 'purpose'=>$purpose,
                  'result'=>$result,
-                'type'=>$type]);
-            echo view('updateAdvertisement.php');
-           
-          
-            
-          
-             
+                'type'=>$type,
+                 'User'=>$user]);
+            echo view('updateAdvertisement.php',['User'=>$user]);
         }
-     
-                   public function izmena(){
+   
+          public function advertisements(){
+            $user=$this->session->get('User');
+                if ($user['Type']!='agency'){                   
+                return redirect()->to(site_url('Home'));
+                }
+                    $sql="select * from advertisement where IdOwner=".$user['Id'];
+                    $db = \Config\Database::connect();
+                    $values=$db->query($sql);
+                    $numberOfRows=count($values->getResult());
+                    echo view('userAdvertisements',['values'=>$values,'numberOfRows'=>$numberOfRows,'User'=>$user]);
+                  
+        }
+        
+        public function changeAdvertisements() {
+            $user=$this->session->get('User');
+                if ($user['Type']!='agency'){                   
+                return redirect()->to(site_url('Home'));
+                }
+                 else {
+                    //check if adding advertisements is prohibited                   
+                    $sql="Select * from prohibition where IdA=1 And IdU=".$user['Id'];
+                    $db = \Config\Database::connect();
+                    $p=$db->query($sql);
+                    if (sizeof($p->getResult())>0){
+                        $message="Zabranjeno azuriranje oglasa!";
+                        echo "<script>alert('$message');"
+                                . "window.location='/Privilegeduser'</script>";
+                    }
+                }
+                if ($this->request->getMethod()=="post"){
+            $ad=new \App\Models\adModel();
+            $ads=$ad->where('IdOwner',$user['Id'])->findAll();
+            foreach ($ads as $temp){
+                if (isset($_POST['BDId'.$temp['Id']])){    
+                    
+                    //delete images from folder if exists                   
+                    $dirname="assets/userImages/Advertisement".$temp['Id'];
+                    if (file_exists($dirname)){
+                    array_map('unlink', glob("$dirname/*.*"));
+                    rmdir($dirname);
+                    }
+                    $ad->where('Id',$temp['Id'])->delete();      
+                    $sqlforTags="Delete from hasTag where IdAd=".$temp['Id'];
+                    $sqlForPictures="Delete from image where IdAd=".$temp['Id'];
+                    $sqlComments="Delete from comment where IdAd=".$temp['Id'];
+                    $sqlFavorites="Delete from favorites where IdAd=".$temp['Id'];
+                    $db = \Config\Database::connect();
+                    $db->query($sqlforTags);
+                    $db->query($sqlFavorites);
+                    $db->query($sqlForPictures);
+                    $db->query($sqlComments);         
+                    break;
+                }
+                else if (isset($_POST['BAId'.$temp['Id']])){
+                    $user['Temp']=$temp['Id'];
+                    $this->session->set('User',$user);
+                    return redirect()->to(site_url('Agency/updateAdvertisement'));
+                }
+            }
+            return redirect()->to(site_url('Agency/advertisements'));
+                }
+                
+        }
+        public function izmena(){
         $data=[];
         helper(['form']);
         $user=$this->session->get('User');
@@ -428,6 +485,6 @@ $result = $hastag->where('IdAd', 2)
         
         public function logout(){
         $this->session->destroy();
-        return redirect()->to("/../../index.html");
+        return redirect()->to(site_url('Home'));
     }
 }

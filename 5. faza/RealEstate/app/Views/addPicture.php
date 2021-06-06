@@ -14,25 +14,30 @@
     <title>Prototip</title>
 </head>
 <body>
-  <nav>
- 
-    
-    <div class="logo"><h4><a href='../index.html'>Success</a></h4></div>
-     <ul class="nav-links">
-       <li><a href='../index.html' class="btn" style="background-color: rgb(33, 74, 255);">Početna stranica</a href></li>
-       <li><a href='pretraga.html' class="btn" style="background-color: rgb(33, 74, 255);">Pretraga</a href></li>
-       <li><a href='#'class="btn" style="background-color: rgb(33, 74, 255);">Oglasi</a href></li>
-       <li><a href='#'class="btn" style="background-color: rgb(33, 74, 255);">O nama</a href></li>
-       <li><a href='login' class='btn btn-success'>Prijavite se</a href></li>
-       <li><a href='register' class='btn btn-danger'>Registrujte se</a></a href></li>
-     </ul>
-  
-     <div class="hidden-menu">
-         <div class="line1"></div>
-         <div class="line2"></div>
-         <div class="line3"></div>
-     </div>
- </nav>
+    <nav>
+        <div class="logo"><h4><a  href='../index.html'>Success</a></h4></div>
+        
+        <div class="logo"id="logo2">
+                <?php
+                if ($user['Type']=='privileged'){
+                    echo "<a href='/Privilegeduser' id='myProf'><div class='btn btn-success'>Moj profil</div></a href>&nbsp";
+                    echo "<a href='/Privilegeduser/logout'><div class='btn btn-danger'>Odjavi se</div></a href>";
+                }
+                else if ($user['Type']=='agency'){
+                    echo "<a href='/Agency' id='myProf'><div class='btn btn-success'>Moj profil</div></a href>&nbsp";
+                    echo "<a href='/Agency/logout'><div class='btn btn-danger'>Odjavi se</div></a href>";
+                }
+                ?>
+
+               </div>
+
+
+        <div class="hidden-menu">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
     <div id="containter">
         <main>
         <section class="glass">
@@ -59,7 +64,7 @@
                 if ($user['Type']=='privileged'){
                     echo '<a href="/Privilegeduser"><button type="button" class="btn btn-lg btn-info" >Završi</button></a>';                  
                 }
-                else if ($user['Type'=='agency']){
+                else if ($user['Type']=='agency'){
                  echo '<a href="/Agency"><button type="button" class="btn btn-lg btn-info" >Završi</button></a>';
                 }
                 else if ($user['Type']=='registered'){

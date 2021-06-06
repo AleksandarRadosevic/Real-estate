@@ -17,8 +17,17 @@
         <div class="logo"><h4><a  href='../index.html'>Success</a></h4></div>
         
         <div class="logo"id="logo2">
-               <a href='/Privilegeduser' id="myProf"><div class="btn btn-success">Moj profil</div></a href>&nbsp;
-               <a href='logout' ><div class="btn btn-danger">Odjavi se</div></a href>
+                <?php
+                if ($User['Type']=='privileged'){
+                    echo "<a href='/Privilegeduser' id='myProf'><div class='btn btn-success'>Moj profil</div></a href>&nbsp";
+                    echo "<a href='/Privilegeduser/logout'><div class='btn btn-danger'>Odjavi se</div></a href>";
+                }
+                else if ($User['Type']=='agency'){
+                    echo "<a href='/Agency' id='myProf'><div class='btn btn-success'>Moj profil</div></a href>&nbsp";
+                    echo "<a href='/Agency/logout'><div class='btn btn-danger'>Odjavi se</div></a href>";
+                }
+                ?>
+
                </div>
 
 
