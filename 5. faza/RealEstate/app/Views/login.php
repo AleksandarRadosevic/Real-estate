@@ -61,13 +61,6 @@
                 <?php endif ?>               
                 
                 <button type='submit'>Prijavite se</button>
-                <label>
-                  <input type="checkbox" checked="checked" name="remember"> Zapamti me
-                </label>
-            
-              <div class='uredi rad' style="background-color:#f1f1f1">
-                <span class="psw"><p>Zaboravili ste <a href="#">lozinku?</a></p></span>
-              </div>
               </form>
         </section>
         <div class="circle1"></div>

@@ -24,8 +24,8 @@
        <li><a href='Ads'class="btn" style="background-color: rgb(33, 74, 255);">Oglasi</a href></li>
             <?php             
             if ($User==null) {
-            echo"<li><a href='Guest/login' class='login'>Prijavite se</a href></li>";
-            echo "<li><a href='Guest/register' class='button register'>Registrujte se</a></a href></li>";           
+            echo"<li><a href='login' class='login'>Prijavite se</a href></li>";
+            echo "<li><a href='register' class='button register'>Registrujte se</a></a href></li>";           
             }
             else if ($User['Type']=='registered'){                   
                    echo"<li><a href='/Registereduser' class='login'>Moj profil</a href></li>";

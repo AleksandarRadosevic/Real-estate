@@ -15,6 +15,7 @@ class Guest extends BaseController
 	public function index()
 	{
                 $user=$this->session->get('User');
+
 		echo view('index.php',['User'=>$user]);
 	}
        
@@ -213,6 +214,7 @@ class Guest extends BaseController
 
         public function search(){
             $db = \Config\Database::connect();
+            $user=$this->session->get('User');
             if ($this->request->getMethod()=="get" && isset($_GET['priceFrom'])){
                 
                 $priceFrom=$_GET['priceFrom'];
