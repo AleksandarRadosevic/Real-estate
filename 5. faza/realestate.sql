@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 10, 2021 at 06:51 PM
+-- Generation Time: Jun 10, 2021 at 08:28 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `advertisement` (
   PRIMARY KEY (`Id`),
   KEY `R_8` (`IdOwner`),
   KEY `R_12` (`IdPlace`)
-) ENGINE=MyISAM AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `advertisement`
@@ -123,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `agency` (
 
 INSERT INTO `agency` (`Id`, `Name`, `AverageMark`) VALUES
 (74, 'Agencija1', '0.00'),
-(104, 'Agencija6', '0.00'),
+(104, 'Agencija6', '3.00'),
 (107, 'Agencija nova', '5.00');
 
 -- --------------------------------------------------------
@@ -142,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   PRIMARY KEY (`Id`),
   KEY `R_20` (`IdAd`),
   KEY `IdK` (`IdK`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `comment`
@@ -173,7 +173,9 @@ INSERT INTO `comment` (`Description`, `IdK`, `IdAd`, `Time`, `Id`) VALUES
 ('fasdfds', 88, 34, '2021-06-05 19:05:01', 22),
 ('fasdafs', 102, 34, '2021-06-05 19:12:59', 23),
 ('fasdfasd', 102, 40, '2021-06-05 21:39:09', 24),
-('caocao', 102, 50, '2021-06-06 15:00:19', 27);
+('Ovo je dobar stan', 88, 43, '2021-06-10 20:18:14', 28),
+('caocao', 102, 50, '2021-06-06 15:00:19', 27),
+('Ovo je dobar stan', 88, 43, '2021-06-10 20:18:44', 29);
 
 -- --------------------------------------------------------
 
@@ -188,6 +190,15 @@ CREATE TABLE IF NOT EXISTS `favorites` (
   PRIMARY KEY (`IdU`,`IdAd`),
   KEY `R_24` (`IdAd`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `favorites`
+--
+
+INSERT INTO `favorites` (`IdU`, `IdAd`) VALUES
+(88, 34),
+(88, 43),
+(88, 44);
 
 -- --------------------------------------------------------
 
@@ -276,7 +287,7 @@ CREATE TABLE IF NOT EXISTS `image` (
   `IdAd` int(11) DEFAULT NULL,
   PRIMARY KEY (`Id`),
   KEY `R_17` (`IdAd`)
-) ENGINE=MyISAM AUTO_INCREMENT=77 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=78 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `image`
@@ -333,7 +344,8 @@ CREATE TABLE IF NOT EXISTS `mark` (
 INSERT INTO `mark` (`IdK`, `IdA`, `Number`) VALUES
 (102, 48, 5),
 (102, 34, 3),
-(102, 44, 3);
+(102, 44, 3),
+(88, 43, 3);
 
 -- --------------------------------------------------------
 
@@ -394,7 +406,8 @@ INSERT INTO `privilegeduser` (`Id`, `Name`, `Surname`) VALUES
 (81, 'Privilegovan4', 'Privilegovan4'),
 (100, 'Privilegovan2', 'Privilegovan2'),
 (102, 'Dragan', 'Radosevic'),
-(105, 'Alex', 'Alex');
+(105, 'Alex', 'Alex'),
+(108, 'jovan123', 'jovan123');
 
 -- --------------------------------------------------------
 
@@ -502,7 +515,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `Email` varchar(50) DEFAULT NULL,
   `Phone` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=MyISAM AUTO_INCREMENT=108 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=109 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
@@ -515,7 +528,8 @@ INSERT INTO `user` (`Id`, `Username`, `Password`, `Email`, `Phone`) VALUES
 (106, 'Obican', 'aca', 'Obican@gmail.com', ''),
 (107, 'AgencijaPrva', 'aca', 'AgencijaNov@gmail.com', '063623678'),
 (102, 'Jovan', 'joca', 'Pera@gmail.com', '063623596'),
-(103, 'Agencija1', 'aleksandar', 'Agencija1@gmail.com', '062623456');
+(103, 'Agencija1', 'aleksandar', 'Agencija1@gmail.com', '062623456'),
+(108, 'jovan123', 'aca', 'jovan123@gmail.com', '063212134');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
