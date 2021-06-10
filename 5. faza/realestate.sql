@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 05, 2021 at 06:35 PM
+-- Generation Time: Jun 10, 2021 at 06:51 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `advertisement` (
   PRIMARY KEY (`Id`),
   KEY `R_8` (`IdOwner`),
   KEY `R_12` (`IdPlace`)
-) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `advertisement`
@@ -95,7 +95,13 @@ CREATE TABLE IF NOT EXISTS `advertisement` (
 
 INSERT INTO `advertisement` (`IdOwner`, `Id`, `Time`, `Price`, `Topic`, `Size`, `Address`, `IdPlace`, `Description`, `Purpose`, `RealEstateType`) VALUES
 (81, 34, '2021-06-04 23:08:57.315497', 312213, 'Oglas1', 85, 'Vojvode Stepe 120', 3, 'Ovo je jako lep stan', 'prodaja', 'stan'),
-(81, 40, '2021-06-05 10:33:56.864737', 80000, 'Hej vest', 67, 'Savski venac 4', 2, 'Odlican stan', 'prodaja', 'stan');
+(105, 41, '2021-06-05 22:46:07.661492', 87000, 'Oglas3', 87, 'Savski venac 4', 1, 'Dobar stan', 'prodaja', 'stan'),
+(105, 44, '2021-06-06 11:12:56.704826', 80000, 'Stan na Ceraku', 123, 'Cerski Venac 2', 1, 'Dobar stan', 'izdavanje', 'kuca'),
+(104, 43, '2021-06-05 22:56:56.745769', 80741, 'Hej vest', 88, 'Vojvode Stepe 120', 2, 'Dobar stan', 'prodaja', 'stan'),
+(102, 47, '2021-06-06 12:55:06.004969', 123123, 'Stan na Ceraku', 123, 'Savski venac 4', 2, '', 'izdavanje', 'stan'),
+(107, 48, '2021-06-06 13:00:33.164254', 123123, 'Stan na Ceraku', 100, 'Vojvode Stepe 120', 1, 'Nista nije top', 'izdavanje', 'kuca'),
+(81, 40, '2021-06-05 10:33:56.864737', 80000, 'Hej vest', 67, 'Savski venac 4', 2, 'Odlican stan', 'prodaja', 'stan'),
+(102, 50, '2021-06-06 14:59:50.544085', 100001, 'Hej vest', 123, 'Aljehinova 6', 1, 'asadadsad', 'izdavanje', 'kuca');
 
 -- --------------------------------------------------------
 
@@ -117,7 +123,8 @@ CREATE TABLE IF NOT EXISTS `agency` (
 
 INSERT INTO `agency` (`Id`, `Name`, `AverageMark`) VALUES
 (74, 'Agencija1', '0.00'),
-(104, 'Agencija6', '0.00');
+(104, 'Agencija6', '0.00'),
+(107, 'Agencija nova', '5.00');
 
 -- --------------------------------------------------------
 
@@ -135,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   PRIMARY KEY (`Id`),
   KEY `R_20` (`IdAd`),
   KEY `IdK` (`IdK`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `comment`
@@ -156,7 +163,17 @@ INSERT INTO `comment` (`Description`, `IdK`, `IdAd`, `Time`, `Id`) VALUES
 ('fdasfasd', 102, 40, '2021-06-05 18:31:59', 12),
 ('aca', 102, 40, '2021-06-05 18:32:01', 13),
 ('fasdfasd', 102, 40, '2021-06-05 18:33:35', 14),
-('marko', 102, 40, '2021-06-05 18:33:37', 15);
+('marko', 102, 40, '2021-06-05 18:33:37', 15),
+('koem', 102, 40, '2021-06-05 18:42:43', 16),
+('fasdfsd', 102, 40, '2021-06-05 18:44:33', 17),
+('aca', 102, 40, '2021-06-05 18:44:36', 18),
+('das', 102, 34, '2021-06-05 18:45:04', 19),
+('Evo ga komentar', 88, 34, '2021-06-05 19:01:41', 20),
+('aca', 88, 34, '2021-06-05 19:04:58', 21),
+('fasdfds', 88, 34, '2021-06-05 19:05:01', 22),
+('fasdafs', 102, 34, '2021-06-05 19:12:59', 23),
+('fasdfasd', 102, 40, '2021-06-05 21:39:09', 24),
+('caocao', 102, 50, '2021-06-06 15:00:19', 27);
 
 -- --------------------------------------------------------
 
@@ -191,6 +208,8 @@ CREATE TABLE IF NOT EXISTS `hastag` (
 --
 
 INSERT INTO `hastag` (`IdAd`, `IdTag`) VALUES
+(2, 2),
+(2, 10),
 (34, 1),
 (34, 2),
 (34, 3),
@@ -205,7 +224,44 @@ INSERT INTO `hastag` (`IdAd`, `IdTag`) VALUES
 (40, 7),
 (40, 10),
 (40, 11),
-(40, 13);
+(40, 13),
+(41, 2),
+(41, 3),
+(41, 5),
+(41, 6),
+(41, 7),
+(41, 10),
+(41, 11),
+(41, 13),
+(43, 2),
+(43, 5),
+(43, 7),
+(43, 11),
+(43, 13),
+(44, 2),
+(44, 5),
+(44, 7),
+(44, 9),
+(44, 10),
+(44, 11),
+(44, 13),
+(47, 1),
+(47, 2),
+(47, 5),
+(47, 7),
+(47, 11),
+(47, 13),
+(48, 2),
+(48, 5),
+(48, 7),
+(48, 11),
+(48, 13),
+(50, 1),
+(50, 2),
+(50, 5),
+(50, 7),
+(50, 11),
+(50, 13);
 
 -- --------------------------------------------------------
 
@@ -220,20 +276,40 @@ CREATE TABLE IF NOT EXISTS `image` (
   `IdAd` int(11) DEFAULT NULL,
   PRIMARY KEY (`Id`),
   KEY `R_17` (`IdAd`)
-) ENGINE=MyISAM AUTO_INCREMENT=53 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=77 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `image`
 --
 
 INSERT INTO `image` (`Id`, `filename`, `IdAd`) VALUES
+(53, 'zemun-vece.jpg', 41),
 (46, '195407178_3081811935383211_2133136274960495687_n.jpg', 34),
 (47, '3.jpg', 34),
 (48, '196003273_805410000110048_5859348894001031118_n.jpg', 40),
 (49, '2.jpg', 40),
 (50, '5.jpg', 40),
 (51, '3.jpg', 34),
-(52, '5.jpg', 34);
+(52, '5.jpg', 34),
+(54, '4.jpg', 41),
+(55, '179886767_526832651818116_4714885070288597874_n.jpg', 41),
+(56, 'zemun-vece.jpg', 43),
+(57, '2.jpg', 43),
+(58, '3.jpg', 44),
+(59, '5.jpg', 44),
+(60, '179886767_526832651818116_4714885070288597874_n.jpg', 44),
+(65, '5.jpg', 47),
+(64, '179886767_526832651818116_4714885070288597874_n.jpg', 44),
+(66, '3.jpg', 47),
+(67, '3.jpg', 47),
+(68, '4.jpg', 48),
+(69, '3.jpg', 48),
+(70, '2.jpg', 48),
+(71, 'hram_2.jpg', 48),
+(72, '1.jpg', 48),
+(74, '1.jpg', 50),
+(75, '4.jpg', 50),
+(76, '5.jpg', 50);
 
 -- --------------------------------------------------------
 
@@ -249,6 +325,15 @@ CREATE TABLE IF NOT EXISTS `mark` (
   PRIMARY KEY (`IdK`,`IdA`),
   KEY `R_22` (`IdA`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `mark`
+--
+
+INSERT INTO `mark` (`IdK`, `IdA`, `Number`) VALUES
+(102, 48, 5),
+(102, 34, 3),
+(102, 44, 3);
 
 -- --------------------------------------------------------
 
@@ -308,7 +393,8 @@ CREATE TABLE IF NOT EXISTS `privilegeduser` (
 INSERT INTO `privilegeduser` (`Id`, `Name`, `Surname`) VALUES
 (81, 'Privilegovan4', 'Privilegovan4'),
 (100, 'Privilegovan2', 'Privilegovan2'),
-(102, 'Dragan', 'Radosevic');
+(102, 'Dragan', 'Radosevic'),
+(105, 'Alex', 'Alex');
 
 -- --------------------------------------------------------
 
@@ -366,7 +452,8 @@ CREATE TABLE IF NOT EXISTS `registereduser` (
 
 INSERT INTO `registereduser` (`Id`, `Name`, `Surname`) VALUES
 (88, 'Aleksandar', 'Rakic'),
-(103, 'Radosevic', 'Nekretnine');
+(103, 'Radosevic', 'Nekretnine'),
+(106, 'Obican', 'Obican');
 
 -- --------------------------------------------------------
 
@@ -415,7 +502,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `Email` varchar(50) DEFAULT NULL,
   `Phone` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=MyISAM AUTO_INCREMENT=105 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=108 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
@@ -424,6 +511,9 @@ CREATE TABLE IF NOT EXISTS `user` (
 INSERT INTO `user` (`Id`, `Username`, `Password`, `Email`, `Phone`) VALUES
 (88, 'Miki', 'aca123', 'Pera22@gmail.com', '063623678'),
 (104, 'Agencija2', 'aca', 'Agencija2@gmail.com', '063623678'),
+(105, 'Alex', 'aca', 'Alex@gmail.com', '065123456'),
+(106, 'Obican', 'aca', 'Obican@gmail.com', ''),
+(107, 'AgencijaPrva', 'aca', 'AgencijaNov@gmail.com', '063623678'),
 (102, 'Jovan', 'joca', 'Pera@gmail.com', '063623596'),
 (103, 'Agencija1', 'aleksandar', 'Agencija1@gmail.com', '062623456');
 COMMIT;
