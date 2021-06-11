@@ -7,21 +7,21 @@
     "id": "c4da7536-0fba-4501-ab40-2e935ee073af",
     "name": "TP1_UspesnoUklanjanje",
     "commands": [{
-      "id": "2de123b4-44f2-4bd0-adba-03cc71aab4b3",
+      "id": "0d73bd0e-b875-408c-897f-876d301c0422",
       "comment": "",
       "command": "open",
       "target": "http://localhost:8080/Admin",
       "targets": [],
       "value": ""
     }, {
-      "id": "43f5506a-baff-4ba9-b6a2-74df6d500a16",
+      "id": "aa15b815-7a34-4879-b1e0-25a65a2c4848",
       "comment": "",
       "command": "setWindowSize",
-      "target": "800x824",
+      "target": "808x824",
       "targets": [],
       "value": ""
     }, {
-      "id": "c162d156-0553-4ada-982c-9c7583e73d8e",
+      "id": "fae3eeae-2008-478e-ba64-45802f9066a6",
       "comment": "",
       "command": "click",
       "target": "css=.container-fluid:nth-child(3) .btn",
@@ -32,26 +32,38 @@
       ],
       "value": ""
     }, {
-      "id": "5858d7c0-f458-4b00-a2af-7d091099dedb",
+      "id": "f7cc7b84-5bf6-4f13-bbd1-f0b28132bb1e",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.lista:nth-child(5) > li:nth-child(3) > span",
+      "targets": [
+        ["css=.lista:nth-child(5) > li:nth-child(3) > span", "css:finder"],
+        ["xpath=//ul[3]/li/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Aleksandar Rakic')]", "xpath:innerText"]
+      ],
+      "value": "Aleksandar Rakic"
+    }, {
+      "id": "8fb2b5b6-7287-4c2d-bf52-d28d3a288a9e",
       "comment": "",
       "command": "click",
-      "target": "css=li:nth-child(8) > .adminButton",
+      "target": "css=.lista:nth-child(5) > li:nth-child(3) > .adminButton",
       "targets": [
-        ["css=li:nth-child(8) > .adminButton", "css:finder"],
-        ["xpath=(//input[@name='actionRegistered108'])[2]", "xpath:attributes"],
-        ["xpath=//li[6]/input", "xpath:position"]
+        ["css=.lista:nth-child(5) > li:nth-child(3) > .adminButton", "css:finder"],
+        ["xpath=(//input[@name='actionRegistered88'])[2]", "xpath:attributes"],
+        ["xpath=//ul[3]/li/input", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "f2b96d1c-70ba-4d14-b54d-82e530ed26c7",
+      "id": "c790b4b3-ba30-4ae0-b96b-847711ca7925",
       "comment": "",
       "command": "assertNotText",
-      "target": "css=li:nth-child(8)",
+      "target": "css=.lista:nth-child(5) > li:nth-child(3) > span",
       "targets": [
-        ["css=li:nth-child(8)", "css:finder"],
-        ["xpath=//li[6]", "xpath:position"]
+        ["css=.lista:nth-child(5) > li:nth-child(3) > span", "css:finder"],
+        ["xpath=//ul[3]/li/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Aleksandar Rakic')]", "xpath:innerText"]
       ],
-      "value": "Stefi Stefi\\nIzaberi privilegije"
+      "value": "Aleksandar Rakic"
     }]
   }, {
     "id": "b0846b71-b5ba-42e8-8a9d-8cfbe74ea3df",
