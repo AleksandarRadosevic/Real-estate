@@ -17,8 +17,7 @@
 
 <body>
     <nav>
-        <div class="logo"><h4><a  href='../index.html'>Success</a></h4></div>
-        
+        <div class="logo"><h4><a  href='../index.html'>Success</a></h4></div>       
         <div class="logo"id="logo2">
                 <?php
                 if ($User['Type']=='privileged'){
@@ -40,7 +39,7 @@
     </nav>
     <div id="containter">
         <main>
-        <section class="glass">
+        <section class="glass" style="background-image:url('/assets/images/dodavanjeOglasa.jpg');  background-repeat: no-repeat; background-size: cover !important;">
 
         <h2 style="font-family: 'Poppins', sans-serif; text-align: center;">Dodavanje oglasa</h2>
         <form class='uredi' enctype="multipart/form-data" name='logovanje' id='forma' method="post">
@@ -156,14 +155,14 @@
         <tr>
             <td>Adresa:</td>
             <td>
-                <input type='text' name="adresa"  minlength="3" placeholder="" required>
+                <input type='text' name="adresa"  minlength="3" placeholder="" required style="border-radius: 5px;">
             </td>
         </tr>
         <tr><td> &nbsp;</td></tr>
         <tr>
             <td>Kvadratura u m2 </td>
             <td>
-		<input type="number" name="kvadratura" required />            </td>
+		<input type="number" name="kvadratura" required style="border-radius: 5px;"/>            </td>
         </tr>
         <tr>
             <td>Dodatno:</td>
@@ -208,6 +207,7 @@
         </tr>
 
   </form>
+        
 <script>
 function goBackToMain() {
             window.location.href = "http://localhost:8080/"

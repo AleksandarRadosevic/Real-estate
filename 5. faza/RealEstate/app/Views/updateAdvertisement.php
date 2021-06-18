@@ -42,8 +42,8 @@
     </nav>
     <div id="containter">
         <main>
-        <section class="glass">
-            <h2 style="font-family: 'Poppins', sans-serif; text-align: center;">Dodavanje oglasa</h2>
+        <section class="glass"  style="background-image:url('/assets/images/dodavanjeOglasa.jpg');  background-repeat: no-repeat; background-size: cover !important;">
+            <h2 style="font-family: 'Poppins', sans-serif; text-align: center;">Azuriranje oglasa</h2>
             <form class='uredi' enctype="multipart/form-data" name='logovanje' id='forma' method="post">
 
 <div style="width:100%;" >
@@ -157,14 +157,14 @@
         <tr>
             <td>Adresa:</td>
             <td>
-                <input type='text' name="adresa"  minlength="3" placeholder="<?php echo $address; ?>" >
+                <input type='text' name="adresa"  minlength="3" placeholder="<?php echo $address; ?>" style="border-radius: 5px;">
             </td>
         </tr>
         <tr><td> &nbsp;</td></tr>
         <tr>
             <td>Kvadratura u m2 </td>
             <td>
-		<input type="number" placeholder="<?php echo $size ?>" name="kvadratura"  />       
+		<input type="number" placeholder="<?php echo $size ?>" name="kvadratura"  style="border-radius: 5px;"/>       
             </td>
         </tr>
                               
