@@ -32,8 +32,6 @@
                 ?>
 
                </div>
-
-
         <div class="hidden-menu">
             <div class="line1"></div>
             <div class="line2"></div>
@@ -44,28 +42,30 @@
         <main>
         <section class="glass">
 
-<h1 class=naslov>Dodavanje oglasa</h1>
+        <h2 style="font-family: 'Poppins', sans-serif; text-align: center;">Dodavanje oglasa</h2>
+        <form class='uredi' enctype="multipart/form-data" name='logovanje' id='forma' method="post">
 
-            <form class='uredi' enctype="multipart/form-data" name='logovanje' id='forma'action="" method="post">
-
-<div id='content' width=100%>
+<div style="width:100%;" >
     <table>
-        <tr>
-            <td ><h2 class=podnaslov>Unesite podatke :</h2> 
-            
+ <tr>
+            <td ><h3 style="font-family: 'Poppins', sans-serif; text-align: center;">Vaši podaci :</h3>          
         </tr>
         <tr>
             <td>Naslov </td>
             <td>
-                <input type='text' name="naslov" minlength="3" placeholder="" required>
+                <input type='text' name="naslov" minlength="3" required style="border-radius: 5px;">
             </td>
+        </tr>
+        <tr>     
+            <td>&nbsp;</td>
         </tr>
         <tr>
             <td>Cena u evrima:</td>
             <td>
-              <input type="number" name="cena"  required />
+            <input type="number" name="cena" required style="border-radius: 5px;" />
             </td>
         </tr>
+        <tr><td> &nbsp;</td></tr>
         <tr>
             <td>Tip nekretnine:</td>
             <td>
@@ -83,13 +83,13 @@
             </td>
         </tr>
         <tr>
-            <td>Mesto:</td>
+            <td>Lokacija:</td>
             <td>
                 <div class="dropdown">
-                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" required >
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" style="width:60%;">
                     Izaberi lokaciju
                     </button>
-                    <div class="dropdown-menu" >
+                    <div class="dropdown-menu">
                     <div class="dropdown-item"><label>
                       <input type="radio" name="Beograd" value='1' > Beograd, Cukarica
                     </label>
@@ -148,73 +148,66 @@
           <input type="radio" name="Beograd" value='17'> Beograd, Surcin
         </label>
         </div>
-                    </div>
-                   </div>
+        </div>
+        </div>
             </td>
         </tr>
-
+        <tr><td> &nbsp;</td></tr>
         <tr>
             <td>Adresa:</td>
             <td>
                 <input type='text' name="adresa"  minlength="3" placeholder="" required>
             </td>
         </tr>
-
-
+        <tr><td> &nbsp;</td></tr>
         <tr>
             <td>Kvadratura u m2 </td>
             <td>
 		<input type="number" name="kvadratura" required />            </td>
         </tr>
-
-
-       
-       
-
-
-      
-
-
-
-
         <tr>
             <td>Dodatno:</td>
             <td>
-                <input type='checkbox' value="Uknjizen" name='check_list[]' checked> Uknjižen
-                <input type='checkbox' value="Potkrovlje" name='check_list[]'> Potkrovlje
-                <input type='checkbox' value="Hitna prodaja" name='check_list[]' > Hitna prodaja
-                <input type='checkbox' value="Garaza" name='check_list[]'> Garaza
-                <input type='checkbox' value="Lift" name='check_list[]' checked> Lift
-                <input type='checkbox' value="Terasa" name='check_list[]'> Terasa
-                <input type='checkbox' value="Podrum" name='check_list[]' checked> Podrum
-                <input type='checkbox'  value="Penthouse" name='check_list[]'> Penthouse
-                <br>
-                 <input type='checkbox' value="Nova gradnja" name='check_list[]' > Nova gradnja
-                <input type='checkbox' value="Stara gradnja" name='check_list[]'> Stara gradnja
-                <input type='checkbox' value="Izvorno stanje" name='check_list[]' checked> Izvorno stanje
-                <input type='checkbox'  value="Renovirano"name='check_list[]'> Renovirano
-                <input type='checkbox' value="Lux"  name='check_list[]' checked> Lux
-                <input type='checkbox' value="Za renoviranje" name='check_list[]'> Za renoviranje
-                
+                <table>
+                    <tr>
+                        <td><input type='checkbox' value="Uknjizen" name='check_list[]' checked> Uknjižen</td>
+                        <td><input type='checkbox' value="Potkrovlje" name='check_list[]'> Potkrovlje</td>
+                    </tr>
+                    <tr>
+                        <td><input type='checkbox' value="Hitna prodaja" name='check_list[]' > Hitna prodaja</td>
+                        <td><input type='checkbox' value="Garaza" name='check_list[]'> Garaza</td>
+                    </tr>
+                    <tr>
+                        <td><input type='checkbox' value="Lift" name='check_list[]' checked> Lift</td>
+                        <td><input type='checkbox' value="Terasa" name='check_list[]'> Terasa</td>
+                    </tr>
+                    <tr>
+                        <td><input type='checkbox' value="Podrum" name='check_list[]' checked> Podrum</td>
+                        <td><input type='checkbox'  value="Penthouse" name='check_list[]'> Penthouse</td>
+                    </tr>
+                    <tr>
+                        <td><input type='checkbox' value="Nova gradnja" name='check_list[]' > Nova gradnja</td>
+                        <td><input type='checkbox' value="Stara gradnja" name='check_list[]'> Stara gradnja</td>
+                    </tr>
+                    <tr>
+                        <td><input type='checkbox' value="Izvorno stanje" name='check_list[]' checked> Izvorno stanje</td>
+                        <td><input type='checkbox'  value="Renovirano"name='check_list[]'> Renovirano</td>
+                    </tr>
+                    <tr>
+                        <td><input type='checkbox' value="Lux"  name='check_list[]' checked> Lux</td>
+                        <td><input type='checkbox' value="Za renoviranje" name='check_list[]'> Za renoviranje</td>
+                    </tr>
+                </table>
             </td>
         </tr>
-
-
-      
-
-
-
         <tr>
             <td>Opis:</td>
             <td>
                 <textarea rows='5' name="komentar" cols='40'></textarea>
             </td>
         </tr>
-        
-        
+
   </form>
-        
-        
 <script>
 function goBackToMain() {
             window.location.href = "http://localhost:8080/"
@@ -224,7 +217,6 @@ function goBackToMain() {
        
 
 </script>
-
 <script>
     function goToPictureAdding()
       window.location.href =  http://localhost:8080/AddAd/upload
@@ -232,66 +224,27 @@ function goBackToMain() {
 </script>
         <tr>
             <td>Odustani</td>
-            <td>
-				 
-                
-           <button type="button" onclick="goBackToMain()"class="btn-danger" >Nazad</button>
+            <td>   
+                <?php
+                if ($User['Type']=='privileged'){
+                    echo "<a href='/Privilegeduser'><button type='button'class='btn-danger' style='width: 60%;'>Nazad</button></a>";
+                }
+                else if ($User['Type']=='agency'){
+                    echo "<a href='/Agency'><button type='button'class='btn-danger' style='width: 60%;'>Nazad</button></a>";
+                }
+                ?>              
             </td>
         </tr>
-        
-        
-        
-   
-        
-        
-        
          <tr>
             <td>Postavi oglas</td>
             <td>
-             
-               
-			
-                            <button type='submit'  class="btn-success" >Postavi </button> 
-                                    
+            <button type='submit'  class="btn-success" style="width: 60%;">Postavi </button>                              
             </td>
         </tr>
-        
-        
-
-       
-       
-
-
-        
-   
-
-       
     </table>
-    
-     
-	
-    <img src='/assets/images/zaProjekat.jpg'>
-
 </div>
-
-               
-
-    
-
-        </div>
-
-
-
-
-
-
-
-
-
-
-
-        </section>
-        
+</div>
+        </section>    
         <div class="circle1"></div>
         <div class="circle2"></div>
         </main>
