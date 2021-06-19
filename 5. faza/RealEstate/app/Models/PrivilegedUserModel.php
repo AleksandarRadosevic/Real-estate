@@ -25,7 +25,7 @@ class PrivilegedUserModel extends Model
              ],
          'Phone'        =>[
              'required'  =>'Broj telefona je obavezno polje',
-             'regex_match'=>'Neispravan telefonski broj'
+             'regex_match'=>'Telefon mora biti u formatu 06x xxx xxx(x)'
          ]
     ];
 }

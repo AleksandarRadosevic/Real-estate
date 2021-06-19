@@ -54,13 +54,13 @@
                     <li>
                       <label class='izmena_label'>
                        <span class='izmena_span'>Korisničko ime</span>
-                       <input class='izmena_input' value='<?php echo $User['Username'];?>' name="korime" minlength="3" maxlength="20"/>
+                       <input class='izmena_input' value='<?php echo $User['Username'];?>' name="korime"/>
                       </label>
                     </li>
                     <li>
                       <label class='izmena_label'>
                        <span class='izmena_span'>Lozinka</span>
-                       <input class='izmena_input' name="lozinka" required minlength="3" maxlength="20"/>
+                       <input class='izmena_input' name="lozinka"/>
                       </label>
                     </li>
                     <?php 
@@ -68,7 +68,7 @@
                     echo "<li>
                       <label class='izmena_label'>
                        <span class='izmena_span'>Ime</span>
-                       <input class='izmena_input' value='".$User['Name'] ."'name='ime' minlength='3' maxlength='20' />
+                       <input class='izmena_input' value='".$User['Name'] ."'name='ime' />
                       </label>
                     </li>
                     <li>";
@@ -79,7 +79,7 @@
                     echo "<li>
                       <label class='izmena_label'>
                        <span class='izmena_span'>Prezime</span>
-                       <input class='izmena_input' value='".$User['Surname'] ."'name='prezime' minlength='3' maxlength='20'/>
+                       <input class='izmena_input' value='".$User['Surname'] ." 'name='prezime'/>
                       </label>
                     </li>
                     <li>";
@@ -88,13 +88,13 @@
                     <li>
                       <label class='izmena_label'>
                        <span class='izmena_span'>Email</span>
-                       <input class='izmena_input' value='<?php echo $User['Email'];?>' name="email" maxlength='50'/>
+                       <input class='izmena_input' value='<?php echo $User['Email'];?>' name="email"/>
                       </label>
                     </li>
                     <li>
                       <label class='izmena_label'>
                        <span class='izmena_span'>Kontakt telefon</span>
-                       <input class='izmena_input' value='<?php echo $User['Phone'];?>' name="tel" maxlength='11'/>
+                       <input class='izmena_input' value='<?php echo $User['Phone'];?>' name="tel"/>
                       </label>
                     </li>
                     <?php 
@@ -102,12 +102,19 @@
                     echo "<li>
                       <label class='izmena_label'>
                        <span class='izmena_span'>Naziv agencije</span>
-                       <input class='izmena_input' value='".$User['Name'] ."'name='agencija' minlength='3' maxlength='20'/>
+                       <input class='izmena_input' value='".$User['Name'] ."'name='agencija'/>
                       </label>
                     </li>
-                    <li>";
+                    ";
                         }
                     ?>
+                    <?php if (! empty($errors)) : ?>
+                <div class="alert alert-danger">
+                <?php foreach ($errors as $field => $error) : ?>
+                    <p><?= $error ?></p>
+                <?php endforeach ?>
+                </div>
+                <?php endif ?>
                     <button type='submit' class='izmeni_dugme'>Sačuvaj izmene</button>
                 </ul>
             </div>
