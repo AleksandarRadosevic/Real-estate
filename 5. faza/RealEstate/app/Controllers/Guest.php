@@ -421,7 +421,7 @@ class Guest extends BaseController
                 helper(['form']);
                 $data=[
                         'IdK'=>$user['Id'],
-                        'IdA'=>$advert['Id'],
+                        'IdA'=>$advert['IdOwner'],
                         'Number'=>$_POST['ocjena']
                         ];
                 $mark=new MarkModel();

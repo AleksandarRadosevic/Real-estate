@@ -17,23 +17,21 @@
 </head>
 <body>
   <nav>
- 
-    
-    <div class="logo"><h4><a href='../index.html'>Success</a></h4></div>
-     <ul class="nav-links">
-       <li><a href='/Home' class="btn" style="background-color: rgb(33, 74, 255);">Početna stranica</a href></li>
-       <li><a href='search' class="btn" style="background-color: rgb(33, 74, 255);">Pretraga</a href></li>
-       <li><a href='Ads'class="btn" style="background-color: rgb(33, 74, 255);">Oglasi</a href></li>
-       <li><a href='login' class='btn btn-success'>Prijavite se</a href></li>
-       <li><a href='register' class='btn btn-danger'>Registrujte se</a></a href></li> 
-     </ul>
-  
-     <div class="hidden-menu">
-         <div class="line1"></div>
-         <div class="line2"></div>
-         <div class="line3"></div>
-     </div>
- </nav>
+        <div class="logo"><h4><a  href='../index.html'>Success</a></h4></div>
+        <ul class="nav-links">
+            <li><a href='/Home'>Početna stranica</a href></li>
+            <li><a href='search'>Pretraga</a href></li>
+            <li><a href='Ads'>Oglasi</a href></li>
+            <li><a href='login' class='login'>Prijavite se</a href></li>
+            <li><a href='register' class='button register'>Registrujte se</a></li>    
+        </ul>
+                
+        <div class="hidden-menu">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
     <div class="containter">
         <main>
         <section class="glass">
