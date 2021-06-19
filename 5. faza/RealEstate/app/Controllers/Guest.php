@@ -149,7 +149,8 @@ class Guest extends BaseController
                                     $validationData=[
                                         'Id'=>$admin['Id'],
                                         'Username'=>$admin['Username'],
-                                        'Type'=>'admin'
+                                        'Type'=>'admin',
+                                        'Temp'=>''
                                     ];
                                     $this->session->set('User',$validationData);
                                     return redirect()->to(site_url('Admin'));
