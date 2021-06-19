@@ -67,7 +67,7 @@ class Guest extends BaseController
                 }
                 }
                 
-                //id will be changed after insert in user table
+               //id will be changed after insert in user table
                 $id=-1;
                 
                 
@@ -246,12 +246,7 @@ class Guest extends BaseController
                 if ($sizeTo==0){
                     $sizeTo=MAXINT;
                 }
-                
-                
-                
-                
-                
-                
+           
                 //get advertisments based on size and price
                 $sql="(Select Id from advertisement where Price>='$priceFrom' and Price<='$priceTo' and Size>='$sizeFrom' and Size<='$sizeTo')";
                 $purpose=$_GET['purpose'];
@@ -313,6 +308,7 @@ class Guest extends BaseController
         }
         
         public function Ads(){
+            //show all advertisements
                 $db = \Config\Database::connect();
                 $sqlType="Select * from advertisement";
                 $values   = $db->query($sqlType);
@@ -321,19 +317,18 @@ class Guest extends BaseController
             echo view('showAdvertisments',['values'=>$values,'numberOfRows'=>$numberOfRows,'User'=>$user]);
         }
         public function Add(){
-            
+            //show one advertisement
             $idsearchAdd=-1;
             $user=$this->session->get('User');
             if ($user!=null){
                 $idsearchAdd=$user['Temp'];
             }
             
-            //if ($this->request->getMethod()=='get'){
-           
+          
             $ad=new adModel();
             $ads=$ad->findAll();
             
-            
+            //check which advertisement is clicked
             foreach ($ads as $temp){
                 if (isset($_GET['BId'.$temp['Id']])){
                     $own=new UserModel();
@@ -421,7 +416,7 @@ class Guest extends BaseController
                 helper(['form']);
                 $data=[
                         'IdK'=>$user['Id'],
-                        'IdA'=>$advert['Id'],
+                        'IdA'=>$advert['IdOwner'],
                         'Number'=>$_POST['ocjena']
                         ];
                 $mark=new MarkModel();

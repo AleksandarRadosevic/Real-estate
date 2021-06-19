@@ -15,13 +15,13 @@
 </head>
 <body>
   <nav>
- 
-    
-    <div class="logo"><h4><a href='../index.html'>Success</a></h4></div>
-     <ul class="nav-links" >
-       <li><a href='/Home' class="btn" style="background-color: rgb(33, 74, 255);">Početna stranica</a href></li>
-       <li><a href='search' class="btn" style="background-color: rgb(33, 74, 255);">Pretraga</a href></li>
-       <li><a href='Ads'class="btn" style="background-color: rgb(33, 74, 255);">Oglasi</a href></li>
+     
+      
+      <div class="logo"><h4><a href='/Home'>Success</a></h4></div>
+        <ul class="nav-links">
+            <li><a href='/Home'>Početna stranica</a></li>
+            <li><a href='search'>Pretraga</a></li>
+            <li><a href='Ads'>Oglasi</a></li>
             <?php             
             if ($User==null) {
             echo"<li><a href='login' class='login'>Prijavite se</a href></li>";
@@ -36,22 +36,22 @@
                    echo"<li><a href='/Agency/logout' class='button register'>Odjavi se</a></a href></li>";
                 }
                 else if ($User['Type']=='privileged'){
-                    echo "<a href='/Privilegeduser' id='myProf'><div class='btn btn-success'>Moj profil</div></a>&nbsp";
-                    echo "<a href='/Privilegeduser/logout'><div class='btn btn-danger'>Odjavi se</div></a>";
+                    echo "<li><a href='/Privilegeduser' id='myProf' class='login'>Moj profil</a></li>";
+                    echo "<li><a href='/Privilegeduser/logout'class='button register'>Odjavi se</a></li>";
                 }
                 else if ($User['Type']=='admin'){
-                    echo "<a href='/Admin' id='myProf'><div class='btn btn-success'>Moj profil</div></a>&nbsp";
-                    echo "<a href='/Admin/logout'><div class='btn btn-danger'>Odjavi se</div></a>";
+                    echo "<li><a href='/Admin' id='myProf'class='login'>Moj profil</a></li>";
+                    echo "<li><a href='/Admin/logout'class='button register'>Odjavi se</a></li>";
                 }
             ?>
-     </ul>
-
-     <div class="hidden-menu" style="margin:0px !important; padding:0 !important;">
-         <div class="line1"></div>
-         <div class="line2"></div>
-         <div class="line3"></div>
-     </div>
- </nav>
+        </ul>
+  
+       <div class="hidden-menu" style="margin:0px !important; padding:0 !important;">
+           <div class="line1"></div>
+           <div class="line2"></div>
+           <div class="line3"></div>
+       </div>
+   </nav>
  
     <div class="containter">
      <main style="margin-top:0% !important;">
@@ -175,7 +175,7 @@
           <div class="row gutters-sm" style="margin-left: 2%;margin-right: 2%; margin-top: 3px;">
             <div class="col-md-12 ">
               <div class="card">
-                <div class="card-body">
+                <div id='ocena_polje' class="card-body">
                     <div class="ograda_opis">
                       <h4><?php echo $ad['Topic']; ?></h4>
                       
@@ -216,6 +216,15 @@
                     </form> ";}
                             ?>
                     </div>
+                  <?php
+                  $marks=new App\Models\MarkModel();
+                  $session=session();
+                  $user=$session->get('User');
+                  $mark=$marks->where('IdK',$user['Id'])->where('IdA',$user['Temp'])->find();
+                  if($mark!=null)echo "<div class='media ograda'>
+                            <p>Agencija je ocenjena ocenom.</p>
+                        </div>";
+                  ?>
                   </div>
                 </div>
               </div>
