@@ -17,7 +17,31 @@
 
 <body>
     <nav>
-        <div class="logo"><h4><a  href='../index.html'>Success</a></h4></div>       
+        <div class="logo"><h4><a  href='/Home'>Success</a></h4></div>
+        <ul class="nav-links">
+            <li><a href='/Home'>Početna stranica</a></li>
+            <li><a href='/Guest/search'>Pretraga</a></li>
+            <li><a href='/Guest/Ads'>Oglasi</a></li>
+                <?php
+                if ($User['Type']=='agency'){
+                   echo"<li><a href='/Agency' class='login'>Moj profil</a href></li>";
+                   echo"<li><a href='/Agency/logout' class='button register'>Odjavi se</a></a href></li>";
+                }
+                else if ($User['Type']=='privileged'){
+                    echo "<li><a href='/Privilegeduser' id='myProf' class='login'>Moj profil</a></li>";
+                    echo "<li><a href='/Privilegeduser/logout'class='button register'>Odjavi se</a></li>";
+                }
+                ?>   
+        </ul>
+                
+        <div class="hidden-menu">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+    <!--<nav>
+        <div class="logo"><h4><a  href='/Home'>Success</a></h4></div>       
         <div class="logo"id="logo2">
                 <?php
                 if ($User['Type']=='privileged'){
@@ -36,7 +60,7 @@
             <div class="line2"></div>
             <div class="line3"></div>
         </div>
-    </nav>
+    </nav>-->
     <div id="containter">
         <main>
         <section class="glass" style="background-image:url('/assets/images/dodavanjeOglasa.jpg');  background-repeat: no-repeat; background-size: cover !important;">

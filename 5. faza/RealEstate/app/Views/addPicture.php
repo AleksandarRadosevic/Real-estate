@@ -8,36 +8,45 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/assets/styleOglas.css">
-    <script src='javascript.js'></script>
+    <script src='/assets/javascript.js'></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <title>Prototip</title>
 </head>
 <body>
     <nav>
-        <div class="logo"><h4><a  href='../index.html'>Success</a></h4></div>
-        
-        <div class="logo"id="logo2">
-                <?php
-                if ($user['Type']=='privileged'){
-                    echo "<a href='/Privilegeduser' id='myProf'><div class='btn btn-success'>Moj profil</div></a href>&nbsp";
-                    echo "<a href='/Privilegeduser/logout'><div class='btn btn-danger'>Odjavi se</div></a href>";
+     
+      
+      <div class="logo"><h4><a href='/Home'>Success</a></h4></div>
+        <ul class="nav-links">
+            <li><a href='/Home'>Početna stranica</a></li>
+            <li><a href='/Guest/search'>Pretraga</a></li>
+            <li><a href='/Guest/Ads'>Oglasi</a></li>
+            <?php if ($user['Type']=='registered'){                   
+                   echo"<li><a href='/Registereduser' class='login'>Moj profil</a href></li>";
+            echo "<li><a href='/Registereduser/logout' class='button register'>Odjavi se</a></a href></li>";
                 }
                 else if ($user['Type']=='agency'){
-                    echo "<a href='/Agency' id='myProf'><div class='btn btn-success'>Moj profil</div></a href>&nbsp";
-                    echo "<a href='/Agency/logout'><div class='btn btn-danger'>Odjavi se</div></a href>";
+                   echo"<li><a href='/Agency' class='login'>Moj profil</a href></li>";
+                   echo"<li><a href='/Agency/logout' class='button register'>Odjavi se</a></a href></li>";
                 }
-                ?>
-
-               </div>
-
-
-        <div class="hidden-menu">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
-        </div>
-    </nav>
+                else if ($user['Type']=='privileged'){
+                    echo "<li><a href='/Privilegeduser' id='myProf' class='login'>Moj profil</a></li>";
+                    echo "<li><a href='/Privilegeduser/logout'class='button register'>Odjavi se</a></li>";
+                }
+                else if ($user['Type']=='admin'){
+                    echo "<li><a href='/Admin' id='myProf'class='login'>Moj profil</a></li>";
+                    echo "<li><a href='/Admin/logout'class='button register'>Odjavi se</a></li>";
+                }
+            ?>
+        </ul>
+  
+       <div class="hidden-menu" style="margin:0px !important; padding:0 !important;">
+           <div class="line1"></div>
+           <div class="line2"></div>
+           <div class="line3"></div>
+       </div>
+   </nav>
     <div id="containter">
         <main>
         <section class="glass">
@@ -56,13 +65,13 @@
                 <button type='submit' name="upload" class="btn-lg btn btn-success" >Dodaj sliku </button>
                 <?php 
                 if ($user['Type']=='privileged'){
-                    echo '<a href="/Privilegeduser"><button type="button" class="btn btn-lg btn-info" >Završi</button></a>';                  
+                    echo '<a href="/Privilegeduser"><button type="button" onclick="oglas()" class="btn btn-lg btn-info" >Završi</button></a>';                  
                 }
                 else if ($user['Type']=='agency'){
-                 echo '<a href="/Agency"><button type="button" class="btn btn-lg btn-info" >Završi</button></a>';
+                 echo '<a href="/Agency"><button type="button" onclick="oglas()" class="btn btn-lg btn-info" >Završi</button></a>';
                 }
                 else if ($user['Type']=='registered'){
-                    echo '<a href="/Registereduser"><button type="button" class="btn btn-lg btn-info" >Završi</button></a>';
+                    echo '<a href="/Registereduser"><button type="button" onclick="oglas()" class="btn btn-lg btn-info" >Završi</button></a>';
                 }
                 ?>
                 

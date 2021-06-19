@@ -7,20 +7,19 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/styleAds.css">
     <script src='/assets/javascript.js'></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <title>Prototip</title>
 </head>
 <body><form id="my_form" method="get" action="Add">
     <nav>
      
       
-      <div class="logo"><h4><a href='../index.html'>Success</a></h4></div>
-       <ul class="nav-links" >
-       <li><a href='/Home' class="btn" style="background-color: rgb(33, 74, 255);">Početna stranica</a href></li>
-       <li><a href='search' class="btn" style="background-color: rgb(33, 74, 255);">Pretraga</a href></li>
-       <li><a href='Ads'class="btn" style="background-color: rgb(33, 74, 255);">Oglasi</a href></li>
+      <div class="logo"><h4><a href='/Home'>Success</a></h4></div>
+        <ul class="nav-links">
+            <li><a href='/Home'>Početna stranica</a href></li>
+            <li><a href='search'>Pretraga</a href></li>
+            <li><a href='Ads'>Oglasi</a href></li>
             <?php             
             if ($User==null) {
             echo"<li><a href='login' class='login'>Prijavite se</a href></li>";
@@ -35,15 +34,15 @@
                    echo"<li><a href='/Agency/logout' class='button register'>Odjavi se</a></a href></li>";
                 }
                 else if ($User['Type']=='privileged'){
-                    echo "<a href='/Privilegeduser' id='myProf'><div class='btn btn-success'>Moj profil</div></a>&nbsp";
-                    echo "<a href='/Privilegeduser/logout'><div class='btn btn-danger'>Odjavi se</div></a>";
+                    echo "<li><a href='/Privilegeduser' id='myProf' class='login'>Moj profil</a></li>";
+                    echo "<li><a href='/Privilegeduser/logout'class='button register'>Odjavi se</a></li>";
                 }
                 else if ($User['Type']=='admin'){
-                    echo "<a href='/Admin' id='myProf'><div class='btn btn-success'>Moj profil</div></a>&nbsp";
-                    echo "<a href='/Admin/logout'><div class='btn btn-danger'>Odjavi se</div></a>";
+                    echo "<li><a href='/Admin' id='myProf'class='login'>Moj profil</a></li>";
+                    echo "<li><a href='/Admin/logout'class='button register'>Odjavi se</a></li>";
                 }
             ?>
-       </ul>
+        </ul>
   
        <div class="hidden-menu" style="margin:0px !important; padding:0 !important;">
            <div class="line1"></div>

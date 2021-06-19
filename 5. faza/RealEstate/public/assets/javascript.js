@@ -189,3 +189,18 @@ function btnToggleType(){
 }
 
 
+function oglasdodat(){
+  if(localStorage.getItem("oglas")){
+  var node=document.createElement('div');
+  node.setAttribute('class','potvrda ograda');
+  var tekst=document.createTextNode("Oglas je uspešno postavljen.");
+  node.appendChild(tekst);
+  var sekcija=document.getElementById('oglas_dodat');
+  sekcija.appendChild(node);
+  localStorage.removeItem('oglas');
+  }
+}
+
+function oglas(){
+  localStorage.setItem("oglas", "Oglas je uspešno dodat.");
+}

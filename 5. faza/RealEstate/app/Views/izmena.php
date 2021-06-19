@@ -17,33 +17,38 @@
 </head>
 <body>
     <nav>
-        <div class="logo"><h4><a  href='../index.html'>Success</a></h4></div>
-        
-        <div class="logo"id="logo2">
-                <?php
-                if ($User['Type']=='privileged'){
-                    echo "<a href='/Privilegeduser' id='myProf'><div class='btn btn-success'>Moj profil</div></a href>&nbsp";
-                    echo "<a href='/Privilegeduser/logout'><div class='btn btn-danger'>Odjavi se</div></a href>";
+     
+      
+      <div class="logo"><h4><a href='/Home'>Success</a></h4></div>
+        <ul class="nav-links">
+            <li><a href='/Home'>Početna stranica</a></li>
+            <li><a href='/Guest/search'>Pretraga</a></li>
+            <li><a href='/Guest/Ads'>Oglasi</a></li>
+            <?php if ($User['Type']=='registered'){                   
+                   echo"<li><a href='/Registereduser' class='login'>Moj profil</a href></li>";
+            echo "<li><a href='/Registereduser/logout' class='button register'>Odjavi se</a></a href></li>";
                 }
                 else if ($User['Type']=='agency'){
-                    echo "<a href='/Agency' id='myProf'><div class='btn btn-success'>Moj profil</div></a href>&nbsp";
-                    echo "<a href='/Agency/logout'><div class='btn btn-danger'>Odjavi se</div></a href>";
+                   echo"<li><a href='/Agency' class='login'>Moj profil</a href></li>";
+                   echo"<li><a href='/Agency/logout' class='button register'>Odjavi se</a></a href></li>";
                 }
-                else if ($User['Type']=='registered'){
-                    echo "<a href='/Registereduser' id='myProf'><div class='btn btn-success'>Moj profil</div></a href>&nbsp";
-                    echo "<a href='/Registereduser/logout'><div class='btn btn-danger'>Odjavi se</div></a href>";
+                else if ($User['Type']=='privileged'){
+                    echo "<li><a href='/Privilegeduser' id='myProf' class='login'>Moj profil</a></li>";
+                    echo "<li><a href='/Privilegeduser/logout'class='button register'>Odjavi se</a></li>";
                 }
-                ?>
-
-               </div>
-
-
-        <div class="hidden-menu">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
-        </div>
-    </nav>
+                else if ($User['Type']=='admin'){
+                    echo "<li><a href='/Admin' id='myProf'class='login'>Moj profil</a></li>";
+                    echo "<li><a href='/Admin/logout'class='button register'>Odjavi se</a></li>";
+                }
+            ?>
+        </ul>
+  
+       <div class="hidden-menu" style="margin:0px !important; padding:0 !important;">
+           <div class="line1"></div>
+           <div class="line2"></div>
+           <div class="line3"></div>
+       </div>
+   </nav>
     <div class="containter">
         <main>
         <section class="glass">
