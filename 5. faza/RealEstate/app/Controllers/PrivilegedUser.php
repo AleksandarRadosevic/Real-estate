@@ -529,6 +529,9 @@ $db = mysqli_connect("localhost", "root", "", "realestate");
                 $phone=$user['Phone'];
                 $name=$user['Name'];
                 $surname=$user['Surname'];
+                $poruka="Uspešno izmenjen info.";
+                $this->session->set('Poruka',$poruka);
+                $this->session->markAsFlashdata('Poruka');
                 if ($_POST['lozinka']!='')
                 $sqlUpdate="Update user set Username='$username', Password='$password',Email='$email',Phone='$phone' where Id=$id";
                 else $sqlUpdate="Update user set Username='$username', Email='$email',Phone='$phone' where Id=$id";

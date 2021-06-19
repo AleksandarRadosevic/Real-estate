@@ -204,3 +204,22 @@ function oglasdodat(){
 function oglas(){
   localStorage.setItem("oglas", "Oglas je uspešno dodat.");
 }
+
+function infoizmenjen(){
+  if(localStorage.getItem("info")){
+  var node=document.createElement('div');
+  node.setAttribute('class','potvrda ograda');
+  var tekst=document.createTextNode("Info izmenjen");
+  node.appendChild(tekst);
+  var sekcija=document.getElementById('info_izmenjen');
+  sekcija.appendChild(node);
+  localStorage.removeItem('info');
+  }
+}
+
+function info(){
+  localStorage.setItem("info", "Informacije su uspešno izmenjene.");
+}
+function poruke(){
+    oglasdodat();
+}

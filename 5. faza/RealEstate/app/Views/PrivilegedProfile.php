@@ -15,7 +15,7 @@
     <title>Pregled profila</title>
     
 </head>
-<body onload='oglasdodat()'>
+<body onload='poruke()'>
     <nav>
         <div class="logo"><h4><a  href='/Home'>Success</a></h4></div>
         <ul class="nav-links">
@@ -127,6 +127,14 @@
         <div id='oglas_dodat' class="col-sm-12">
         </div>
         </div>
+            <?php
+            $session=session();
+            if(($session->get('Poruka'))!=null){
+                echo "<div class='row>
+                    <div class='col-sm-12'>
+                    <div class='potvrda ograda'>".$session->getFlashdata('Poruka')."</div></div></div}";
+            }
+            ?>
         </div>
     </div>
 </div>

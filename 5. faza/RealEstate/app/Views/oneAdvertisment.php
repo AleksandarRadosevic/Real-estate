@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/styleAds.css">
     <script src='/assets/javascript.js'></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -183,11 +185,12 @@
                       </div>
                     <?php 
                     $ads=new App\Models\adModel();
+                    $reg=new App\Models\PrivilegedUserModel();
                     $session=session();
                     $user=$session->get('User');
                     $advert=$ads->find($user['Temp']);
                     if ($user!=null)
-                    if($user['Id']!=$advert['IdOwner']){
+                    if($user['Id']!=$advert['IdOwner'] && $reg->find($advert['IdOwner'])==null){
                     echo"
                     <form method='POST' action='ocena'>
                         <div id='radios'>
@@ -220,10 +223,13 @@
                   $marks=new App\Models\MarkModel();
                   $session=session();
                   $user=$session->get('User');
-                  $mark=$marks->where('IdK',$user['Id'])->where('IdA',$user['Temp'])->find();
-                  if($mark!=null)echo "<div class='media ograda'>
-                            <p>Agencija je ocenjena ocenom.</p>
-                        </div>";
+                  
+                  $mark=$marks->where('IdK',$user['Id'])->where('IdA',$owner['Id'])->find();
+                  if($mark!=null){
+                      foreach($mark as $result){
+                      echo "<div class='ograda'>
+                            <p>Ocenili ste agenciju ocenom ". $result['Number'] .".</p>
+                  </div>";}}
                   ?>
                   </div>
                 </div>

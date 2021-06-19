@@ -120,7 +120,7 @@
                 <?php endforeach ?>
                 </div>
                 <?php endif ?>
-                    <button type='submit' class='izmeni_dugme'>Sačuvaj izmene</button>
+                    <button type='submit' onclick='info()' class='izmeni_dugme'>Sačuvaj izmene</button>
                 </ul>
             </div>
             </form>
