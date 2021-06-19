@@ -42,13 +42,7 @@
         <main>
         <section class="glass">
 
-
-            <div class="addPicture" >
-                <h1 class=naslov>Dodavanje slika</h1>
-
-                <h2 > Slike će učiniti vaš oglas bogatijim i potencijalnim mušterijama dati dobar povod da ga pogledaju!</h2>
-
-            </div>
+              <h2 style="font-family: 'Poppins', sans-serif; text-align: center;">Dodajte slike za dati oglas</h2>
 
             <div class="addPicture1">
 

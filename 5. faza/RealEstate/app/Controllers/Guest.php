@@ -36,6 +36,8 @@ class Guest extends BaseController
                     'Phone'=>$this->request->getVar('phone')
                 ];   
                 
+                $type=$_POST["type"];
+                
                 //add user
                 if($user->validate($values)==false){
                 return view('register', ['errors' => $user->errors()]);
@@ -46,11 +48,28 @@ class Guest extends BaseController
                     $errors=['username' => 'Uneto korisnicko ime je zauzeto'];
                     return view('register',['errors'=>$errors]);
                 }
-                
+                else if($type=="regular"){
+                    $validation =  \Config\Services::validation();
+                    $phoneNumber=$_POST['phone'];
+                if ($phoneNumber!='')
+                {
+                    $validation->setRules([
+                        'Phone'=> 'regex_match[/^06[\d]{7,8}$/]'],[
+                            'Phone'=>[
+                                'regex_match'=>'Telefon mora biti u formatu 06x xxx xxx(x)'
+                            ]
+                        ]);
+                    if($validation->run(['Phone'=>$_POST['phone']])==false){
+                        echo view('register.php',['User'=>$user,
+                    'errors'=>$validation->getErrors()]);
+                        return;
+                    }
+                }
+                }
                 
                 //id will be changed after insert in user table
                 $id=-1;
-                $type=$_POST["type"];
+                
                 
               //value for insert in other  table
                $userOtherTable=null;

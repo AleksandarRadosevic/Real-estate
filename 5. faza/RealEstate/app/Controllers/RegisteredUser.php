@@ -20,7 +20,6 @@ class Registereduser extends BaseController
                     $data=[];
         helper(['form']);
         $user=$this->session->get('User');
-        
         if($this->request->getMethod()=='post'){
             $data1=[
                     'Id'=>$user['Id'],
@@ -34,6 +33,98 @@ class Registereduser extends BaseController
                 'Name'=>$_POST['ime'],
                 'Surname'=>$_POST['prezime']
             ];
+            $db = \Config\Database::connect();
+            $validatonRule=[
+        'Username'     => 'required|min_length[3]|max_length[20]',
+        'Email'        => 'required|min_length[6]|max_length[50]|valid_email',
+        'Name'     => 'required|min_length[3]|max_length[20]',
+        'Surname'  => 'required|min_length[3]|max_length[20]'            
+            ];
+            $errorMessages=[
+                'Username'=>[
+                    'required'  =>'Korisničko ime je obavezno polje',
+                    'min_length'=>'Korisničko ime mora imati bar 3 karaktera',
+                    'max_length'=>'Korisničko ime ne može imati više od 20 karaktera',
+                ],
+             'Email' => [
+             'required'  =>'Email je obavezno polje',
+             'min_length'=>'Email mora imati bar 6 karaktera',
+             'max_length'=>'Email ne može imati više od 50 karaktera',
+             'valid_email'=>'Morate uneti validnu email adresu'
+        ],
+   
+             'Name'     =>[
+             'required'  =>'Ime je obavezno polje',
+             'min_length'=>'Ime mora imati bar 3 karaktera',
+             'max_length'=>'Ime ne može imati više od 20 karaktera',
+             ],
+           'Surname'     =>[
+             'required'  =>'Prezime je obavezno polje',
+             'min_length'=>'Prezime mora imati bar 3 karaktera',
+             'max_length'=>'Prezime ne može imati više od 20 karaktera',
+             ]
+            ];
+            $validation =  \Config\Services::validation();
+            $validation->setRules($validatonRule,$errorMessages);
+            $validData=$validation->run([
+                'Username'=>$_POST['korime'],
+                'Email'=>$_POST['email'],
+                'Name'=>$_POST['ime'],
+                'Surname'=>$_POST['prezime']
+            ]);
+            if ($validData==false){
+                echo view('izmena.php',['User'=>$user,
+                    'errors'=>$validation->getErrors()]);
+                return;
+            }
+            else {
+                $ime=$_POST['korime'];
+                $email=$_POST['email'];
+                $sqlUsername="Select * from user where Username='$ime' OR Email='$email'";
+                if (sizeof($db->query($sqlUsername)->getResult())>1){
+                    $errors=[
+                        'Podaci'=>'Mejl ili korisnicko ime moraju biti jedinstveni'
+                    ];
+                    echo view('izmena.php',['User'=>$user,
+                    'errors'=>$errors]);
+                return;
+                }
+                
+                
+                
+                //check phone number if exists
+                $phoneNumber=$_POST['tel'];
+                if ($phoneNumber!='')
+                {
+                    $validation->setRules([
+                        'Phone'=> 'regex_match[/^06[\d]{7,8}$/]'],[
+                            'Phone'=>[
+                                'regex_match'=>'Telefon mora biti u formatu 06x xxx xxx(x)'
+                            ]
+                        ]);
+                    if($validation->run(['Phone'=>$_POST['tel']])==false){
+                        echo view('izmena.php',['User'=>$user,
+                    'errors'=>$validation->getErrors()]);
+                        return;
+                    }
+                }
+                //check password if exists
+                $pass=$_POST['lozinka'];
+                if ($pass!=''){
+                    $validation->setRules([
+                            'Password'     => 'min_length[3]|max_length[20]'],[
+                            'Password'=>[
+                                'min_length'=>'Lozinka mora sadržati bar 3 karaktera',
+                                'max_length'=>'Lozinka može sadržati najviše 20 karaktera',  
+                            ]
+                        ]);
+                    if($validation->run(['Password'=>$_POST['lozinka']])==false){
+                        echo view('izmena.php',['User'=>$user,
+                    'errors'=>$validation->getErrors()]);
+                        return;
+                    }
+                }
+            }
                 $noviuser=[
                     'Id'=>$user['Id'],
                     'Username'=>$_POST['korime'],
@@ -48,12 +139,17 @@ class Registereduser extends BaseController
                 $db = \Config\Database::connect();
                 $id=$user['Id'];
                 $username=$user['Username'];
+                if ($_POST['lozinka']!='')
                 $password=$data1['Password'];
                 $email=$user['Email'];
                 $phone=$user['Phone'];
                 $name=$user['Name'];
                 $surname=$user['Surname'];
+                if ($_POST['lozinka']!='')
                 $sqlUpdate="Update user set Username='$username', Password='$password',Email='$email',Phone='$phone' where Id=$id";
+                else $sqlUpdate="Update user set Username='$username', Email='$email',Phone='$phone' where Id=$id";
+
+                    
                 $sqlUpdate2="Update registereduser set Name='$name', Surname='$surname' where Id=$id";
                 $db->query($sqlUpdate);
                 $db->query($sqlUpdate2);

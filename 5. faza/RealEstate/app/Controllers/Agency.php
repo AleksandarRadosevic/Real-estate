@@ -450,6 +450,81 @@ $db = mysqli_connect("localhost", "root", "", "realestate");
                 'Name'=>$_POST['agencija'],
                 'AverageMark' => $user['AverageMark'],
             ];
+            $validatonRule=[
+        'Username'     => 'required|min_length[3]|max_length[20]',
+        'Email'        => 'required|min_length[6]|max_length[50]|valid_email',
+        'Phone'        => 'required|regex_match[/^06[\d]{7,8}$/]',
+        'Name'         => 'required|min_length[3]|max_length[20]'          
+            ];
+            $errorMessages=[
+            'Username'=>[
+                'required'  =>'Korisničko ime je obavezno polje',
+                'min_length'=>'Korisničko ime mora imati bar 3 karaktera',
+                'max_length'=>'Korisničko ime ne može imati više od 20 karaktera',
+                ],
+            'Email' => [
+            'required'  =>'Email je obavezno polje',
+            'min_length'=>'Email mora imati bar 6 karaktera',
+            'max_length'=>'Email ne može imati više od 50 karaktera',
+            'valid_email'=>'Morate uneti validnu email adresu'
+        ],
+   
+           'Phone'        =>[
+             'required'  =>'Broj telefona je obavezno polje',
+             'regex_match'=>'Broj je u formatu 06x xxx xxx(x)'
+         ],
+                'Name'=>[
+                'required'  =>'Ime je obavezno polje',
+                'min_length'=>'Korisničko ime mora imati bar 3 karaktera',
+                'max_length'=>'Korisničko ime ne može imati više od 20 karaktera',
+                ]
+            ];
+            $validation =  \Config\Services::validation();
+            $validation->setRules($validatonRule,$errorMessages);
+            $validData=$validation->run([
+                'Username'=>$_POST['korime'],
+                'Email'=>$_POST['email'],
+                'Name'=>$_POST['agencija'],
+                'Phone'=>$_POST['tel']
+            ]);
+            $db = \Config\Database::connect();
+            if ($validData==false){
+                echo view('izmena.php',['User'=>$user,
+                    'errors'=>$validation->getErrors()]);
+                return;
+            }
+            else {
+                $ime=$_POST['korime'];
+                $email=$_POST['email'];
+                $sqlUsername="Select * from user where Username='$ime' OR Email='$email'";
+                if (sizeof($db->query($sqlUsername)->getResult())>1){
+                    $errors=[
+                        'Podaci'=>'Mejl ili korisnicko ime moraju biti jedinstveni'
+                    ];
+                    echo view('izmena.php',['User'=>$user,
+                    'errors'=>$errors]);
+                return;
+                }
+                
+                //check password if exists
+                $pass=$_POST['lozinka'];
+                if ($pass!=''){
+                    $validation->setRules([
+                            'Password'     => 'min_length[3]|max_length[20]'],[
+                            'Password'=>[
+                                'min_length'=>'Lozinka mora sadržati bar 3 karaktera',
+                                'max_length'=>'Lozinka može sadržati najviše 20 karaktera',  
+                            ]
+                        ]);
+                    if($validation->run(['Password'=>$_POST['lozinka']])==false){
+                        echo view('izmena.php',['User'=>$user,
+                    'errors'=>$validation->getErrors()]);
+                        return;
+                    }
+                }
+            }
+            
+            
                 $noviuser=[
                     'Id'=>$user['Id'],
                     'Username'=>$_POST['korime'],
@@ -464,12 +539,15 @@ $db = mysqli_connect("localhost", "root", "", "realestate");
                 $db = \Config\Database::connect();
                 $id=$user['Id'];
                 $username=$user['Username'];
+                if($_POST['lozinka']!='')
                 $password=$data1['Password'];
                 $email=$user['Email'];
                 $phone=$user['Phone'];
                 $name=$user['Name'];
                 $averageMark=$user['AverageMark'];
+                if ($_POST['lozinka']!='')
                 $sqlUpdate="Update user set Username='$username', Password='$password',Email='$email',Phone='$phone' where Id=$id";
+                else $sqlUpdate="Update user set Username='$username', Email='$email',Phone='$phone' where Id=$id";
                 $sqlUpdate2="Update agency set Name='$name',AverageMark='$averageMark' where Id=$id";
                 $db->query($sqlUpdate);
                 $db->query($sqlUpdate2);

@@ -42,32 +42,31 @@
     </nav>
     <div id="containter">
         <main>
-        <section class="glass">
+        <section class="glass"  style="background-image:url('/assets/images/dodavanjeOglasa.jpg');  background-repeat: no-repeat; background-size: cover !important;">
+            <h2 style="font-family: 'Poppins', sans-serif; text-align: center;">Azuriranje oglasa</h2>
+            <form class='uredi' enctype="multipart/form-data" name='logovanje' id='forma' method="post">
 
-<h1 class=naslov>Azuriranje</h1>
-
-            <form class='uredi' enctype="multipart/form-data" name='logovanje' id='forma'action="" method="post">
-
-<div id='content' width=100%>
+<div style="width:100%;" >
     <table>
         <tr>
-            <td ><h2 class=podnaslov>Azurirajte podatke:</h2> 
-            
+            <td ><h3 style="font-family: 'Poppins', sans-serif; text-align: center;">Vaši podaci :</h3>                      
         </tr>
         <tr>
             <td>Naslov </td>
             <td>
-                
-              
-                <input type='text' name="naslov" minlength="3" placeholder="<?php echo $topic; ?>"  >
+                <input type='text' name="naslov" minlength="3" placeholder="<?php echo $topic; ?>"style="border-radius: 5px;">
             </td>
+        </tr>
+        <tr>     
+            <td>&nbsp;</td>
         </tr>
         <tr>
             <td>Cena u evrima:</td>
             <td>
-              <input type="number" name="cena" placeholder="<?php echo $price; ?>"   />
+            <input type="number" name="cena" placeholder="<?php echo $price; ?>" style="border-radius: 5px;" />
             </td>
         </tr>
+        <tr><td> &nbsp;</td></tr>
         <tr>
             <td>Tip nekretnine:</td>
             <td>
@@ -84,12 +83,11 @@
                 <input type='radio' value="izdavanje" name='vrstaUsluge' id='izdavanje' <?php echo ($purpose=='izdavanje' ? 'checked' : '');?>>Izdavanje
             </td>
         </tr>
-        <tr>
-            
-            <td>Mesto:</td>
+        <tr>       
+            <td>Lokacija:</td>
             <td>
                 <div class="dropdown">
-                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"  >
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" style="width:60%;">
                     Izaberi lokaciju
                     </button>
                     <div class="dropdown-menu" >
@@ -155,165 +153,152 @@
                    </div>
             </td>
         </tr>
-
+        <tr><td> &nbsp;</td></tr>
         <tr>
             <td>Adresa:</td>
             <td>
-                <input type='text' name="adresa"  minlength="3" placeholder="<?php echo $address; ?>" >
+                <input type='text' name="adresa"  minlength="3" placeholder="<?php echo $address; ?>" style="border-radius: 5px;">
             </td>
         </tr>
-
-
+        <tr><td> &nbsp;</td></tr>
         <tr>
             <td>Kvadratura u m2 </td>
             <td>
-		<input type="number" placeholder="<?php echo $size ?>" name="kvadratura"  />       
+		<input type="number" placeholder="<?php echo $size ?>" name="kvadratura"  style="border-radius: 5px;"/>       
             </td>
         </tr>
-
-
-        
-        
-      
-       
-    
-                                              
+                              
         <tr>
             <td>Dodatno:</td>
+            
             <td>
-                <input type='checkbox' value="Potkrovlje" name='check_list[]' <?php {
-    foreach ($result as $key => $value) {
-        if ($value['IdTag'] == '1') {
-            echo "checked";
-        }                                       
-       
-    }
-    }                   ?>> Potkrovlje
-                <input type='checkbox' value="Uknjizen" name='check_list[]' <?php  {
-    foreach ($result as $key => $value) {
-        if ($value['IdTag'] == '2') {
-            echo "checked";
-        }
-       
-    }
-    }                   ?>> Uknjizen
-                <input type='checkbox' value="Hitna prodaja" name='check_list[]' <?php  {
+   <table>
+                    <tr>
+                        <td><input type='checkbox' value="Uknjizen" name='check_list[]'
+                          <?php foreach ($result as $key => $value) if ($value['IdTag'] == '2') echo "checked";?>> Uknjizen</td>
+                        <td><input type='checkbox' value="Potkrovlje" name='check_list[]'
+                          <?php foreach ($result as $key => $value) 
+                         if ($value['IdTag'] == '1') echo "checked";?>> Potkrovlje</td>
+                    </tr>
+                    <tr>
+                        <td><input type='checkbox' value="Hitna prodaja" name='check_list[]' <?php  
     foreach ($result as $key => $value) {
         if ($value['IdTag'] == '3') {
             echo "checked";
         }
        
     }
-    }                   ?>> Hitna prodaja
-                <input type='checkbox' value="Garaza" name='check_list[]' <?php  {
+                      ?>> Hitna prodaja</td>
+                        <td>                <input type='checkbox' value="Garaza" name='check_list[]' <?php  
     foreach ($result as $key => $value) {
         if ($value['IdTag'] == '4') {
             echo "checked";
         }
        
     }
-    }                   ?>> Garaza
-                <input type='checkbox' value="Lift" name='check_list[]' <?php  {
+                       ?>> Garaza</td>
+                    </tr>
+                    <tr>
+                        <td>                <input type='checkbox' value="Lift" name='check_list[]' <?php  
     foreach ($result as $key => $value) {
         if ($value['IdTag'] == '5') {
             echo "checked";
         }
        
     }
-    }                   ?>> Lift
-                <input type='checkbox' value="Terasa" name='check_list[]' <?php  {
+                ?>> Lift</td>
+                        <td>                <input type='checkbox' value="Terasa" name='check_list[]' <?php  
     foreach ($result as $key => $value) {
         if ($value['IdTag'] == '6') {
             echo "checked";
         }
        
     }
-    }                   ?>> Terasa
-                <input type='checkbox' value="Podrum" name='check_list[]' <?php  {
+                       ?>> Terasa</td>
+                    </tr>
+                    <tr>
+                        <td>                <input type='checkbox' value="Podrum" name='check_list[]' <?php  {
     foreach ($result as $key => $value) {
         if ($value['IdTag'] == '7') {
             echo "checked";
         }
        
     }
-    }                   ?> > Podrum
-                <input type='checkbox'  value="Penthouse" name='check_list[]' <?php  {
+    }                   ?> > Podrum</td>
+                        <td>                <input type='checkbox'  value="Penthouse" name='check_list[]' <?php  {
     foreach ($result as $key => $value) {
         if ($value['IdTag'] == '8') {
             echo "checked";
         }
        
     }
-    }                   ?>> Penthouse
-                <br>
-                 <input type='checkbox' value="Nova gradnja" name='check_list[]' <?php  {
+    }                   ?>> Penthouse</td>
+                    </tr>
+                    <tr>
+                        <td>                 <input type='checkbox' value="Nova gradnja" name='check_list[]' <?php  {
     foreach ($result as $key => $value) {
         if ($value['IdTag'] == '9') {
             echo "checked";
         }
        
     }
-    }                   ?>> Nova gradnja
-                <input type='checkbox' value="Stara gradnja" name='check_list[]' <?php  {
+    }                   ?>> Nova gradnja</td>
+                        <td>                <input type='checkbox' value="Stara gradnja" name='check_list[]' <?php  {
     foreach ($result as $key => $value) {
         if ($value['IdTag'] == '10') {
             echo "checked";
         }
        
     }
-    }                   ?>> Stara gradnja
-                <input type='checkbox' value="Izvorno stanje" name='check_list[]' <?php  {
+    }                   ?>> Stara gradnja</td>
+                    </tr>
+                    <tr>
+                        <td>                <input type='checkbox' value="Izvorno stanje" name='check_list[]' <?php  {
     foreach ($result as $key => $value) {
         if ($value['IdTag'] == '11') {
             echo "checked";
         }
        
     }
-    }                   ?>> Izvorno stanje
-                <input type='checkbox'  value="Renovirano"name='check_list[]' <?php  {
+    }                   ?>> Izvorno stanje</td>
+                        <td>                <input type='checkbox'  value="Renovirano"name='check_list[]' <?php  {
     foreach ($result as $key => $value) {
         if ($value['IdTag'] == '12') {
             echo "checked";
         }
        
     }
-    }                   ?>> Renovirano
-                <input type='checkbox' value="Lux"  name='check_list[]' <?php  {
+    }                   ?>> Renovirano</td>
+                    </tr>
+                    <tr>
+                        <td>                <input type='checkbox' value="Lux"  name='check_list[]' <?php  {
     foreach ($result as $key => $value) {
         if ($value['IdTag'] == '13') {
             echo "checked";
         }
        
     }
-    }                   ?> > Lux
-                <input type='checkbox' value="Za renoviranje" name='check_list[]' <?php  {
+    }                   ?> > Lux</td>
+                        <td>                <input type='checkbox' value="Za renoviranje" name='check_list[]' <?php  {
     foreach ($result as $key => $value) {
         if ($value['IdTag'] == '14') {
             echo "checked";
         }
        
     }
-    }                   ?>> Za renoviranje
-                
+    }                   ?>> Za renoviranje</td>
+                    </tr>
+                </table>                  
             </td>
         </tr>
-
-
-      
-        
-
-
         <tr>
             <td>Opis:</td>
             <td>
                 <textarea rows='5' name="komentar" placeholder="<?php echo $description ?>" cols='40'></textarea>
             </td>
         </tr>
-        
-        
   </form>
-        
-        
+ 
 <script>
 function goBackToMain() {
             window.location.href = "http://localhost:8080/"
@@ -331,55 +316,30 @@ function goBackToMain() {
 </script>
         <tr>
             <td>Odustani</td>
-            <td>
-				 
-                
-           <button type="button" onclick="goBackToMain()"class="btn-danger" >Nazad</button>
+            <td>   
+                <?php
+                if ($User['Type']=='privileged'){
+                    echo "<a href='/Privilegeduser'><button type='button'class='btn-danger' style='width: 60%;'>Nazad</button></a>";
+                }
+                else if ($User['Type']=='agency'){
+                    echo "<a href='/Agency'><button type='button'class='btn-danger' style='width: 60%;'>Nazad</button></a>";
+                }
+                ?>              
             </td>
         </tr>
-        
-        
-        
-   
-        
-        
         
          <tr>
             <td>Ažuriraj oglas</td>
             <td>
-             
-               
-			
-                            <button type='submit'  class="btn-success" >Azuriraj </button> 
-                                    
+        <button type='submit'  class="btn-success" style="width: 60%;">Azuriraj </button>                                  
             </td>
         </tr>
-        
-        
 
-       
-       
-
-
-        
-   
-
-       
     </table>
-    
-     
-	
-    <img src='/assets/images/zaProjekat.jpg'>
 
 </div>
 
-               
-
-    
-
         </div>
-
-
         </section>
         
         <div class="circle1"></div>
