@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <title>Prototip</title>
 </head>
-<body><form id="my_form" method="get" action="Add">
+<body>
     <nav>
      
       
@@ -44,16 +44,16 @@
             ?>
         </ul>
   
-       <div class="hidden-menu" style="margin:0px !important; padding:0 !important;">
+       <div class="hidden-menu">
            <div class="line1"></div>
            <div class="line2"></div>
            <div class="line3"></div>
        </div>
    </nav>
-    <form name='my_form' method='post' action='Guest/Add'>
-      <div class="containter">
+    <div class="containter">
        <main style="margin-top:0% !important;">     
          <section class="glass">
+            <form id="my_form" method="get" action="Add">   
              <?php $cntAdvertisment=0;
              $numRows=count($values->getResult());
              if ($numRows==0){ ?>
@@ -121,10 +121,9 @@
                 </div>
             </div>            
             <?php }?>
- 
+            </form>
          </section>
      </main>
      </div>
-           </form>
      </body>
 </html> 
