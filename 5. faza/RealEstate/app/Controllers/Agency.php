@@ -42,8 +42,8 @@ class Agency extends BaseController
             if ($this->request->getMethod()=='post'){
             //validation for user
 
-                $poruka1="Uspešno dodat oglas.";
-                $this->session->set('porukadodavanje', $poruka1);
+                $poruka2="Uspešno dodat oglas.";
+                $this->session->set('porukadodavanje', $poruka2);
                 
                 $advertisment=new adModel();
 		//$id=$user->getInsertID();
@@ -236,7 +236,8 @@ $db = mysqli_connect("localhost", "root", "", "realestate");
                 die("Connection failed: " . $conn->connect_error);
                     }
                 
-                
+                $poruka2="Uspešno ažuriran oglas.";
+                $this->session->set('porukaoglas', $poruka2);
                 
                 $idoglasa=$updateId;
             

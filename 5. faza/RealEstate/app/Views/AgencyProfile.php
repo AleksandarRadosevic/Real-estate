@@ -137,6 +137,22 @@
           </div>
         <?php
             $session=session();
+            if(($session->get('porukadodavanje'))!=null){
+                echo "<div class='row>
+                    <div class='col-sm-12'>
+                    <div class='potvrda ograda'>".$session->getFlashdata('porukadodavanje')."</div></div></div}";
+            }
+            ?>
+            <?php
+            $session=session();
+            if(($session->get('porukaoglas'))!=null){
+                echo "<div class='row>
+                    <div class='col-sm-12'>
+                    <div class='potvrda ograda'>".$session->getFlashdata('porukaoglas')."</div></div></div}";
+            }
+            ?>
+            <?php
+            $session=session();
             if(($session->get('Poruka'))!=null){
                 echo "<div class='row>
                     <div class='col-sm-12'>

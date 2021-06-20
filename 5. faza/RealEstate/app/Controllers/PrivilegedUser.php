@@ -237,8 +237,8 @@ $db = mysqli_connect("localhost", "root", "", "realestate");
                     }
                 
                 
-                $poruka="Uspešno ažuriran oglas.";
-                $this->session->set('porukaoglas', $poruka);
+                $poruka2="Uspešno ažuriran oglas.";
+                $this->session->set('porukaoglas', $poruka2);
                 
                 $idoglasa=$updateId;
             
