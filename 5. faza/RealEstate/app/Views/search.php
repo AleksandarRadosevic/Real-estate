@@ -86,7 +86,7 @@
             <button type="button" class="btn btn-primary dropdown-toggle dropbutton" onclick="btnToggle()">
             Izaberi lokaciju
             </button>
-            <div id="Dropdown" class="dropdown-menu" style="padding-left:1%; padding-right: 28%;">              
+            <div id="Dropdown" class="dropdown-menu" style="width:125%;padding-left:1%; padding-right: 28%;">              
             <?php foreach($municipalities->getResult() as $temp){?>
                 <div class="dropdown-item" style="margin-right:0%; padding-right: 0%;"><label>
               <input type="checkbox" name="<?php echo $temp->Id;?>" value="<?php echo $temp->Id;?>"> <?php echo $temp->City.', '.$temp->Name;?>

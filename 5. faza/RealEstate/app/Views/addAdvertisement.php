@@ -114,7 +114,7 @@
                     </button>
                     <div class="dropdown-menu">
                     <div class="dropdown-item"><label>
-                      <input type="radio" name="Beograd" value='1' > Beograd, Cukarica
+                      <input type="radio" name="Beograd" value='1' checked > Beograd, Cukarica
                     </label>
                    </div>
                    <div class="dropdown-item"> <label>

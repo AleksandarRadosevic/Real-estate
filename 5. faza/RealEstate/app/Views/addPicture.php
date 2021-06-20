@@ -59,7 +59,7 @@
                 action=""
                 enctype="multipart/form-data">
 
-                 <input type="file" style="margin-left: 600px;"name="uploadfile" value="Dodaj Sliku" />
+                 <input type="file" style="margin-left: 45%;"name="uploadfile" value="Dodaj Sliku" />
                 <br>
 
                 <button type='submit' name="upload" class="btn-lg btn btn-success" >Dodaj sliku </button>
