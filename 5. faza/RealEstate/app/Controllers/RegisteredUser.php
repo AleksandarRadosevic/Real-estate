@@ -145,14 +145,12 @@ class Registereduser extends BaseController
                 $phone=$user['Phone'];
                 $name=$user['Name'];
                 $surname=$user['Surname'];
-                $poruka="Uspešno izmenjen info.";
+                $poruka="Informacije su uspešno sačuvane.";
                 $this->session->set('Poruka',$poruka);
                 $this->session->markAsFlashdata('Poruka');
                 if ($_POST['lozinka']!='')
                 $sqlUpdate="Update user set Username='$username', Password='$password',Email='$email',Phone='$phone' where Id=$id";
                 else $sqlUpdate="Update user set Username='$username', Email='$email',Phone='$phone' where Id=$id";
-
-                    
                 $sqlUpdate2="Update registereduser set Name='$name', Surname='$surname' where Id=$id";
                 $db->query($sqlUpdate);
                 $db->query($sqlUpdate2);

@@ -84,7 +84,7 @@
                     echo "<li>
                       <label class='izmena_label'>
                        <span class='izmena_span'>Prezime</span>
-                       <input class='izmena_input' value='".$User['Surname'] ." 'name='prezime'/>
+                       <input class='izmena_input' value='".$User['Surname'] ."' name='prezime'/>
                       </label>
                     </li>
                     <li>";

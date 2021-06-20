@@ -64,6 +64,9 @@
 
                 <button type='submit' name="upload" class="btn-lg btn btn-success" >Dodaj sliku </button>
                 <?php 
+                $session=session();
+                if($session->get('porukaoglas')!=null)$session->markAsFlashdata('porukaoglas');
+                if($session->get('porukadodavanje')!=null)$session->markAsFlashdata('porukadodavanje');
                 if ($user['Type']=='privileged'){
                     echo '<a href="/Privilegeduser"><button type="button" onclick="oglas()" class="btn btn-lg btn-info" >Završi</button></a>';                  
                 }

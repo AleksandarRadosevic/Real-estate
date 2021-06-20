@@ -41,7 +41,10 @@ class Agency extends BaseController
               
             if ($this->request->getMethod()=='post'){
             //validation for user
-               
+
+                $poruka1="Uspešno dodat oglas.";
+                $this->session->set('porukadodavanje', $poruka1);
+                
                 $advertisment=new adModel();
 		//$id=$user->getInsertID();
                 
@@ -545,7 +548,7 @@ $db = mysqli_connect("localhost", "root", "", "realestate");
                 $phone=$user['Phone'];
                 $name=$user['Name'];
                 $averageMark=$user['AverageMark'];
-                $poruka="Uspešno izmenjen info.";
+                $poruka="Informacije su uspešno sačuvane.";
                 $this->session->set('Poruka',$poruka);
                 $this->session->markAsFlashdata('Poruka');
                 if ($_POST['lozinka']!='')

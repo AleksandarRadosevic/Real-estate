@@ -42,7 +42,9 @@ class Privilegeduser extends BaseController
             //validation for user
            
             
-           
+                $poruka1="Uspešno dodat oglas.";
+                $this->session->set('porukadodavanje', $poruka1);
+                
                 $advertisment=new adModel();
 		//$id=$user->getInsertID();
                 
@@ -235,6 +237,8 @@ $db = mysqli_connect("localhost", "root", "", "realestate");
                     }
                 
                 
+                $poruka="Uspešno ažuriran oglas.";
+                $this->session->set('porukaoglas', $poruka);
                 
                 $idoglasa=$updateId;
             
@@ -297,7 +301,7 @@ $db = mysqli_connect("localhost", "root", "", "realestate");
                  mysqli_query($db, $sql);
                   
               }
-                    
+                 
                  $sql = "UPDATE advertisement SET 
                  IdPlace = '".$mesto."' WHERE Id='$updateId'";
                  mysqli_query($db, $sql);
@@ -329,10 +333,12 @@ $db = mysqli_connect("localhost", "root", "", "realestate");
                                      $model1->save($values);
                                 }
                                 }
-      
+                
 		return redirect()->to('upload');
 
               }
+              
+                    
              return view('updateAdvertisement', ['price' => $price,
                 'topic'=>$topic,
                 'size'=>$size,
@@ -529,13 +535,15 @@ $db = mysqli_connect("localhost", "root", "", "realestate");
                 $phone=$user['Phone'];
                 $name=$user['Name'];
                 $surname=$user['Surname'];
-                $poruka="Uspešno izmenjen info.";
+                if ($_POST['lozinka']!=''){
+                $sqlUpdate="Update user set Username='$username', Password='$password',Email='$email',Phone='$phone' where Id=$id";
+                }
+                else {$sqlUpdate="Update user set Username='$username', Email='$email',Phone='$phone' where Id=$id";
+                }
+                $sqlUpdate2="Update privilegeduser set Name='$name', Surname='$surname' where Id=$id";
+                $poruka="Informacije su uspešno sačuvane.";
                 $this->session->set('Poruka',$poruka);
                 $this->session->markAsFlashdata('Poruka');
-                if ($_POST['lozinka']!='')
-                $sqlUpdate="Update user set Username='$username', Password='$password',Email='$email',Phone='$phone' where Id=$id";
-                else $sqlUpdate="Update user set Username='$username', Email='$email',Phone='$phone' where Id=$id";
-                $sqlUpdate2="Update privilegeduser set Name='$name', Surname='$surname' where Id=$id";
                 $db->query($sqlUpdate);
                 $db->query($sqlUpdate2);
                 $this->session->set('User',$user);
